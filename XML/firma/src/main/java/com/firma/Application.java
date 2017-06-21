@@ -19,12 +19,10 @@ import org.springframework.web.filter.CorsFilter;
 //@ComponentScan
 //@EnableAutoConfiguration
 
-@Configuration
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+//@Configuration
+//@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class Application {
-	
 
-	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

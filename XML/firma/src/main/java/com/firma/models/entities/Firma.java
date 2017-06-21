@@ -60,4 +60,6 @@ public class Firma {
 		this.brojRacuna = brojRacuna;
 	}
 
+	
+	public Firma() {}
 }

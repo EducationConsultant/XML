@@ -1,5 +1,13 @@
 package com.firma.services;
 
-public class FirmaService {
+import java.util.List;
 
+import com.firma.models.entities.Firma;
+
+public interface FirmaService {
+
+	public Firma findOne(Long id);
+	public Firma save(Firma firma);
+	public Firma findByNaziv(String naziv);
+	public List<Firma> find();
 }

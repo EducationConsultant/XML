@@ -4,18 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
-@RequestMapping("/api/faktura")
-public class FakturaController {
-	
+@RequestMapping("/api/firma")
+public class FirmaController {
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String basicTest() {
-		return "demo";
+		return "firma";
 	}
-	
-	//TODO Srediti da ovo radit
-	//TODO Model firme. Rest endpoit za dodavanje firmi, Baza.
-	//Slanje fakture. Controller sa enpointom. primer api/{firmaA}/faktura/{firmaB} -, id firme
-
 }
