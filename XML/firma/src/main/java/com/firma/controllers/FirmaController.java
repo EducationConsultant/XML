@@ -1,6 +1,5 @@
 package com.firma.controllers;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,64 +21,30 @@ public class FirmaController {
 
 	@Autowired
 	private FirmaService firmaService;
-	
-	
-	@RequestMapping(method=RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Firma>> getFirme() {
 		List<Firma> firme = firmaService.find();
-		
+
 		return new ResponseEntity<List<Firma>>(firme, HttpStatus.OK);
-		
+
 	}
-	
-	
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Firma> getFirma(@PathVariable Long id) {
-		
+
 		Firma firma = firmaService.findOne(id);
-		
+
 		return new ResponseEntity<Firma>(firma, HttpStatus.OK);
-		
+
 	}
-	
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Firma> insertFirma(@RequestBody Firma firma) {
-		//Firma  firmaInDatabase = firmaService.findByNaziv(firma.getNaziv());
-		
-		//if(firmaInDatabase == null) {
-			//Firma savedFirma = firmaService.save(firmaInDatabase);
-			return new ResponseEntity<Firma>(firma, HttpStatus.CREATED);
-		//}
-		
-		//return new ResponseEntity<Firma>(HttpStatus.NOT_FOUND);
-		
+
+		Firma savedFirma = firmaService.save(firma);
+		return new ResponseEntity<Firma>(savedFirma, HttpStatus.CREATED);
+
 	}
-	
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
