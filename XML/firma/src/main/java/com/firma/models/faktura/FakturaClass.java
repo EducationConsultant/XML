@@ -1,0 +1,359 @@
+package com.firma.models.faktura;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
+@Table(name = "fakutra")
+public class FakturaClass {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "IDPoruke", nullable = false, unique = true)
+	private Long idPoruke;
+
+	@Column(name = "nazivDobavljaca", nullable = false)
+	private String nazivDobavljaca;
+
+	@Column(name = "adresaDobavljaca", nullable = false)
+	private String adresaDobavljaca;
+
+	@Column(name = "pibDobavljaca", nullable = false, unique = true)
+	private String pibDobavljaca;
+
+	@Column(name = "nazivKupca", nullable = false)
+	private String nazivKupca;
+
+	@Column(name = "adresaKupca", nullable = false)
+	private String adresaKupca;
+
+	@Column(name = "pibKupca", nullable = false, unique = true)
+	private String pibKupca;
+
+	@Column(name = "brojRacuna", nullable = false, unique = true)
+	private int brojRacuna;
+
+	@Column(name = "datumRacuna", nullable = false)
+	private Date datumRacuna;
+
+	@Column(name = "vrednostRobe", nullable = false)
+	private BigDecimal vrednostRobe;
+
+	@Column(name = "vrednostUsluga", nullable = false)
+	private BigDecimal vrednostUsluga;
+
+	@Column(name = "ukupnoRobaIUsluge", nullable = false)
+	private BigDecimal ukupnoRobaIUsluge;
+
+	@Column(name = "ukupanRabat", nullable = false)
+	private BigDecimal ukupanRabat;
+
+	@Column(name = "ukupanPorez", nullable = false)
+	private BigDecimal ukupanPorez;
+
+	@Column(name = "oznakaValute", nullable = false)
+	private String oznakaValute;
+
+	@Column(name = "iznosZaUplatu", nullable = false)
+	private BigDecimal iznosZaUplatu;
+
+	@Column(name = "uplataNaRacun", nullable = false)
+	private String uplataNaRacun;
+
+	@Column(name = "datumValute", nullable = false)
+	private Date datumValute;
+	
+
+	private List<Faktura.Stavka> stavka;
+
+	public FakturaClass() {
+
+	}
+
+	@Entity
+	@Table(name = "stavka")
+	public static class StavkaClass {
+
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "stavka_id", nullable = false, unique = true)
+		private Long idStavka;
+
+		@ManyToOne
+		@JoinColumn(name = "faktura_id")
+		@JsonBackReference
+		private Faktura faktura;
+
+		@Column(name = "redniBroj", nullable = false)
+		private int redniBroj;
+
+		@Column(name = "nazivRobeIliUsluge", nullable = false)
+		private String nazivRobeIliUsluge;
+
+		@Column(name = "kolicina", nullable = false)
+		private BigDecimal kolicina;
+
+		@Column(name = "jedinicaMere", nullable = false)
+		private String jedinicaMere;
+
+		@Column(name = "jedinicnaCena", nullable = false)
+		private BigDecimal jedinicnaCena;
+
+		@Column(name = "vrednost", nullable = false)
+		private BigDecimal vrednost;
+
+		@Column(name = "procenatRabata", nullable = false)
+		private BigDecimal procenatRabata;
+
+		@Column(name = "iznosRabata", nullable = false)
+		private BigDecimal iznosRabata;
+
+		@Column(name = "umanjenoZaRabat", nullable = false)
+		private BigDecimal umanjenoZaRabat;
+
+		@Column(name = "ukupanPorez", nullable = false)
+		private BigDecimal ukupanPorez;
+
+		public StavkaClass() {
+
+		}
+
+		public int getRedniBroj() {
+			return redniBroj;
+		}
+
+		public void setRedniBroj(int redniBroj) {
+			this.redniBroj = redniBroj;
+		}
+
+		public String getNazivRobeIliUsluge() {
+			return nazivRobeIliUsluge;
+		}
+
+		public void setNazivRobeIliUsluge(String nazivRobeIliUsluge) {
+			this.nazivRobeIliUsluge = nazivRobeIliUsluge;
+		}
+
+		public BigDecimal getKolicina() {
+			return kolicina;
+		}
+
+		public void setKolicina(BigDecimal kolicina) {
+			this.kolicina = kolicina;
+		}
+
+		public String getJedinicaMere() {
+			return jedinicaMere;
+		}
+
+		public void setJedinicaMere(String jedinicaMere) {
+			this.jedinicaMere = jedinicaMere;
+		}
+
+		public BigDecimal getJedinicnaCena() {
+			return jedinicnaCena;
+		}
+
+		public void setJedinicnaCena(BigDecimal jedinicnaCena) {
+			this.jedinicnaCena = jedinicnaCena;
+		}
+
+		public BigDecimal getVrednost() {
+			return vrednost;
+		}
+
+		public void setVrednost(BigDecimal vrednost) {
+			this.vrednost = vrednost;
+		}
+
+		public BigDecimal getProcenatRabata() {
+			return procenatRabata;
+		}
+
+		public void setProcenatRabata(BigDecimal procenatRabata) {
+			this.procenatRabata = procenatRabata;
+		}
+
+		public BigDecimal getIznosRabata() {
+			return iznosRabata;
+		}
+
+		public void setIznosRabata(BigDecimal iznosRabata) {
+			this.iznosRabata = iznosRabata;
+		}
+
+		public BigDecimal getUmanjenoZaRabat() {
+			return umanjenoZaRabat;
+		}
+
+		public void setUmanjenoZaRabat(BigDecimal umanjenoZaRabat) {
+			this.umanjenoZaRabat = umanjenoZaRabat;
+		}
+
+		public BigDecimal getUkupanPorez() {
+			return ukupanPorez;
+		}
+
+		public void setUkupanPorez(BigDecimal ukupanPorez) {
+			this.ukupanPorez = ukupanPorez;
+		}
+
+	}
+
+	public Long getIdPoruke() {
+		return idPoruke;
+	}
+
+	public void setIdPoruke(Long idPoruke) {
+		this.idPoruke = idPoruke;
+	}
+
+	public String getNazivDobavljaca() {
+		return nazivDobavljaca;
+	}
+
+	public void setNazivDobavljaca(String nazivDobavljaca) {
+		this.nazivDobavljaca = nazivDobavljaca;
+	}
+
+	public String getAdresaDobavljaca() {
+		return adresaDobavljaca;
+	}
+
+	public void setAdresaDobavljaca(String adresaDobavljaca) {
+		this.adresaDobavljaca = adresaDobavljaca;
+	}
+
+	public String getPibDobavljaca() {
+		return pibDobavljaca;
+	}
+
+	public void setPibDobavljaca(String pibDobavljaca) {
+		this.pibDobavljaca = pibDobavljaca;
+	}
+
+	public String getNazivKupca() {
+		return nazivKupca;
+	}
+
+	public void setNazivKupca(String nazivKupca) {
+		this.nazivKupca = nazivKupca;
+	}
+
+	public String getAdresaKupca() {
+		return adresaKupca;
+	}
+
+	public void setAdresaKupca(String adresaKupca) {
+		this.adresaKupca = adresaKupca;
+	}
+
+	public String getPibKupca() {
+		return pibKupca;
+	}
+
+	public void setPibKupca(String pibKupca) {
+		this.pibKupca = pibKupca;
+	}
+
+	public int getBrojRacuna() {
+		return brojRacuna;
+	}
+
+	public void setBrojRacuna(int brojRacuna) {
+		this.brojRacuna = brojRacuna;
+	}
+
+	public Date getDatumRacuna() {
+		return datumRacuna;
+	}
+
+	public void setDatumRacuna(Date datumRacuna) {
+		this.datumRacuna = datumRacuna;
+	}
+
+	public BigDecimal getVrednostRobe() {
+		return vrednostRobe;
+	}
+
+	public void setVrednostRobe(BigDecimal vrednostRobe) {
+		this.vrednostRobe = vrednostRobe;
+	}
+
+	public BigDecimal getVrednostUsluga() {
+		return vrednostUsluga;
+	}
+
+	public void setVrednostUsluga(BigDecimal vrednostUsluga) {
+		this.vrednostUsluga = vrednostUsluga;
+	}
+
+	public BigDecimal getUkupnoRobaIUsluge() {
+		return ukupnoRobaIUsluge;
+	}
+
+	public void setUkupnoRobaIUsluge(BigDecimal ukupnoRobaIUsluge) {
+		this.ukupnoRobaIUsluge = ukupnoRobaIUsluge;
+	}
+
+	public BigDecimal getUkupanRabat() {
+		return ukupanRabat;
+	}
+
+	public void setUkupanRabat(BigDecimal ukupanRabat) {
+		this.ukupanRabat = ukupanRabat;
+	}
+
+	public BigDecimal getUkupanPorez() {
+		return ukupanPorez;
+	}
+
+	public void setUkupanPorez(BigDecimal ukupanPorez) {
+		this.ukupanPorez = ukupanPorez;
+	}
+
+	public String getOznakaValute() {
+		return oznakaValute;
+	}
+
+	public void setOznakaValute(String oznakaValute) {
+		this.oznakaValute = oznakaValute;
+	}
+
+	public BigDecimal getIznosZaUplatu() {
+		return iznosZaUplatu;
+	}
+
+	public void setIznosZaUplatu(BigDecimal iznosZaUplatu) {
+		this.iznosZaUplatu = iznosZaUplatu;
+	}
+
+	public String getUplataNaRacun() {
+		return uplataNaRacun;
+	}
+
+	public void setUplataNaRacun(String uplataNaRacun) {
+		this.uplataNaRacun = uplataNaRacun;
+	}
+
+	public Date getDatumValute() {
+		return datumValute;
+	}
+
+	public void setDatumValute(Date datumValute) {
+		this.datumValute = datumValute;
+	}
+
+}
