@@ -14,8 +14,8 @@ public class FakturaController {
 		return "demo";
 	}
 	
-	//TODO Srediti da ovo radit
-	//TODO Model firme. Rest endpoit za dodavanje firmi, Baza.
+	
+	//TODO Model firme. Rest endpoit za dodavanje firmi
 	//Slanje fakture. Controller sa enpointom. primer api/{firmaA}/faktura/{firmaB} -, id firme
 
 }
