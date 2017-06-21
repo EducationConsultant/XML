@@ -83,6 +83,19 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-webmvc</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.4.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>ma.glasnost.orika</groupId>
+		    <artifactId>orika-core</artifactId>
+		    <version>1.5.1</version>
+		</dependency>
+		
 
 
 	</dependencies>
