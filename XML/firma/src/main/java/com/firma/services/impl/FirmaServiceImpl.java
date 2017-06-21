@@ -5,7 +5,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.firma.models.entities.Firma;
@@ -14,12 +13,11 @@ import com.firma.services.FirmaService;
 
 @Service
 @Transactional
-public class FirmaServiceImpl implements FirmaService{
+public class FirmaServiceImpl implements FirmaService {
 
 	@Autowired
 	private FirmaRepository repository;
-	
-	
+
 	@Override
 	public Firma findOne(Long id) {
 		return repository.findOne(id);

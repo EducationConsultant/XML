@@ -18,7 +18,8 @@ public class FakturaConverter {
 				.field("vrednostUsluga", "vrednostUsluga").field("ukupnoRobaIUsluge", "ukupnoRobaIUsluge")
 				.field("ukupanRabat", "ukupanRabat").field("ukupanPorez", "ukupanPorez")
 				.field("oznakaValute", "oznakaValute").field("iznosZaUplatu", "iznosZaUplatu")
-				.field("uplataNaRacun", "uplataNaRacun").field("datumValute", "datumValute").byDefault().register();
+				.field("uplataNaRacun", "uplataNaRacun").field("datumValute", "datumValute")
+				.field("stavka{}", "stavka{}").byDefault().register();
 		mapper = mapperFactory.getMapperFacade();
 	}
 

@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.firma.models.nalogzaprenos.NalogZaPrenos;
 import com.firma.models.nalogzaprenos.NalogZaPrenosIzvedeno;
 import com.firma.repository.NalogZaPrenosRepository;
 import com.firma.services.NalogZaPrenosService;
@@ -33,6 +32,5 @@ public class NalogZaPrenosImpl implements NalogZaPrenosService {
 	public List<NalogZaPrenosIzvedeno> find() {
 		return repository.findAll();
 	}
-	
-	
+
 }

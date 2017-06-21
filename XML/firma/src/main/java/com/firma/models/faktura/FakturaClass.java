@@ -6,14 +6,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "fakutra")
@@ -74,9 +74,10 @@ public class FakturaClass {
 
 	@Column(name = "datumValute", nullable = false)
 	private Date datumValute;
-	
 
-	private List<Faktura.Stavka> stavka;
+	@OneToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
+	private List<FakturaClass.StavkaClass> stavka;
 
 	public FakturaClass() {
 
@@ -88,16 +89,8 @@ public class FakturaClass {
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "stavka_id", nullable = false, unique = true)
-		private Long idStavka;
-
-		@ManyToOne
-		@JoinColumn(name = "faktura_id")
-		@JsonBackReference
-		private Faktura faktura;
-
-		@Column(name = "redniBroj", nullable = false)
-		private int redniBroj;
+		@Column(name = "redniBroj", nullable = false, unique = true)
+		private Long redniBroj;
 
 		@Column(name = "nazivRobeIliUsluge", nullable = false)
 		private String nazivRobeIliUsluge;
@@ -130,11 +123,11 @@ public class FakturaClass {
 
 		}
 
-		public int getRedniBroj() {
+		public Long getRedniBroj() {
 			return redniBroj;
 		}
 
-		public void setRedniBroj(int redniBroj) {
+		public void setRedniBroj(Long redniBroj) {
 			this.redniBroj = redniBroj;
 		}
 
@@ -354,6 +347,14 @@ public class FakturaClass {
 
 	public void setDatumValute(Date datumValute) {
 		this.datumValute = datumValute;
+	}
+
+	public List<FakturaClass.StavkaClass> getStavka() {
+		return stavka;
+	}
+
+	public void setStavka(List<FakturaClass.StavkaClass> stavka) {
+		this.stavka = stavka;
 	}
 
 }

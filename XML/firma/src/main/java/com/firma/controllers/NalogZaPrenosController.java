@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.firma.models.entities.Firma;
-import com.firma.models.nalogzaprenos.NalogZaPrenos;
 import com.firma.models.nalogzaprenos.NalogZaPrenosIzvedeno;
 import com.firma.services.NalogZaPrenosService;
 
@@ -19,7 +17,7 @@ public class NalogZaPrenosController {
 
 	@Autowired
 	private NalogZaPrenosService nalogZaPrenosService;
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<NalogZaPrenosIzvedeno> insertNalogZaPrenos(@RequestBody NalogZaPrenosIzvedeno nalogZaPrenos) {
 

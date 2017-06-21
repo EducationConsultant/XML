@@ -8,7 +8,6 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
@@ -50,6 +49,7 @@ public class Application {
 		Stavka stavka = createStavka();
 		StavkaConverter stavkaConverter = new StavkaConverter();
 		StavkaClass stavkaClass = stavkaConverter.copyStavkaClassFromStavka(stavka);
+		System.out.println("after mapping with orika: p1Dto = " + stavkaClass);
 
 		List<String> list = new ArrayList<String>();
 		// Add the mapping configuration
@@ -60,8 +60,6 @@ public class Application {
 		GregorianCalendar gcal = new GregorianCalendar();
 		XMLGregorianCalendar xgcal = DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
 		System.err.println("datum" + xgcal);
-
-		Date date = xgcal.toGregorianCalendar().getTime();
 
 		NalogZaPrenos p1Domain = new NalogZaPrenos();
 		p1Domain.setDatumNaloga(xgcal);
@@ -140,7 +138,7 @@ public class Application {
 	private static Stavka createStavka() {
 		Stavka stavka = new Stavka();
 
-		stavka.setRedniBroj(1);
+		stavka.setRedniBroj(new Long(1));
 		stavka.setNazivRobeIliUsluge("naziv robe");
 		stavka.setIznosRabata(new BigDecimal(123));
 		stavka.setJedinicaMere("aaaaaa");
