@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "stavka")
@@ -45,8 +49,21 @@ public class StavkaDTO {
 	@Column(name = "ukupanPorez", nullable = false)
 	private BigDecimal ukupanPorez;
 
+	@ManyToOne
+	@JoinColumn(name = "faktura", referencedColumnName = "IDPoruke")
+	@JsonIgnore
+	public FakturaDTO faktura;
+
 	public StavkaDTO() {
 
+	}
+
+	public FakturaDTO getFaktura() {
+		return faktura;
+	}
+
+	public void setFaktura(FakturaDTO faktura) {
+		this.faktura = faktura;
 	}
 
 	public Long getRedniBroj() {

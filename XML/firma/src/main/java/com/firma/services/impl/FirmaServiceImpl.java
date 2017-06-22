@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.firma.models.domain.FakturaDTO;
 import com.firma.models.domain.Firma;
+import com.firma.models.domain.StavkaDTO;
 import com.firma.repository.FakturaRepository;
 import com.firma.repository.FirmaRepository;
+import com.firma.repository.StavkaFaktureRepository;
 import com.firma.services.FirmaService;
 
 @Service
@@ -24,6 +26,9 @@ public class FirmaServiceImpl implements FirmaService {
 
 	@Autowired
 	private FakturaRepository fakturaRepository;
+
+	@Autowired
+	private StavkaFaktureRepository stavkaFaktureRepository;
 
 	List<FakturaDTO> fakture = new ArrayList<FakturaDTO>();
 
@@ -52,6 +57,7 @@ public class FirmaServiceImpl implements FirmaService {
 		Firma firma = firmaRepository.findOne(id);
 
 		faktura.setFirma(firma);
+
 		faktura.setVrednostRobe(new BigDecimal(0));
 		faktura.setVrednostUsluga(new BigDecimal(0));
 		faktura.setUkupnoRobaIUsluge(new BigDecimal(0));
@@ -73,7 +79,7 @@ public class FirmaServiceImpl implements FirmaService {
 		savedFaktura.setOznakaValute(faktura.getOznakaValute());
 		savedFaktura.setPibDobavljaca(faktura.getPibDobavljaca());
 		savedFaktura.setPibKupca(faktura.getPibKupca());
-		savedFaktura.setStavka(faktura.getStavka());
+
 		savedFaktura.setUkupanPorez(faktura.getUkupanPorez());
 		savedFaktura.setUkupanRabat(faktura.getUkupanRabat());
 		savedFaktura.setUkupnoRobaIUsluge(faktura.getUkupnoRobaIUsluge());
@@ -83,6 +89,61 @@ public class FirmaServiceImpl implements FirmaService {
 		savedFaktura.setStatus(faktura.getStatus());
 
 		fakturaRepository.save(savedFaktura);
+
+		List<StavkaDTO> fakturineStavke = faktura.getStavka();
+
+		List<StavkaDTO> noveStavke = new ArrayList<>();
+		for (StavkaDTO stavka : fakturineStavke) {
+			StavkaDTO newStavka = new StavkaDTO();
+			newStavka.setNazivRobeIliUsluge(stavka.getNazivRobeIliUsluge());
+			newStavka.setKolicina(stavka.getKolicina());
+			newStavka.setJedinicaMere(stavka.getJedinicaMere());
+			newStavka.setJedinicnaCena(stavka.getJedinicnaCena());
+			newStavka.setProcenatRabata(stavka.getProcenatRabata());
+			newStavka.setUkupanPorez(stavka.getUkupanPorez());
+
+			BigDecimal vrednostStavke = newStavka.getJedinicnaCena().multiply(newStavka.getKolicina());
+			newStavka.setVrednost(vrednostStavke);
+
+			BigDecimal iznosRabata = newStavka.getVrednost()
+					.multiply(newStavka.getProcenatRabata().divide(new BigDecimal(100)));
+			newStavka.setIznosRabata(iznosRabata);
+
+			BigDecimal umanjenoZaRabat = newStavka.getVrednost().subtract(newStavka.getIznosRabata());
+			newStavka.setUmanjenoZaRabat(umanjenoZaRabat);
+
+			newStavka.setFaktura(savedFaktura);
+
+			stavkaFaktureRepository.save(newStavka);
+
+			noveStavke.add(newStavka);
+		}
+
+		for (StavkaDTO s : noveStavke) {
+			BigDecimal vrednostRobeF = savedFaktura.getVrednostRobe().add(s.getVrednost());
+			savedFaktura.setVrednostRobe(vrednostRobeF);
+
+			BigDecimal vrednostUslugaF = savedFaktura.getVrednostUsluga().add(s.getVrednost());
+			savedFaktura.setVrednostUsluga(vrednostUslugaF);
+
+			BigDecimal ukupnoRobaIUslugaF = savedFaktura.getUkupnoRobaIUsluge().add(s.getKolicina());
+			savedFaktura.setUkupnoRobaIUsluge(ukupnoRobaIUslugaF);
+
+			BigDecimal ukupanRabatF = savedFaktura.getUkupanRabat().add(s.getIznosRabata());
+			savedFaktura.setUkupanRabat(ukupanRabatF);
+
+			BigDecimal ukupanPorezF = savedFaktura.getUkupanPorez().add(s.getUkupanPorez());
+			savedFaktura.setUkupanPorez(ukupanPorezF);
+
+			BigDecimal iznosZaUplatuF = savedFaktura.getIznosZaUplatu();
+			BigDecimal sUkupanPorez = s.getUkupanPorez();
+			BigDecimal sUmanjenoZaRabat = s.getUmanjenoZaRabat();
+			BigDecimal res = sUmanjenoZaRabat.add(sUkupanPorez);
+
+			savedFaktura.setIznosZaUplatu(iznosZaUplatuF.add(res));
+		}
+
+		savedFaktura.setStavka(noveStavke);
 
 		List<FakturaDTO> firmineFakture = firma.getFakture();
 		if (firmineFakture == null) {
@@ -94,5 +155,4 @@ public class FirmaServiceImpl implements FirmaService {
 
 		return firma;
 	}
-
 }

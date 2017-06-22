@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -94,8 +95,7 @@ public class FakturaDTO {
 	@Enumerated(EnumType.STRING)
 	private FakturaStatus status;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "faktura", fetch = FetchType.EAGER)
 	private List<StavkaDTO> stavka;
 
 	@ManyToOne
