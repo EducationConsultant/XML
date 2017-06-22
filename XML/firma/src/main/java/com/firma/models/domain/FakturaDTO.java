@@ -13,6 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -46,34 +51,40 @@ public class FakturaDTO {
 	@Column(name = "brojRacuna", nullable = false)
 	private int brojRacuna;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "datumRacuna", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
 	private Date datumRacuna;
 
-	@Column(name = "vrednostRobe", nullable = false)
+	@Column(name = "vrednostRobe")
 	private BigDecimal vrednostRobe;
 
-	@Column(name = "vrednostUsluga", nullable = false)
+	@Column(name = "vrednostUsluga")
 	private BigDecimal vrednostUsluga;
 
-	@Column(name = "ukupnoRobaIUsluge", nullable = false)
+	@Column(name = "ukupnoRobaIUsluge")
 	private BigDecimal ukupnoRobaIUsluge;
 
-	@Column(name = "ukupanRabat", nullable = false)
+	@Column(name = "ukupanRabat")
 	private BigDecimal ukupanRabat;
 
-	@Column(name = "ukupanPorez", nullable = false)
+	@Column(name = "ukupanPorez")
 	private BigDecimal ukupanPorez;
 
 	@Column(name = "oznakaValute", nullable = false)
 	private String oznakaValute;
 
-	@Column(name = "iznosZaUplatu", nullable = false)
+	@Column(name = "iznosZaUplatu")
 	private BigDecimal iznosZaUplatu;
 
 	@Column(name = "uplataNaRacun", nullable = false)
 	private String uplataNaRacun;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "datumValute", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
 	private Date datumValute;
 
 	@OneToMany(fetch = FetchType.EAGER)
