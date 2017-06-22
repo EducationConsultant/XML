@@ -67,17 +67,29 @@ public class FakturaController {
 	public ResponseEntity<Firma> slanjeFakture(@PathVariable Long firmaA, @PathVariable Long firmaB,
 			@RequestBody FakturaDTO faktura) {
 
-		RestTemplate restTemplate = new RestTemplate();
-		// sacuvace
+		Firma dobavljac = firmaService.findOne(firmaA);
+		Firma kupac = firmaService.findOne(firmaB);
+
 		faktura.setStatus(FakturaStatus.POSLATO);
-		Firma firma = firmaService.saveFaktura(firmaA, faktura); // fakuru
+		faktura.setNazivDobavljaca(dobavljac.getNaziv());
+		faktura.setAdresaDobavljaca(dobavljac.getAdresa());
+		faktura.setPibDobavljaca(dobavljac.getPib());
+		String brojRacunaS = Integer.toString(dobavljac.getBrojRacuna());
+		faktura.setUplataNaRacun(brojRacunaS);
+
+		faktura.setNazivKupca(kupac.getNaziv());
+		faktura.setAdresaKupca(kupac.getAdresa());
+		faktura.setPibKupca(kupac.getPib());
+		faktura.setBrojRacuna(kupac.getBrojRacuna());
+
+		RestTemplate restTemplate = new RestTemplate();
+		Firma firmaUpdate = firmaService.saveFaktura(firmaA, faktura);
 
 		String firmaBS = String.valueOf(firmaB);
-
 		restTemplate.postForObject("http://localhost:8080/api/firma/" + firmaBS + "/faktura", faktura,
 				FakturaDTO.class);
 
-		return new ResponseEntity<Firma>(firma, HttpStatus.OK);
+		return new ResponseEntity<Firma>(firmaUpdate, HttpStatus.OK);
 
 	}
 
