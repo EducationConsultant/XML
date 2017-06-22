@@ -1,4 +1,4 @@
-package com.firma.models.entities;
+package com.firma.models.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

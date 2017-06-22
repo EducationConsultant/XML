@@ -2,7 +2,7 @@ package com.firma.services;
 
 import java.util.List;
 
-import com.firma.models.entities.Firma;
+import com.firma.models.domain.Firma;
 
 public interface FirmaService {
 

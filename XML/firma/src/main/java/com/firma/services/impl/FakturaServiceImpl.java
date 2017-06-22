@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.firma.models.faktura.FakturaClass;
-import com.firma.models.faktura.FakturaClass.StavkaClass;
+import com.firma.models.domain.FakturaDTO;
+import com.firma.models.domain.FakturaDTO.StavkaClass;
 import com.firma.repository.FakturaRepository;
 import com.firma.repository.StavkaFaktureRepository;
 import com.firma.services.FakturaService;
@@ -24,24 +24,24 @@ public class FakturaServiceImpl implements FakturaService {
 	private StavkaFaktureRepository stavkaFaktureRepository;
 
 	@Override
-	public FakturaClass save(FakturaClass faktura) {
+	public FakturaDTO save(FakturaDTO faktura) {
 		return fakturaRepository.save(faktura);
 	}
 
 	@Override
-	public List<FakturaClass> find() {
+	public List<FakturaDTO> find() {
 		return fakturaRepository.findAll();
 	}
 
 	@Override
-	public FakturaClass findOne(Long id) {
+	public FakturaDTO findOne(Long id) {
 		return fakturaRepository.findOne(id);
 	}
 
 	@Override
-	public FakturaClass saveStavka(Long id, StavkaClass stavka) {
+	public FakturaDTO saveStavka(Long id, StavkaClass stavka) {
 		stavkaFaktureRepository.save(stavka);
-		FakturaClass faktura = this.findOne(id);
+		FakturaDTO faktura = this.findOne(id);
 		List<StavkaClass> stavke = new ArrayList<StavkaClass>();
 		stavke.add(stavka);
 		faktura.setStavka(stavke);

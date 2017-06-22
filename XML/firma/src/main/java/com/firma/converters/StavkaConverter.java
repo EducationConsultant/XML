@@ -1,7 +1,9 @@
-package com.firma.models.faktura;
+package com.firma.converters;
 
+import com.firma.models.domain.FakturaDTO;
+import com.firma.models.domain.FakturaDTO.StavkaClass;
+import com.firma.models.faktura.Faktura;
 import com.firma.models.faktura.Faktura.Stavka;
-import com.firma.models.faktura.FakturaClass.StavkaClass;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;

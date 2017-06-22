@@ -1,4 +1,4 @@
-package com.firma.models.faktura;
+package com.firma.models.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "fakutra")
-public class FakturaClass {
+public class FakturaDTO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,9 +77,9 @@ public class FakturaClass {
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@JsonIgnore
-	private List<FakturaClass.StavkaClass> stavka;
+	private List<FakturaDTO.StavkaClass> stavka;
 
-	public FakturaClass() {
+	public FakturaDTO() {
 
 	}
 
@@ -349,11 +349,11 @@ public class FakturaClass {
 		this.datumValute = datumValute;
 	}
 
-	public List<FakturaClass.StavkaClass> getStavka() {
+	public List<FakturaDTO.StavkaClass> getStavka() {
 		return stavka;
 	}
 
-	public void setStavka(List<FakturaClass.StavkaClass> stavka) {
+	public void setStavka(List<FakturaDTO.StavkaClass> stavka) {
 		this.stavka = stavka;
 	}
 

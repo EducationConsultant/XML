@@ -1,4 +1,7 @@
-package com.firma.models.faktura;
+package com.firma.converters;
+
+import com.firma.models.domain.FakturaDTO;
+import com.firma.models.faktura.Faktura;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
@@ -10,7 +13,7 @@ public class FakturaConverter {
 
 	static {
 		final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
-		mapperFactory.classMap(FakturaClass.class, Faktura.class).field("idPoruke", "IDPoruke")
+		mapperFactory.classMap(FakturaDTO.class, Faktura.class).field("idPoruke", "IDPoruke")
 				.field("nazivDobavljaca", "nazivDobavljaca").field("adresaDobavljaca", "adresaDobavljaca")
 				.field("pibDobavljaca", "PIBDobavljaca").field("nazivKupca", "nazivKupca")
 				.field("adresaKupca", "adresaKupca").field("pibKupca", "PIBKupca").field("brojRacuna", "brojRacuna")
@@ -26,13 +29,13 @@ public class FakturaConverter {
 	public FakturaConverter() {
 	}
 
-	public Faktura copyFakturaFromFakturaClass(final FakturaClass fakturaClass) {
+	public Faktura copyFakturaFromFakturaClass(final FakturaDTO fakturaClass) {
 		Faktura faktura = mapper.map(fakturaClass, Faktura.class);
 		return faktura;
 	}
 
-	public FakturaClass copyFakturaClassFromFaktura(final Faktura faktura) {
-		FakturaClass fakturaClass = mapper.map(faktura, FakturaClass.class);
+	public FakturaDTO copyFakturaClassFromFaktura(final Faktura faktura) {
+		FakturaDTO fakturaClass = mapper.map(faktura, FakturaDTO.class);
 		return fakturaClass;
 	}
 

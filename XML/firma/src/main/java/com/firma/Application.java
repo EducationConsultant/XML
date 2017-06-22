@@ -17,16 +17,14 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.firma.converters.FakturaConverter;
+import com.firma.converters.StavkaConverter;
+import com.firma.models.domain.FakturaDTO;
+import com.firma.models.domain.NalogZaPrenosDTO;
+import com.firma.models.domain.FakturaDTO.StavkaClass;
 import com.firma.models.faktura.Faktura;
 import com.firma.models.faktura.Faktura.Stavka;
-import com.firma.models.faktura.FakturaClass;
-import com.firma.models.faktura.FakturaClass.StavkaClass;
-import com.firma.models.faktura.FakturaConverter;
-import com.firma.models.faktura.StavkaConverter;
-
 import com.firma.models.nalogzaprenos.NalogZaPrenos;
-import com.firma.models.nalogzaprenos.NalogZaPrenosIzvedeno;
-
 import com.firma.repository.FirmaRepository;
 
 @EnableJpaRepositories(basePackageClasses = FirmaRepository.class)
@@ -43,7 +41,7 @@ public class Application {
 	public static void main(String[] args) throws DatatypeConfigurationException {
 		FakturaConverter fakturaConverter = new FakturaConverter();
 		Faktura faktura = createFaktura();
-		FakturaClass fakturaClass = fakturaConverter.copyFakturaClassFromFaktura(faktura);
+		FakturaDTO fakturaClass = fakturaConverter.copyFakturaClassFromFaktura(faktura);
 		System.out.println("after mapping with orika: p1Dto = " + fakturaClass);
 
 		Stavka stavka = createStavka();
@@ -78,7 +76,7 @@ public class Application {
 		p1Domain.setRacunPoverioca("987456321789654123");
 		p1Domain.setSvrhaPlacanja("lepo");
 
-		NalogZaPrenosIzvedeno p1Dto = new NalogZaPrenosIzvedeno();
+		NalogZaPrenosDTO p1Dto = new NalogZaPrenosDTO();
 
 		System.err.println("before mapping with dozer: p1Dto = " + p1Dto);
 

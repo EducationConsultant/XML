@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.firma.models.nalogzaprenos.NalogZaPrenosIzvedeno;
+import com.firma.models.domain.NalogZaPrenosDTO;
 import com.firma.services.NalogZaPrenosService;
 
 @RestController
@@ -19,10 +19,10 @@ public class NalogZaPrenosController {
 	private NalogZaPrenosService nalogZaPrenosService;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<NalogZaPrenosIzvedeno> insertNalogZaPrenos(@RequestBody NalogZaPrenosIzvedeno nalogZaPrenos) {
+	public ResponseEntity<NalogZaPrenosDTO> insertNalogZaPrenos(@RequestBody NalogZaPrenosDTO nalogZaPrenos) {
 
-		NalogZaPrenosIzvedeno savedNalogZaPrenos = nalogZaPrenosService.save(nalogZaPrenos);
-		return new ResponseEntity<NalogZaPrenosIzvedeno>(savedNalogZaPrenos, HttpStatus.CREATED);
+		NalogZaPrenosDTO savedNalogZaPrenos = nalogZaPrenosService.save(nalogZaPrenos);
+		return new ResponseEntity<NalogZaPrenosDTO>(savedNalogZaPrenos, HttpStatus.CREATED);
 
 	}
 }

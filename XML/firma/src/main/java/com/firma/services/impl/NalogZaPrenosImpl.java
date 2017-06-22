@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.firma.models.nalogzaprenos.NalogZaPrenosIzvedeno;
+import com.firma.models.domain.NalogZaPrenosDTO;
 import com.firma.repository.NalogZaPrenosRepository;
 import com.firma.services.NalogZaPrenosService;
 
@@ -19,17 +19,17 @@ public class NalogZaPrenosImpl implements NalogZaPrenosService {
 	private NalogZaPrenosRepository repository;
 
 	@Override
-	public NalogZaPrenosIzvedeno findOne(Long id) {
+	public NalogZaPrenosDTO findOne(Long id) {
 		return repository.findOne(id);
 	}
 
 	@Override
-	public NalogZaPrenosIzvedeno save(NalogZaPrenosIzvedeno nalogZaPrenos) {
+	public NalogZaPrenosDTO save(NalogZaPrenosDTO nalogZaPrenos) {
 		return repository.save(nalogZaPrenos);
 	}
 
 	@Override
-	public List<NalogZaPrenosIzvedeno> find() {
+	public List<NalogZaPrenosDTO> find() {
 		return repository.findAll();
 	}
 

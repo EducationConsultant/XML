@@ -2,7 +2,7 @@ package com.firma.services;
 
 import java.util.List;
 
-import com.firma.models.faktura.FakturaClass.StavkaClass;
+import com.firma.models.domain.FakturaDTO.StavkaClass;
 
 public interface StavkaFaktureService {
 	public StavkaClass save(StavkaClass stavka);

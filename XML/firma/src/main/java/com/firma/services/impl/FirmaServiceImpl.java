@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.firma.models.entities.Firma;
+import com.firma.models.domain.Firma;
 import com.firma.repository.FirmaRepository;
 import com.firma.services.FirmaService;
 

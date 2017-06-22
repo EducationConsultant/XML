@@ -2,14 +2,14 @@ package com.firma.services;
 
 import java.util.List;
 
-import com.firma.models.nalogzaprenos.NalogZaPrenosIzvedeno;
+import com.firma.models.domain.NalogZaPrenosDTO;
 
 public interface NalogZaPrenosService {
 
-	public NalogZaPrenosIzvedeno findOne(Long id);
+	public NalogZaPrenosDTO findOne(Long id);
 
-	public NalogZaPrenosIzvedeno save(NalogZaPrenosIzvedeno nalogZaPrenos);
+	public NalogZaPrenosDTO save(NalogZaPrenosDTO nalogZaPrenos);
 
-	public List<NalogZaPrenosIzvedeno> find();
+	public List<NalogZaPrenosDTO> find();
 
 }

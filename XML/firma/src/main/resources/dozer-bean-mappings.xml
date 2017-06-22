@@ -5,7 +5,7 @@
  
       <mapping map-id="person">
         <class-a>com.firma.models.nalogzaprenos.NalogZaPrenos</class-a>
-        <class-b>com.firma.models.nalogzaprenos.NalogZaPrenosIzvedeno</class-b>
+        <class-b>com.firma.models.domain.NalogZaPrenosDTO</class-b>
         <field>
             <a>idPoruke</a>
             <b>idPoruke</b>

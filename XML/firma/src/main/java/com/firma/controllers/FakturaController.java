@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.firma.models.faktura.FakturaClass;
-import com.firma.models.faktura.FakturaClass.StavkaClass;
+import com.firma.models.domain.FakturaDTO;
+import com.firma.models.domain.FakturaDTO.StavkaClass;
 import com.firma.services.FakturaService;
 
 @RestController
@@ -21,26 +21,26 @@ public class FakturaController {
 	private FakturaService fakturaService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<FakturaClass> getFaktura(@PathVariable Long id) {
-		FakturaClass faktura = fakturaService.findOne(id);
+	public ResponseEntity<FakturaDTO> getFaktura(@PathVariable Long id) {
+		FakturaDTO faktura = fakturaService.findOne(id);
 
-		return new ResponseEntity<FakturaClass>(faktura, HttpStatus.OK);
+		return new ResponseEntity<FakturaDTO>(faktura, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<FakturaClass> insertFaktura(@RequestBody FakturaClass faktura) {
+	public ResponseEntity<FakturaDTO> insertFaktura(@RequestBody FakturaDTO faktura) {
 
-		FakturaClass savedFaktura = fakturaService.save(faktura);
-		return new ResponseEntity<FakturaClass>(savedFaktura, HttpStatus.CREATED);
+		FakturaDTO savedFaktura = fakturaService.save(faktura);
+		return new ResponseEntity<FakturaDTO>(savedFaktura, HttpStatus.CREATED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public ResponseEntity<FakturaClass> insertStavka(@PathVariable Long id, @RequestBody StavkaClass stavka) {
+	public ResponseEntity<FakturaDTO> insertStavka(@PathVariable Long id, @RequestBody StavkaClass stavka) {
 
-		FakturaClass fakturaToUpdate = fakturaService.saveStavka(id, stavka);
+		FakturaDTO fakturaToUpdate = fakturaService.saveStavka(id, stavka);
 
-		return new ResponseEntity<FakturaClass>(fakturaToUpdate, HttpStatus.CREATED);
+		return new ResponseEntity<FakturaDTO>(fakturaToUpdate, HttpStatus.CREATED);
 
 	}
 

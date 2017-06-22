@@ -1,4 +1,4 @@
-package com.firma.models.nalogzaprenos;
+package com.firma.models.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "nalogzaprenos")
-public class NalogZaPrenosIzvedeno {
+public class NalogZaPrenosDTO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,7 +84,7 @@ public class NalogZaPrenosIzvedeno {
 	@NotNull
 	protected boolean hitno;
 
-	public NalogZaPrenosIzvedeno() {
+	public NalogZaPrenosDTO() {
 
 	}
 
