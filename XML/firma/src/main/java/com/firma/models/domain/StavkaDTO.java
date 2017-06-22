@@ -30,16 +30,16 @@ public class StavkaDTO {
 	@Column(name = "jedinicnaCena", nullable = false)
 	private BigDecimal jedinicnaCena;
 
-	@Column(name = "vrednost", nullable = false)
+	@Column(name = "vrednost")
 	private BigDecimal vrednost;
 
 	@Column(name = "procenatRabata", nullable = false)
 	private BigDecimal procenatRabata;
 
-	@Column(name = "iznosRabata", nullable = false)
+	@Column(name = "iznosRabata")
 	private BigDecimal iznosRabata;
 
-	@Column(name = "umanjenoZaRabat", nullable = false)
+	@Column(name = "umanjenoZaRabat")
 	private BigDecimal umanjenoZaRabat;
 
 	@Column(name = "ukupanPorez", nullable = false)

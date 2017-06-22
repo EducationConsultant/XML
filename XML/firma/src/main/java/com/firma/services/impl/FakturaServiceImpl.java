@@ -1,6 +1,6 @@
 package com.firma.services.impl;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,13 @@ public class FakturaServiceImpl implements FakturaService {
 
 	@Override
 	public FakturaDTO save(FakturaDTO faktura) {
+		faktura.setVrednostRobe(new BigDecimal(0));
+		faktura.setVrednostUsluga(new BigDecimal(0));
+		faktura.setUkupnoRobaIUsluge(new BigDecimal(0));
+		faktura.setUkupanRabat(new BigDecimal(0));
+		faktura.setUkupanPorez(new BigDecimal(0));
+		faktura.setIznosZaUplatu(new BigDecimal(0));
+
 		return fakturaRepository.save(faktura);
 	}
 
@@ -40,11 +47,47 @@ public class FakturaServiceImpl implements FakturaService {
 
 	@Override
 	public FakturaDTO saveStavka(Long id, StavkaDTO stavka) {
-		stavkaFaktureRepository.save(stavka);
+
 		FakturaDTO faktura = this.findOne(id);
-		List<StavkaDTO> stavke = new ArrayList<StavkaDTO>();
-		stavke.add(stavka);
-		faktura.setStavka(stavke);
+
+		BigDecimal vrednostStavke = stavka.getJedinicnaCena().multiply(stavka.getKolicina());
+		stavka.setVrednost(vrednostStavke);
+
+		BigDecimal iznosRabata = stavka.getVrednost().multiply(stavka.getProcenatRabata().divide(new BigDecimal(200)));
+		stavka.setIznosRabata(iznosRabata);
+
+		BigDecimal umanjenoZaRabat = stavka.getVrednost().subtract(stavka.getIznosRabata());
+		stavka.setUmanjenoZaRabat(umanjenoZaRabat);
+
+		List<StavkaDTO> stavkeFaktura = faktura.getStavka();
+		stavkaFaktureRepository.save(stavka);
+		stavkeFaktura.add(stavka);
+
+		for (StavkaDTO s : stavkeFaktura) {
+			BigDecimal vrednostRobeF = faktura.getVrednostRobe().add(s.getVrednost());
+			faktura.setVrednostRobe(vrednostRobeF);
+
+			BigDecimal vrednostUslugaF = faktura.getVrednostUsluga().add(s.getVrednost());
+			faktura.setVrednostUsluga(vrednostUslugaF);
+
+			BigDecimal ukupnoRobaIUslugaF = faktura.getUkupnoRobaIUsluge().add(s.getKolicina());
+			faktura.setUkupnoRobaIUsluge(ukupnoRobaIUslugaF);
+
+			BigDecimal ukupanRabatF = faktura.getUkupanRabat().add(s.getIznosRabata());
+			faktura.setUkupanRabat(ukupanRabatF);
+
+			BigDecimal ukupanPorezF = faktura.getUkupanPorez().add(s.getUkupanPorez());
+			faktura.setUkupanPorez(ukupanPorezF);
+
+			BigDecimal iznosZaUplatuF = faktura.getIznosZaUplatu();
+			BigDecimal sUkupanPorez = s.getUkupanPorez();
+			BigDecimal sUmanjenoZaRabat = s.getUmanjenoZaRabat();
+			BigDecimal res = sUmanjenoZaRabat.add(sUkupanPorez);
+
+			faktura.setIznosZaUplatu(iznosZaUplatuF.add(res));
+		}
+
+		faktura.setStavka(stavkeFaktura);
 
 		return faktura;
 	}
