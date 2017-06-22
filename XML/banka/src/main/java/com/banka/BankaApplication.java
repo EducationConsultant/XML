@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.banka.repository.BankaRepository;
 
-@SpringBootApplication
-@ComponentScan("com.banka.controllers")
 @EnableJpaRepositories(basePackageClasses = BankaRepository.class)
 @EnableAutoConfiguration
+@SpringBootApplication
+@ComponentScan("com.banka.controllers")
 public class BankaApplication {
 
 	public static void main(String[] args) {
