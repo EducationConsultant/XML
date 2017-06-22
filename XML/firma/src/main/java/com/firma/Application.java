@@ -21,7 +21,7 @@ import com.firma.converters.FakturaConverter;
 import com.firma.converters.StavkaConverter;
 import com.firma.models.domain.FakturaDTO;
 import com.firma.models.domain.NalogZaPrenosDTO;
-import com.firma.models.domain.FakturaDTO.StavkaClass;
+import com.firma.models.domain.StavkaDTO;
 import com.firma.models.faktura.Faktura;
 import com.firma.models.faktura.Faktura.Stavka;
 import com.firma.models.nalogzaprenos.NalogZaPrenos;
@@ -46,7 +46,7 @@ public class Application {
 
 		Stavka stavka = createStavka();
 		StavkaConverter stavkaConverter = new StavkaConverter();
-		StavkaClass stavkaClass = stavkaConverter.copyStavkaClassFromStavka(stavka);
+		StavkaDTO stavkaClass = stavkaConverter.copyStavkaDTOFromStavka(stavka);
 		System.out.println("after mapping with orika: p1Dto = " + stavkaClass);
 
 		List<String> list = new ArrayList<String>();

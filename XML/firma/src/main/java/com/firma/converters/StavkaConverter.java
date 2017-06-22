@@ -1,7 +1,7 @@
 package com.firma.converters;
 
 import com.firma.models.domain.FakturaDTO;
-import com.firma.models.domain.FakturaDTO.StavkaClass;
+import com.firma.models.domain.StavkaDTO;
 import com.firma.models.faktura.Faktura;
 import com.firma.models.faktura.Faktura.Stavka;
 
@@ -15,7 +15,7 @@ public class StavkaConverter {
 
 	static {
 		final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
-		mapperFactory.classMap(StavkaClass.class, Stavka.class)
+		mapperFactory.classMap(StavkaDTO.class, Stavka.class)
 				.field("redniBroj", "redniBroj")
 				.field("nazivRobeIliUsluge", "nazivRobeIliUsluge")
 				.field("kolicina", "kolicina")
@@ -29,13 +29,13 @@ public class StavkaConverter {
 	public StavkaConverter() {
 	}
 
-	public Stavka copyStavkaFromStavkaClass(final StavkaClass stavkaClass) {
+	public Stavka copyStavkaFromStavkaDTO(final StavkaDTO stavkaClass) {
 		Stavka stavka = mapper.map(stavkaClass, Stavka.class);
 		return stavka;
 	}
 
-	public StavkaClass copyStavkaClassFromStavka(final Stavka stavka) {
-		StavkaClass stavkaClass = mapper.map(stavka, StavkaClass.class);
+	public StavkaDTO copyStavkaDTOFromStavka(final Stavka stavka) {
+		StavkaDTO stavkaClass = mapper.map(stavka, StavkaDTO.class);
 		return stavkaClass;
 	}
 

@@ -3,7 +3,7 @@ package com.firma.services;
 import java.util.List;
 
 import com.firma.models.domain.FakturaDTO;
-import com.firma.models.domain.FakturaDTO.StavkaClass;
+import com.firma.models.domain.StavkaDTO;
 
 public interface FakturaService {
 	public FakturaDTO save(FakturaDTO faktura);
@@ -12,5 +12,5 @@ public interface FakturaService {
 
 	public List<FakturaDTO> find();
 
-	public FakturaDTO saveStavka(Long id, StavkaClass stavka);
+	public FakturaDTO saveStavka(Long id, StavkaDTO stavka);
 }

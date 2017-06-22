@@ -2,12 +2,13 @@ package com.firma.services;
 
 import java.util.List;
 
-import com.firma.models.domain.FakturaDTO.StavkaClass;
+
+import com.firma.models.domain.StavkaDTO;
 
 public interface StavkaFaktureService {
-	public StavkaClass save(StavkaClass stavka);
+	public StavkaDTO save(StavkaDTO stavka);
 
-	public StavkaClass findOne(Long id);
+	public StavkaDTO findOne(Long id);
 
-	public List<StavkaClass> find();
+	public List<StavkaDTO> find();
 }

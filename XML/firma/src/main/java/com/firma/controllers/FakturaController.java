@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.firma.models.domain.FakturaDTO;
-import com.firma.models.domain.FakturaDTO.StavkaClass;
+import com.firma.models.domain.StavkaDTO;
 import com.firma.services.FakturaService;
 
 @RestController
@@ -36,7 +36,7 @@ public class FakturaController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public ResponseEntity<FakturaDTO> insertStavka(@PathVariable Long id, @RequestBody StavkaClass stavka) {
+	public ResponseEntity<FakturaDTO> insertStavka(@PathVariable Long id, @RequestBody StavkaDTO stavka) {
 
 		FakturaDTO fakturaToUpdate = fakturaService.saveStavka(id, stavka);
 
