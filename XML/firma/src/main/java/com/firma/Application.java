@@ -20,6 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.firma.converters.FakturaConverter;
 import com.firma.converters.StavkaConverter;
 import com.firma.models.domain.FakturaDTO;
+import com.firma.models.domain.Firma;
 import com.firma.models.domain.NalogZaPrenosDTO;
 import com.firma.models.domain.StavkaDTO;
 import com.firma.models.faktura.Faktura;
@@ -130,6 +131,15 @@ public class Application {
 		faktura.setUplataNaRacun("12345687913");
 		faktura.setDatumValute(xgcalZ);
 
+		Firma firma = new Firma();
+		firma.setAdresa("Adresica 9");
+		firma.setBrojRacuna(121212);
+		firma.setId(new Long(99));
+		firma.setNaziv("Extra");
+		firma.setPib("87965412");
+		//faktura.setFirma(firma);
+		
+		
 		return faktura;
 	}
 

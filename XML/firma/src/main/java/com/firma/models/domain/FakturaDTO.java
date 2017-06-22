@@ -10,13 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "fakutra")
+@Table(name = "faktura")
 public class FakturaDTO {
 
 	@Id
@@ -30,7 +31,7 @@ public class FakturaDTO {
 	@Column(name = "adresaDobavljaca", nullable = false)
 	private String adresaDobavljaca;
 
-	@Column(name = "pibDobavljaca", nullable = false, unique = true)
+	@Column(name = "pibDobavljaca", nullable = false)
 	private String pibDobavljaca;
 
 	@Column(name = "nazivKupca", nullable = false)
@@ -39,10 +40,10 @@ public class FakturaDTO {
 	@Column(name = "adresaKupca", nullable = false)
 	private String adresaKupca;
 
-	@Column(name = "pibKupca", nullable = false, unique = true)
+	@Column(name = "pibKupca", nullable = false)
 	private String pibKupca;
 
-	@Column(name = "brojRacuna", nullable = false, unique = true)
+	@Column(name = "brojRacuna", nullable = false)
 	private int brojRacuna;
 
 	@Column(name = "datumRacuna", nullable = false)
@@ -79,11 +80,22 @@ public class FakturaDTO {
 	@JsonIgnore
 	private List<StavkaDTO> stavka;
 
+//	@ManyToOne
+//	public Firma firma;
+//	
+//	
+
+//	public Firma getFirma() {
+//		return firma;
+//	}
+//
+//	public void setFirma(Firma firma) {
+//		this.firma = firma;
+//	}
+
 	public FakturaDTO() {
 
 	}
-
-	
 
 	public Long getIdPoruke() {
 		return idPoruke;

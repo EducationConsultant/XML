@@ -1,11 +1,19 @@
 package com.firma.models.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.firma.models.faktura.Faktura;
 
 @Entity
 @Table(name = "firma")
@@ -27,6 +35,30 @@ public class Firma {
 
 	@Column(name = "brojRacuna", nullable = false, unique = true)
 	private int brojRacuna;
+
+	
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
+	public List<FakturaDTO> fakture;   
+
+	
+	public List<FakturaDTO> getFakture() {
+		return fakture;
+	}
+
+	public void setFakture(List<FakturaDTO> fakture) {
+		this.fakture = fakture;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 
 	public String getNaziv() {
 		return naziv;

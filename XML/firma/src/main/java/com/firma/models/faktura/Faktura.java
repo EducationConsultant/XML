@@ -11,6 +11,8 @@ package com.firma.models.faktura;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -18,6 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.firma.models.domain.Firma;
 
 
 /**
@@ -251,6 +255,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "stavka",
+    "firma",
     "idPoruke",
     "nazivDobavljaca",
     "adresaDobavljaca",
@@ -275,6 +280,12 @@ public class Faktura {
 
     @XmlElement(name = "Stavka", required = true)
     protected List<Faktura.Stavka> stavka;
+    
+    
+//    @XmlElement(name = "Firma")
+//    public Firma firma;  
+    
+    
     @XmlElement(name = "IDPoruke")
     protected long idPoruke;
     @XmlElement(name = "NazivDobavljaca", required = true)
@@ -336,6 +347,12 @@ public class Faktura {
      * 
      * 
      */
+    
+    
+    
+    
+    
+    
     public List<Faktura.Stavka> getStavka() {
         if (stavka == null) {
             stavka = new ArrayList<Faktura.Stavka>();
@@ -343,7 +360,43 @@ public class Faktura {
         return this.stavka;
     }
 
-    /**
+//    public Firma getFirma() {
+//		return firma;
+//	}
+//
+//	public void setFirma(Firma firma) {
+//		this.firma = firma;
+//	}
+
+	public long getIdPoruke() {
+		return idPoruke;
+	}
+
+	public void setIdPoruke(long idPoruke) {
+		this.idPoruke = idPoruke;
+	}
+
+	public String getPibDobavljaca() {
+		return pibDobavljaca;
+	}
+
+	public void setPibDobavljaca(String pibDobavljaca) {
+		this.pibDobavljaca = pibDobavljaca;
+	}
+
+	public String getPibKupca() {
+		return pibKupca;
+	}
+
+	public void setPibKupca(String pibKupca) {
+		this.pibKupca = pibKupca;
+	}
+
+	public void setStavka(List<Faktura.Stavka> stavka) {
+		this.stavka = stavka;
+	}
+
+	/**
      * Gets the value of the idPoruke property.
      * 
      */
