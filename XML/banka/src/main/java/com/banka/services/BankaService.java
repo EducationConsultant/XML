@@ -3,6 +3,7 @@ package com.banka.services;
 import java.util.List;
 
 import com.banka.models.domain.Banka;
+import com.banka.models.domain.Firma;
 
 public interface BankaService {
 
@@ -13,5 +14,7 @@ public interface BankaService {
 	public List<Banka> find();
 
 	public Banka findByNaziv(String naziv);
+
+	public Banka saveFirma(Long id, Firma firma);
 
 }

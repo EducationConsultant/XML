@@ -1,9 +1,9 @@
-package com.firma.services;
+package com.banka.services;
 
 import java.util.List;
 
-import com.firma.models.domain.FakturaDTO;
-import com.firma.models.domain.Firma;
+import com.banka.models.domain.FakturaDTO;
+import com.banka.models.domain.Firma;
 
 public interface FirmaService {
 
@@ -16,4 +16,6 @@ public interface FirmaService {
 	public List<Firma> find();
 
 	public Firma saveFaktura(Long id, FakturaDTO faktura);
+
+	public Firma sendFaktura(Long id1, Long id2, FakturaDTO faktura);
 }

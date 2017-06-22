@@ -1,4 +1,4 @@
-package com.firma.models.domain;
+package com.banka.models.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -90,10 +88,6 @@ public class FakturaDTO {
 	@NotNull
 	private Date datumValute;
 
-	@Column(name = "faktura_status")
-	@Enumerated(EnumType.STRING)
-	private FakturaStatus status;
-
 	@OneToMany(fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<StavkaDTO> stavka;
@@ -105,22 +99,6 @@ public class FakturaDTO {
 
 	public FakturaDTO() {
 
-	}
-
-	public FakturaStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(FakturaStatus status) {
-		this.status = status;
-	}
-
-	public Firma getFirma() {
-		return firma;
-	}
-
-	public void setFirma(Firma firma) {
-		this.firma = firma;
 	}
 
 	public Long getIdPoruke() {
@@ -273,6 +251,14 @@ public class FakturaDTO {
 
 	public void setStavka(List<StavkaDTO> stavka) {
 		this.stavka = stavka;
+	}
+
+	public Firma getFirma() {
+		return firma;
+	}
+
+	public void setFirma(Firma firma) {
+		this.firma = firma;
 	}
 
 }

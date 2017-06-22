@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.banka.models.domain.Banka;
+import com.banka.models.domain.Firma;
 import com.banka.repository.BankaRepository;
+import com.banka.repository.FirmaRepository;
 import com.banka.services.BankaService;
 
 @Service
@@ -15,26 +17,44 @@ import com.banka.services.BankaService;
 public class BankaServiceImpl implements BankaService {
 
 	@Autowired
-	private BankaRepository repository;
+	private BankaRepository bankaRepository;
+
+	@Autowired
+	private FirmaRepository firmaRepository;
 
 	@Override
 	public Banka save(Banka banka) {
-		return repository.save(banka);
+		return bankaRepository.save(banka);
 	}
 
 	@Override
 	public Banka findOne(Long id) {
-		return repository.findOne(id);
+		return bankaRepository.findOne(id);
 	}
 
 	@Override
 	public List<Banka> find() {
-		return repository.findAll();
+		return bankaRepository.findAll();
 	}
 
 	@Override
 	public Banka findByNaziv(String naziv) {
-		return repository.findByNaziv(naziv);
+		return bankaRepository.findByNaziv(naziv);
+	}
+
+	@Override
+	public Banka saveFirma(Long id, Firma firma) {
+		Banka banka = this.findOne(id);
+
+		List<Firma> firme = banka.getFirme();
+		firma.setBanka(banka);
+
+		firmaRepository.save(firma);
+		firme.add(firma);
+
+		banka.setFirme(firme);
+
+		return banka;
 	}
 
 }

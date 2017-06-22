@@ -1,4 +1,4 @@
-package com.firma.models.domain;
+package com.banka.models.domain;
 
 import java.util.List;
 
@@ -9,8 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "firma")
@@ -32,6 +36,11 @@ public class Firma {
 
 	@Column(name = "brojRacuna", nullable = false, unique = true)
 	private int brojRacuna;
+
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "banka", referencedColumnName = "banka_id")
+	private Banka banka;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "firma", fetch = FetchType.EAGER)
 	public List<FakturaDTO> fakture;
@@ -86,4 +95,13 @@ public class Firma {
 
 	public Firma() {
 	}
+
+	public Banka getBanka() {
+		return banka;
+	}
+
+	public void setBanka(Banka banka) {
+		this.banka = banka;
+	}
+
 }

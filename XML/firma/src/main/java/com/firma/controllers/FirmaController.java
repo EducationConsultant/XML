@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.firma.models.domain.FakturaDTO;
+import com.firma.models.domain.FakturaStatus;
 import com.firma.models.domain.Firma;
-import com.firma.models.domain.StavkaDTO;
 import com.firma.services.FirmaService;
-
 
 @RestController
 @RequestMapping("/api/firma")
@@ -49,31 +47,16 @@ public class FirmaController {
 		return new ResponseEntity<Firma>(savedFirma, HttpStatus.CREATED);
 
 	}
-	
-	
-//	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-//	public ResponseEntity<Firma> insertFaktura(@PathVariable Long id, @RequestBody FakturaDTO faktura) {
-//
-//		Firma firmaToUpdate = firmaService.saveFaktura(id, faktura);
-//
-//		return new ResponseEntity<Firma>(firmaToUpdate, HttpStatus.CREATED);
-//
-//	}
-	
-	
-	
-	@RequestMapping(value = "/{id1}/{id2}", method = RequestMethod.POST)
-	public ResponseEntity<Firma> sendFaktura(@PathVariable Long id1,@PathVariable Long id2, @RequestBody FakturaDTO faktura) {
 
-		Firma firmaToUpdate = firmaService.sendFaktura(id1, id2, faktura);
+	@RequestMapping(value = "/{firmaBS}/faktura", method = RequestMethod.POST)
+	public void prijemFakutre(@PathVariable String firmaBS, @RequestBody FakturaDTO faktura) {
+		Long firmaB = Long.parseLong(firmaBS);
+		// Ovde ce konkretna firma da primi fakturu i da je sacuva
+		faktura.setStatus(FakturaStatus.PRIMLJENO);
+		firmaService.saveFaktura(firmaB, faktura);
 
-		return new ResponseEntity<Firma>(firmaToUpdate, HttpStatus.CREATED);
+		// return new ResponseEntity<Firma>(firmaUpdate, HttpStatus.OK);
 
 	}
-	
-
-	
-	
-
 
 }

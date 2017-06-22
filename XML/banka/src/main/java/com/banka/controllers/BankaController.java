@@ -3,7 +3,10 @@ package com.banka.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.banka.models.domain.Banka;
+import com.banka.models.domain.Firma;
 import com.banka.services.BankaService;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -34,6 +37,15 @@ public class BankaController {
 
 		Banka savedBanka = bankaService.save(banka);
 		return new ResponseEntity<Banka>(savedBanka, HttpStatus.CREATED);
+
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	public ResponseEntity<Banka> insertStavka(@PathVariable Long id, @RequestBody Firma firma) {
+
+		Banka bankaToUpdate = bankaService.saveFirma(id, firma);
+
+		return new ResponseEntity<Banka>(bankaToUpdate, HttpStatus.CREATED);
 
 	}
 
