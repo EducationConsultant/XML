@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://codenotfound.com/types/mt103" xmlns:tns="http://codenotfound.com/types/mt103">
+	<xs:element name="rtgs">
+		<xs:complexType >
+			<xs:sequence>
+				<xs:element name="ID_poruke">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="50"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="SWIFT_kod_banke_duznika">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="8"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Obracunski_racun_banke_duznika">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="18"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="SWIFT_kod_banke_poverioca">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="8"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Obracunski_racun_banke_poverioca">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="18"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Duznik-nalogodavac">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Svrha_placanja">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Primalac-poverilac">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Datum_naloga" type="xs:date"/>
+				<xs:element name="Datum_Valute" type="xs:date"/>
+				<xs:element name="Racun_duznika">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="18"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Model_zaduzenja">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:totalDigits value="2"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Poziv_na_broj_zaduzenja">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Racun_poverioca">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="18"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Model_odobrenja">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:totalDigits value="2"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Poziv_na_broj_odobrenja">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Iznos">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:totalDigits value="15"/>
+							<xs:fractionDigits value="2"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Sifra_valute">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
