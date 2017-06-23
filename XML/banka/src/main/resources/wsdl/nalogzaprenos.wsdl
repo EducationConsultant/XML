@@ -54,7 +54,7 @@
 
 	<wsdl:service name="nalogzaprenos">
 		<wsdl:port binding="tns:nalogzaprenosSOAP" name="nalogzaprenosSOAP">
-			<soap:address location="http://localhost:9090/getIzvodPort" />
+			<soap:address location="http://localhost:9090/codenotfound/ws/helloworld" />
 		</wsdl:port>
 	</wsdl:service>
 

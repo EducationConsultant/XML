@@ -16,7 +16,7 @@ import javax.xml.ws.RequestWrapper;
  */
 @WebService(targetNamespace = "http://codenotfound.com/services/nalogzaprenos", 
 name = "nalogzaprenos")
-@XmlSeeAlso({com.codenotfound.types.nalogzaprenos.ObjectFactory.class})
+@XmlSeeAlso({com.banka.models.nalogzaprenos.ObjectFactory.class})
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public interface NalogzaprenosWrapped {
 
