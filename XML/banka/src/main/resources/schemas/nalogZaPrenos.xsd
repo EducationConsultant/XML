@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.ftn.uns.ac.rs/nalogZaPrenos"
-    xmlns:nzp="http://www.ftn.uns.ac.rs/nalogZaPrenos">
+    targetNamespace="http://codenotfound.com/types/nalogzaprenos"
+    xmlns:nzp="http://codenotfound.com/types/nalogzaprenos">
 
-    <xs:element name="nalogZaPrenos">
+    <xs:element name="GetNalog">
         <xs:complexType>
             <xs:sequence>
                 <xs:element minOccurs="1" name="IDPoruke">

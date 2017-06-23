@@ -10,7 +10,8 @@
 
 	<wsdl:types>
 		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
-			elementFormDefault="qualified" targetNamespace="http://codenotfound.com/types/helloworld">
+			elementFormDefault="qualified"
+			 targetNamespace="http://codenotfound.com/types/helloworld">
 
 			<xsd:import namespace="http://codenotfound.com/types/helloworld"
 				schemaLocation="../schemas/helloworld.xsd" />
