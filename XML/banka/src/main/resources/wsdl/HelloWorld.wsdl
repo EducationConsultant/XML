@@ -11,7 +11,7 @@
 			elementFormDefault="qualified" targetNamespace="http://codenotfound.com/types/helloworld">
 
 			<xsd:import namespace="http://codenotfound.com/types/helloworld"
-				schemaLocation="C:/Users/Milena/Desktop/Milena/fax/4.godina/letnji/XML_i_web_servisi/GitHub/XML/XML/banka/src/main/resources/schemas/helloworld.xsd" />
+				schemaLocation="../schemas/helloworld.xsd" />
 
 		</xsd:schema>
 	</wsdl:types>
