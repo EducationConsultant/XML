@@ -85,12 +85,27 @@
 			<version>1.5.1</version>
 		</dependency>
 
-		<!-- Apache CXF -->
+
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.4.0</version>
+		</dependency>
+
+	
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
+
+	
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-codegen-plugin</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
 
 	</dependencies>
 
@@ -110,7 +125,7 @@
 						<id>generate-sources</id>
 						<phase>generate-sources</phase>
 						<configuration>
-							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+							<sourceRoot>${project.build.directory}/resources/cxf</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
 									<wsdl>${project.basedir}/src/main/resources/wsdl/helloworld.wsdl</wsdl>

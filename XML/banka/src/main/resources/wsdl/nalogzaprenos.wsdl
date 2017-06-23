@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions name="nalogzaprenos"
+
+	targetNamespace="http://banka.com/services/nalogzaprenos" xmlns:tns="http://banka.com/services/nalogzaprenos"
+	xmlns:types="http://banka.com/types/nalogzaprenos" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<wsdl:types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified" targetNamespace="http://banka.com/types/nalogzaprenos">
+
+			<xsd:import namespace="http://banka.com/types/nalogzaprenos"
+				schemaLocation="../schemas/nalogzaprenos.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+
+	<wsdl:message name="GetIzvod">
+		<wsdl:part name="parameters" element="tns:GetIzvod" />
+	</wsdl:message>
+	<wsdl:message name="GetIzvodResponse">
+		<wsdl:part name="parameters" element="tns:GetIzvodResponse" />
+	</wsdl:message>
+
+
+
+
+	<wsdl:portType name="nalogzaprenos">
+		<jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+			<jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>
+		</jaxws:bindings>
+		<wsdl:operation name="GetIzvod">
+			<wsdl:input name="GetIzvod" message="tns:GetIzvod" />
+			<wsdl:output name="GetIzvodResponse" message="tns:GetIzvodResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+
+
+	<wsdl:binding name="nalogzaprenosSOAP" type="tns:nalogzaprenos">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetIzvod">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="GetIzvod">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetIzvodResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+
+	<wsdl:service name="nalogzaprenos">
+		<wsdl:port binding="tns:nalogzaprenosSOAP" name="nalogzaprenosSOAP">
+			<soap:address location="http://localhost:9090/getIzvodPort" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

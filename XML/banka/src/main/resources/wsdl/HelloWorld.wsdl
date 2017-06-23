@@ -2,8 +2,10 @@
 <wsdl:definitions name="HelloWorld"
 
 	targetNamespace="http://codenotfound.com/services/helloworld"
-	xmlns:tns="http://codenotfound.com/services/helloworld" xmlns:types="http://codenotfound.com/types/helloworld"
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://codenotfound.com/services/helloworld" 
+	xmlns:types="http://codenotfound.com/types/helloworld"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 	<wsdl:types>
@@ -31,6 +33,7 @@
 		</wsdl:operation>
 	</wsdl:portType>
 
+
 	<wsdl:binding name="HelloWorld_SoapBinding" type="tns:HelloWorld_PortType">
 		<soap:binding style="document"
 			transport="http://schemas.xmlsoap.org/soap/http" />
@@ -45,6 +48,8 @@
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
+
+
 
 	<wsdl:service name="HelloWorld_Service">
 		<wsdl:documentation>Hello World service</wsdl:documentation>
