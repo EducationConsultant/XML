@@ -3,29 +3,16 @@
 
 	targetNamespace="http://codenotfound.com/services/helloworld"
 	xmlns:tns="http://codenotfound.com/services/helloworld" xmlns:types="http://codenotfound.com/types/helloworld"
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 	<wsdl:types>
-		<xsd:schema targetNamespace="http://codenotfound.com/types/helloworld"
-			xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-			attributeFormDefault="unqualified" version="1.0">
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified" targetNamespace="http://codenotfound.com/types/helloworld">
 
-			<xsd:element name="person">
-				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:element name="firstName" type="xsd:string" />
-						<xsd:element name="lastName" type="xsd:string" />
-					</xsd:sequence>
-				</xsd:complexType>
-			</xsd:element>
+			<xsd:import namespace="http://codenotfound.com/types/helloworld"
+				schemaLocation="C:/Users/Milena/Desktop/Milena/fax/4.godina/letnji/XML_i_web_servisi/GitHub/XML/XML/banka/src/main/resources/schemas/helloworld.xsd" />
 
-			<xsd:element name="greeting">
-				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:element name="greeting" type="xsd:string" />
-					</xsd:sequence>
-				</xsd:complexType>
-			</xsd:element>
 		</xsd:schema>
 	</wsdl:types>
 
