@@ -5,14 +5,12 @@
 // Generated on: 2017.06.21 at 10:55:24 PM CEST 
 //
 
-
 package com.firma.models.faktura;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -21,13 +19,13 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.firma.models.domain.Firma;
-
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -253,120 +251,96 @@ import com.firma.models.domain.Firma;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "stavka",
-    "firma",
-    "idPoruke",
-    "nazivDobavljaca",
-    "adresaDobavljaca",
-    "pibDobavljaca",
-    "nazivKupca",
-    "adresaKupca",
-    "pibKupca",
-    "brojRacuna",
-    "datumRacuna",
-    "vrednostRobe",
-    "vrednostUsluga",
-    "ukupnoRobaIUsluge",
-    "ukupanRabat",
-    "ukupanPorez",
-    "oznakaValute",
-    "iznosZaUplatu",
-    "uplataNaRacun",
-    "datumValute"
-})
+@XmlType(name = "", propOrder = { "stavka", "firma", "idPoruke", "nazivDobavljaca", "adresaDobavljaca", "pibDobavljaca",
+		"nazivKupca", "adresaKupca", "pibKupca", "brojRacuna", "datumRacuna", "vrednostRobe", "vrednostUsluga",
+		"ukupnoRobaIUsluge", "ukupanRabat", "ukupanPorez", "oznakaValute", "iznosZaUplatu", "uplataNaRacun",
+		"datumValute" })
 @XmlRootElement(name = "Faktura")
 public class Faktura {
 
-    @XmlElement(name = "Stavka", required = true)
-    protected List<Faktura.Stavka> stavka;
-    
-    
-//    @XmlElement(name = "Firma")
-//    public Firma firma;  
-    
-    
-    @XmlElement(name = "IDPoruke")
-    protected long idPoruke;
-    @XmlElement(name = "NazivDobavljaca", required = true)
-    protected String nazivDobavljaca;
-    @XmlElement(name = "AdresaDobavljaca", required = true)
-    protected String adresaDobavljaca;
-    @XmlElement(name = "PIBDobavljaca", required = true)
-    protected String pibDobavljaca;
-    @XmlElement(name = "NazivKupca", required = true)
-    protected String nazivKupca;
-    @XmlElement(name = "AdresaKupca", required = true)
-    protected String adresaKupca;
-    @XmlElement(name = "PIBKupca", required = true)
-    protected String pibKupca;
-    @XmlElement(name = "BrojRacuna")
-    protected int brojRacuna;
-    @XmlElement(name = "DatumRacuna", required = true)
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar datumRacuna;
-    @XmlElement(name = "VrednostRobe", required = true)
-    protected BigDecimal vrednostRobe;
-    @XmlElement(name = "VrednostUsluga", required = true)
-    protected BigDecimal vrednostUsluga;
-    @XmlElement(name = "UkupnoRobaIUsluge", required = true)
-    protected BigDecimal ukupnoRobaIUsluge;
-    @XmlElement(name = "UkupanRabat", required = true)
-    protected BigDecimal ukupanRabat;
-    @XmlElement(name = "UkupanPorez", required = true)
-    protected BigDecimal ukupanPorez;
-    @XmlElement(name = "OznakaValute", required = true)
-    protected String oznakaValute;
-    @XmlElement(name = "IznosZaUplatu", required = true)
-    protected BigDecimal iznosZaUplatu;
-    @XmlElement(name = "UplataNaRacun", required = true)
-    protected String uplataNaRacun;
-    @XmlElement(name = "DatumValute", required = true)
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar datumValute;
+	@XmlElement(name = "Stavka", required = true)
+	protected List<Faktura.Stavka> stavka;
 
-    /**
-     * Gets the value of the stavka property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the stavka property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getStavka().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Faktura.Stavka }
-     * 
-     * 
-     */
-    
-    
-    
-    
-    
-    
-    public List<Faktura.Stavka> getStavka() {
-        if (stavka == null) {
-            stavka = new ArrayList<Faktura.Stavka>();
-        }
-        return this.stavka;
-    }
+	// @XmlElement(name = "Firma")
+	// public Firma firma;
 
-//    public Firma getFirma() {
-//		return firma;
-//	}
-//
-//	public void setFirma(Firma firma) {
-//		this.firma = firma;
-//	}
+	@XmlElement(name = "IDPoruke")
+	protected long idPoruke;
+	@XmlElement(name = "NazivDobavljaca", required = true)
+	protected String nazivDobavljaca;
+	@XmlElement(name = "AdresaDobavljaca", required = true)
+	protected String adresaDobavljaca;
+	@XmlElement(name = "PIBDobavljaca", required = true)
+	protected String pibDobavljaca;
+	@XmlElement(name = "NazivKupca", required = true)
+	protected String nazivKupca;
+	@XmlElement(name = "AdresaKupca", required = true)
+	protected String adresaKupca;
+	@XmlElement(name = "PIBKupca", required = true)
+	protected String pibKupca;
+	@XmlElement(name = "BrojRacuna")
+	protected int brojRacuna;
+	@XmlElement(name = "DatumRacuna", required = true)
+	@XmlSchemaType(name = "date")
+	protected XMLGregorianCalendar datumRacuna;
+	@XmlElement(name = "VrednostRobe", required = true)
+	protected BigDecimal vrednostRobe;
+	@XmlElement(name = "VrednostUsluga", required = true)
+	protected BigDecimal vrednostUsluga;
+	@XmlElement(name = "UkupnoRobaIUsluge", required = true)
+	protected BigDecimal ukupnoRobaIUsluge;
+	@XmlElement(name = "UkupanRabat", required = true)
+	protected BigDecimal ukupanRabat;
+	@XmlElement(name = "UkupanPorez", required = true)
+	protected BigDecimal ukupanPorez;
+	@XmlElement(name = "OznakaValute", required = true)
+	protected String oznakaValute;
+	@XmlElement(name = "IznosZaUplatu", required = true)
+	protected BigDecimal iznosZaUplatu;
+	@XmlElement(name = "UplataNaRacun", required = true)
+	protected String uplataNaRacun;
+	@XmlElement(name = "DatumValute", required = true)
+	@XmlSchemaType(name = "date")
+	protected XMLGregorianCalendar datumValute;
+
+	/**
+	 * Gets the value of the stavka property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the stavka property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getStavka().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link Faktura.Stavka }
+	 * 
+	 * 
+	 */
+
+	public List<Faktura.Stavka> getStavka() {
+		if (stavka == null) {
+			stavka = new ArrayList<Faktura.Stavka>();
+		}
+		return this.stavka;
+	}
+
+	// public Firma getFirma() {
+	// return firma;
+	// }
+	//
+	// public void setFirma(Firma firma) {
+	// this.firma = firma;
+	// }
 
 	public long getIdPoruke() {
 		return idPoruke;
@@ -397,785 +371,702 @@ public class Faktura {
 	}
 
 	/**
-     * Gets the value of the idPoruke property.
-     * 
-     */
-    public long getIDPoruke() {
-        return idPoruke;
-    }
+	 * Gets the value of the idPoruke property.
+	 * 
+	 */
+	public long getIDPoruke() {
+		return idPoruke;
+	}
 
-    /**
-     * Sets the value of the idPoruke property.
-     * 
-     */
-    public void setIDPoruke(long value) {
-        this.idPoruke = value;
-    }
+	/**
+	 * Sets the value of the idPoruke property.
+	 * 
+	 */
+	public void setIDPoruke(long value) {
+		this.idPoruke = value;
+	}
 
-    /**
-     * Gets the value of the nazivDobavljaca property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNazivDobavljaca() {
-        return nazivDobavljaca;
-    }
+	/**
+	 * Gets the value of the nazivDobavljaca property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getNazivDobavljaca() {
+		return nazivDobavljaca;
+	}
 
-    /**
-     * Sets the value of the nazivDobavljaca property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNazivDobavljaca(String value) {
-        this.nazivDobavljaca = value;
-    }
+	/**
+	 * Sets the value of the nazivDobavljaca property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setNazivDobavljaca(String value) {
+		this.nazivDobavljaca = value;
+	}
 
-    /**
-     * Gets the value of the adresaDobavljaca property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAdresaDobavljaca() {
-        return adresaDobavljaca;
-    }
+	/**
+	 * Gets the value of the adresaDobavljaca property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getAdresaDobavljaca() {
+		return adresaDobavljaca;
+	}
 
-    /**
-     * Sets the value of the adresaDobavljaca property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAdresaDobavljaca(String value) {
-        this.adresaDobavljaca = value;
-    }
+	/**
+	 * Sets the value of the adresaDobavljaca property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setAdresaDobavljaca(String value) {
+		this.adresaDobavljaca = value;
+	}
 
-    /**
-     * Gets the value of the pibDobavljaca property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPIBDobavljaca() {
-        return pibDobavljaca;
-    }
+	/**
+	 * Gets the value of the pibDobavljaca property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getPIBDobavljaca() {
+		return pibDobavljaca;
+	}
 
-    /**
-     * Sets the value of the pibDobavljaca property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPIBDobavljaca(String value) {
-        this.pibDobavljaca = value;
-    }
+	/**
+	 * Sets the value of the pibDobavljaca property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setPIBDobavljaca(String value) {
+		this.pibDobavljaca = value;
+	}
 
-    /**
-     * Gets the value of the nazivKupca property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNazivKupca() {
-        return nazivKupca;
-    }
+	/**
+	 * Gets the value of the nazivKupca property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getNazivKupca() {
+		return nazivKupca;
+	}
 
-    /**
-     * Sets the value of the nazivKupca property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNazivKupca(String value) {
-        this.nazivKupca = value;
-    }
+	/**
+	 * Sets the value of the nazivKupca property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setNazivKupca(String value) {
+		this.nazivKupca = value;
+	}
 
-    /**
-     * Gets the value of the adresaKupca property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAdresaKupca() {
-        return adresaKupca;
-    }
+	/**
+	 * Gets the value of the adresaKupca property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getAdresaKupca() {
+		return adresaKupca;
+	}
 
-    /**
-     * Sets the value of the adresaKupca property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAdresaKupca(String value) {
-        this.adresaKupca = value;
-    }
+	/**
+	 * Sets the value of the adresaKupca property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setAdresaKupca(String value) {
+		this.adresaKupca = value;
+	}
 
-    /**
-     * Gets the value of the pibKupca property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPIBKupca() {
-        return pibKupca;
-    }
+	/**
+	 * Gets the value of the pibKupca property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getPIBKupca() {
+		return pibKupca;
+	}
 
-    /**
-     * Sets the value of the pibKupca property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPIBKupca(String value) {
-        this.pibKupca = value;
-    }
+	/**
+	 * Sets the value of the pibKupca property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setPIBKupca(String value) {
+		this.pibKupca = value;
+	}
 
-    /**
-     * Gets the value of the brojRacuna property.
-     * 
-     */
-    public int getBrojRacuna() {
-        return brojRacuna;
-    }
+	/**
+	 * Gets the value of the brojRacuna property.
+	 * 
+	 */
+	public int getBrojRacuna() {
+		return brojRacuna;
+	}
 
-    /**
-     * Sets the value of the brojRacuna property.
-     * 
-     */
-    public void setBrojRacuna(int value) {
-        this.brojRacuna = value;
-    }
+	/**
+	 * Sets the value of the brojRacuna property.
+	 * 
+	 */
+	public void setBrojRacuna(int value) {
+		this.brojRacuna = value;
+	}
 
-    /**
-     * Gets the value of the datumRacuna property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDatumRacuna() {
-        return datumRacuna;
-    }
+	/**
+	 * Gets the value of the datumRacuna property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getDatumRacuna() {
+		return datumRacuna;
+	}
 
-    /**
-     * Sets the value of the datumRacuna property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDatumRacuna(XMLGregorianCalendar value) {
-        this.datumRacuna = value;
-    }
+	/**
+	 * Sets the value of the datumRacuna property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setDatumRacuna(XMLGregorianCalendar value) {
+		this.datumRacuna = value;
+	}
 
-    /**
-     * Gets the value of the vrednostRobe property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getVrednostRobe() {
-        return vrednostRobe;
-    }
+	/**
+	 * Gets the value of the vrednostRobe property.
+	 * 
+	 * @return possible object is {@link BigDecimal }
+	 * 
+	 */
+	public BigDecimal getVrednostRobe() {
+		return vrednostRobe;
+	}
 
-    /**
-     * Sets the value of the vrednostRobe property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setVrednostRobe(BigDecimal value) {
-        this.vrednostRobe = value;
-    }
+	/**
+	 * Sets the value of the vrednostRobe property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link BigDecimal }
+	 * 
+	 */
+	public void setVrednostRobe(BigDecimal value) {
+		this.vrednostRobe = value;
+	}
 
-    /**
-     * Gets the value of the vrednostUsluga property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getVrednostUsluga() {
-        return vrednostUsluga;
-    }
+	/**
+	 * Gets the value of the vrednostUsluga property.
+	 * 
+	 * @return possible object is {@link BigDecimal }
+	 * 
+	 */
+	public BigDecimal getVrednostUsluga() {
+		return vrednostUsluga;
+	}
 
-    /**
-     * Sets the value of the vrednostUsluga property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setVrednostUsluga(BigDecimal value) {
-        this.vrednostUsluga = value;
-    }
+	/**
+	 * Sets the value of the vrednostUsluga property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link BigDecimal }
+	 * 
+	 */
+	public void setVrednostUsluga(BigDecimal value) {
+		this.vrednostUsluga = value;
+	}
 
-    /**
-     * Gets the value of the ukupnoRobaIUsluge property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getUkupnoRobaIUsluge() {
-        return ukupnoRobaIUsluge;
-    }
+	/**
+	 * Gets the value of the ukupnoRobaIUsluge property.
+	 * 
+	 * @return possible object is {@link BigDecimal }
+	 * 
+	 */
+	public BigDecimal getUkupnoRobaIUsluge() {
+		return ukupnoRobaIUsluge;
+	}
 
-    /**
-     * Sets the value of the ukupnoRobaIUsluge property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setUkupnoRobaIUsluge(BigDecimal value) {
-        this.ukupnoRobaIUsluge = value;
-    }
+	/**
+	 * Sets the value of the ukupnoRobaIUsluge property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link BigDecimal }
+	 * 
+	 */
+	public void setUkupnoRobaIUsluge(BigDecimal value) {
+		this.ukupnoRobaIUsluge = value;
+	}
 
-    /**
-     * Gets the value of the ukupanRabat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getUkupanRabat() {
-        return ukupanRabat;
-    }
+	/**
+	 * Gets the value of the ukupanRabat property.
+	 * 
+	 * @return possible object is {@link BigDecimal }
+	 * 
+	 */
+	public BigDecimal getUkupanRabat() {
+		return ukupanRabat;
+	}
 
-    /**
-     * Sets the value of the ukupanRabat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setUkupanRabat(BigDecimal value) {
-        this.ukupanRabat = value;
-    }
+	/**
+	 * Sets the value of the ukupanRabat property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link BigDecimal }
+	 * 
+	 */
+	public void setUkupanRabat(BigDecimal value) {
+		this.ukupanRabat = value;
+	}
 
-    /**
-     * Gets the value of the ukupanPorez property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getUkupanPorez() {
-        return ukupanPorez;
-    }
+	/**
+	 * Gets the value of the ukupanPorez property.
+	 * 
+	 * @return possible object is {@link BigDecimal }
+	 * 
+	 */
+	public BigDecimal getUkupanPorez() {
+		return ukupanPorez;
+	}
 
-    /**
-     * Sets the value of the ukupanPorez property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setUkupanPorez(BigDecimal value) {
-        this.ukupanPorez = value;
-    }
+	/**
+	 * Sets the value of the ukupanPorez property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link BigDecimal }
+	 * 
+	 */
+	public void setUkupanPorez(BigDecimal value) {
+		this.ukupanPorez = value;
+	}
 
-    /**
-     * Gets the value of the oznakaValute property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getOznakaValute() {
-        return oznakaValute;
-    }
+	/**
+	 * Gets the value of the oznakaValute property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getOznakaValute() {
+		return oznakaValute;
+	}
 
-    /**
-     * Sets the value of the oznakaValute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setOznakaValute(String value) {
-        this.oznakaValute = value;
-    }
+	/**
+	 * Sets the value of the oznakaValute property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setOznakaValute(String value) {
+		this.oznakaValute = value;
+	}
 
-    /**
-     * Gets the value of the iznosZaUplatu property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getIznosZaUplatu() {
-        return iznosZaUplatu;
-    }
+	/**
+	 * Gets the value of the iznosZaUplatu property.
+	 * 
+	 * @return possible object is {@link BigDecimal }
+	 * 
+	 */
+	public BigDecimal getIznosZaUplatu() {
+		return iznosZaUplatu;
+	}
 
-    /**
-     * Sets the value of the iznosZaUplatu property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setIznosZaUplatu(BigDecimal value) {
-        this.iznosZaUplatu = value;
-    }
+	/**
+	 * Sets the value of the iznosZaUplatu property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link BigDecimal }
+	 * 
+	 */
+	public void setIznosZaUplatu(BigDecimal value) {
+		this.iznosZaUplatu = value;
+	}
 
-    /**
-     * Gets the value of the uplataNaRacun property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUplataNaRacun() {
-        return uplataNaRacun;
-    }
+	/**
+	 * Gets the value of the uplataNaRacun property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getUplataNaRacun() {
+		return uplataNaRacun;
+	}
 
-    /**
-     * Sets the value of the uplataNaRacun property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUplataNaRacun(String value) {
-        this.uplataNaRacun = value;
-    }
+	/**
+	 * Sets the value of the uplataNaRacun property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setUplataNaRacun(String value) {
+		this.uplataNaRacun = value;
+	}
 
-    /**
-     * Gets the value of the datumValute property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDatumValute() {
-        return datumValute;
-    }
+	/**
+	 * Gets the value of the datumValute property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getDatumValute() {
+		return datumValute;
+	}
 
-    /**
-     * Sets the value of the datumValute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDatumValute(XMLGregorianCalendar value) {
-        this.datumValute = value;
-    }
+	/**
+	 * Sets the value of the datumValute property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setDatumValute(XMLGregorianCalendar value) {
+		this.datumValute = value;
+	}
 
+	/**
+	 * <p>
+	 * Java class for anonymous complex type.
+	 * 
+	 * <p>
+	 * The following schema fragment specifies the expected content contained
+	 * within this class.
+	 * 
+	 * <pre>
+	 * &lt;complexType>
+	 *   &lt;complexContent>
+	 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+	 *       &lt;sequence>
+	 *         &lt;element name="RedniBroj">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}long">
+	 *               &lt;totalDigits value="3"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="NazivRobeIliUsluge">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *               &lt;maxLength value="120"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="Kolicina">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+	 *               &lt;totalDigits value="10"/>
+	 *               &lt;fractionDigits value="2"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="JedinicaMere">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+	 *               &lt;maxLength value="6"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="JedinicnaCena">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+	 *               &lt;totalDigits value="10"/>
+	 *               &lt;fractionDigits value="2"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="Vrednost">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+	 *               &lt;totalDigits value="12"/>
+	 *               &lt;fractionDigits value="2"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="ProcenatRabata">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+	 *               &lt;totalDigits value="5"/>
+	 *               &lt;fractionDigits value="2"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="IznosRabata">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+	 *               &lt;totalDigits value="12"/>
+	 *               &lt;fractionDigits value="2"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="UmanjenoZaRabat">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+	 *               &lt;totalDigits value="12"/>
+	 *               &lt;fractionDigits value="2"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *         &lt;element name="UkupanPorez">
+	 *           &lt;simpleType>
+	 *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+	 *               &lt;totalDigits value="12"/>
+	 *               &lt;fractionDigits value="2"/>
+	 *             &lt;/restriction>
+	 *           &lt;/simpleType>
+	 *         &lt;/element>
+	 *       &lt;/sequence>
+	 *     &lt;/restriction>
+	 *   &lt;/complexContent>
+	 * &lt;/complexType>
+	 * </pre>
+	 * 
+	 * 
+	 */
+	@XmlAccessorType(XmlAccessType.FIELD)
+	@XmlType(name = "", propOrder = { "redniBroj", "nazivRobeIliUsluge", "kolicina", "jedinicaMere", "jedinicnaCena",
+			"vrednost", "procenatRabata", "iznosRabata", "umanjenoZaRabat", "ukupanPorez" })
+	public static class Stavka {
 
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="RedniBroj">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}long">
-     *               &lt;totalDigits value="3"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="NazivRobeIliUsluge">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *               &lt;maxLength value="120"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="Kolicina">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
-     *               &lt;totalDigits value="10"/>
-     *               &lt;fractionDigits value="2"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="JedinicaMere">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *               &lt;maxLength value="6"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="JedinicnaCena">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
-     *               &lt;totalDigits value="10"/>
-     *               &lt;fractionDigits value="2"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="Vrednost">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
-     *               &lt;totalDigits value="12"/>
-     *               &lt;fractionDigits value="2"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="ProcenatRabata">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
-     *               &lt;totalDigits value="5"/>
-     *               &lt;fractionDigits value="2"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="IznosRabata">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
-     *               &lt;totalDigits value="12"/>
-     *               &lt;fractionDigits value="2"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="UmanjenoZaRabat">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
-     *               &lt;totalDigits value="12"/>
-     *               &lt;fractionDigits value="2"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *         &lt;element name="UkupanPorez">
-     *           &lt;simpleType>
-     *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
-     *               &lt;totalDigits value="12"/>
-     *               &lt;fractionDigits value="2"/>
-     *             &lt;/restriction>
-     *           &lt;/simpleType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "redniBroj",
-        "nazivRobeIliUsluge",
-        "kolicina",
-        "jedinicaMere",
-        "jedinicnaCena",
-        "vrednost",
-        "procenatRabata",
-        "iznosRabata",
-        "umanjenoZaRabat",
-        "ukupanPorez"
-    })
-    public static class Stavka {
+		@XmlElement(name = "RedniBroj")
+		protected long redniBroj;
+		@XmlElement(name = "NazivRobeIliUsluge", required = true)
+		protected String nazivRobeIliUsluge;
+		@XmlElement(name = "Kolicina", required = true)
+		protected BigDecimal kolicina;
+		@XmlElement(name = "JedinicaMere", required = true)
+		protected String jedinicaMere;
+		@XmlElement(name = "JedinicnaCena", required = true)
+		protected BigDecimal jedinicnaCena;
+		@XmlElement(name = "Vrednost", required = true)
+		protected BigDecimal vrednost;
+		@XmlElement(name = "ProcenatRabata", required = true)
+		protected BigDecimal procenatRabata;
+		@XmlElement(name = "IznosRabata", required = true)
+		protected BigDecimal iznosRabata;
+		@XmlElement(name = "UmanjenoZaRabat", required = true)
+		protected BigDecimal umanjenoZaRabat;
+		@XmlElement(name = "UkupanPorez", required = true)
+		protected BigDecimal ukupanPorez;
 
-        @XmlElement(name = "RedniBroj")
-        protected long redniBroj;
-        @XmlElement(name = "NazivRobeIliUsluge", required = true)
-        protected String nazivRobeIliUsluge;
-        @XmlElement(name = "Kolicina", required = true)
-        protected BigDecimal kolicina;
-        @XmlElement(name = "JedinicaMere", required = true)
-        protected String jedinicaMere;
-        @XmlElement(name = "JedinicnaCena", required = true)
-        protected BigDecimal jedinicnaCena;
-        @XmlElement(name = "Vrednost", required = true)
-        protected BigDecimal vrednost;
-        @XmlElement(name = "ProcenatRabata", required = true)
-        protected BigDecimal procenatRabata;
-        @XmlElement(name = "IznosRabata", required = true)
-        protected BigDecimal iznosRabata;
-        @XmlElement(name = "UmanjenoZaRabat", required = true)
-        protected BigDecimal umanjenoZaRabat;
-        @XmlElement(name = "UkupanPorez", required = true)
-        protected BigDecimal ukupanPorez;
+		/**
+		 * Gets the value of the redniBroj property.
+		 * 
+		 */
+		public long getRedniBroj() {
+			return redniBroj;
+		}
 
-        /**
-         * Gets the value of the redniBroj property.
-         * 
-         */
-        public long getRedniBroj() {
-            return redniBroj;
-        }
+		/**
+		 * Sets the value of the redniBroj property.
+		 * 
+		 */
+		public void setRedniBroj(long value) {
+			this.redniBroj = value;
+		}
 
-        /**
-         * Sets the value of the redniBroj property.
-         * 
-         */
-        public void setRedniBroj(long value) {
-            this.redniBroj = value;
-        }
+		/**
+		 * Gets the value of the nazivRobeIliUsluge property.
+		 * 
+		 * @return possible object is {@link String }
+		 * 
+		 */
+		public String getNazivRobeIliUsluge() {
+			return nazivRobeIliUsluge;
+		}
 
-        /**
-         * Gets the value of the nazivRobeIliUsluge property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getNazivRobeIliUsluge() {
-            return nazivRobeIliUsluge;
-        }
+		/**
+		 * Sets the value of the nazivRobeIliUsluge property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link String }
+		 * 
+		 */
+		public void setNazivRobeIliUsluge(String value) {
+			this.nazivRobeIliUsluge = value;
+		}
 
-        /**
-         * Sets the value of the nazivRobeIliUsluge property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setNazivRobeIliUsluge(String value) {
-            this.nazivRobeIliUsluge = value;
-        }
+		/**
+		 * Gets the value of the kolicina property.
+		 * 
+		 * @return possible object is {@link BigDecimal }
+		 * 
+		 */
+		public BigDecimal getKolicina() {
+			return kolicina;
+		}
 
-        /**
-         * Gets the value of the kolicina property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getKolicina() {
-            return kolicina;
-        }
+		/**
+		 * Sets the value of the kolicina property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link BigDecimal }
+		 * 
+		 */
+		public void setKolicina(BigDecimal value) {
+			this.kolicina = value;
+		}
 
-        /**
-         * Sets the value of the kolicina property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setKolicina(BigDecimal value) {
-            this.kolicina = value;
-        }
+		/**
+		 * Gets the value of the jedinicaMere property.
+		 * 
+		 * @return possible object is {@link String }
+		 * 
+		 */
+		public String getJedinicaMere() {
+			return jedinicaMere;
+		}
 
-        /**
-         * Gets the value of the jedinicaMere property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getJedinicaMere() {
-            return jedinicaMere;
-        }
+		/**
+		 * Sets the value of the jedinicaMere property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link String }
+		 * 
+		 */
+		public void setJedinicaMere(String value) {
+			this.jedinicaMere = value;
+		}
 
-        /**
-         * Sets the value of the jedinicaMere property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setJedinicaMere(String value) {
-            this.jedinicaMere = value;
-        }
+		/**
+		 * Gets the value of the jedinicnaCena property.
+		 * 
+		 * @return possible object is {@link BigDecimal }
+		 * 
+		 */
+		public BigDecimal getJedinicnaCena() {
+			return jedinicnaCena;
+		}
 
-        /**
-         * Gets the value of the jedinicnaCena property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getJedinicnaCena() {
-            return jedinicnaCena;
-        }
+		/**
+		 * Sets the value of the jedinicnaCena property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link BigDecimal }
+		 * 
+		 */
+		public void setJedinicnaCena(BigDecimal value) {
+			this.jedinicnaCena = value;
+		}
 
-        /**
-         * Sets the value of the jedinicnaCena property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setJedinicnaCena(BigDecimal value) {
-            this.jedinicnaCena = value;
-        }
+		/**
+		 * Gets the value of the vrednost property.
+		 * 
+		 * @return possible object is {@link BigDecimal }
+		 * 
+		 */
+		public BigDecimal getVrednost() {
+			return vrednost;
+		}
 
-        /**
-         * Gets the value of the vrednost property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getVrednost() {
-            return vrednost;
-        }
+		/**
+		 * Sets the value of the vrednost property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link BigDecimal }
+		 * 
+		 */
+		public void setVrednost(BigDecimal value) {
+			this.vrednost = value;
+		}
 
-        /**
-         * Sets the value of the vrednost property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setVrednost(BigDecimal value) {
-            this.vrednost = value;
-        }
+		/**
+		 * Gets the value of the procenatRabata property.
+		 * 
+		 * @return possible object is {@link BigDecimal }
+		 * 
+		 */
+		public BigDecimal getProcenatRabata() {
+			return procenatRabata;
+		}
 
-        /**
-         * Gets the value of the procenatRabata property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getProcenatRabata() {
-            return procenatRabata;
-        }
+		/**
+		 * Sets the value of the procenatRabata property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link BigDecimal }
+		 * 
+		 */
+		public void setProcenatRabata(BigDecimal value) {
+			this.procenatRabata = value;
+		}
 
-        /**
-         * Sets the value of the procenatRabata property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setProcenatRabata(BigDecimal value) {
-            this.procenatRabata = value;
-        }
+		/**
+		 * Gets the value of the iznosRabata property.
+		 * 
+		 * @return possible object is {@link BigDecimal }
+		 * 
+		 */
+		public BigDecimal getIznosRabata() {
+			return iznosRabata;
+		}
 
-        /**
-         * Gets the value of the iznosRabata property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getIznosRabata() {
-            return iznosRabata;
-        }
+		/**
+		 * Sets the value of the iznosRabata property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link BigDecimal }
+		 * 
+		 */
+		public void setIznosRabata(BigDecimal value) {
+			this.iznosRabata = value;
+		}
 
-        /**
-         * Sets the value of the iznosRabata property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setIznosRabata(BigDecimal value) {
-            this.iznosRabata = value;
-        }
+		/**
+		 * Gets the value of the umanjenoZaRabat property.
+		 * 
+		 * @return possible object is {@link BigDecimal }
+		 * 
+		 */
+		public BigDecimal getUmanjenoZaRabat() {
+			return umanjenoZaRabat;
+		}
 
-        /**
-         * Gets the value of the umanjenoZaRabat property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getUmanjenoZaRabat() {
-            return umanjenoZaRabat;
-        }
+		/**
+		 * Sets the value of the umanjenoZaRabat property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link BigDecimal }
+		 * 
+		 */
+		public void setUmanjenoZaRabat(BigDecimal value) {
+			this.umanjenoZaRabat = value;
+		}
 
-        /**
-         * Sets the value of the umanjenoZaRabat property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setUmanjenoZaRabat(BigDecimal value) {
-            this.umanjenoZaRabat = value;
-        }
+		/**
+		 * Gets the value of the ukupanPorez property.
+		 * 
+		 * @return possible object is {@link BigDecimal }
+		 * 
+		 */
+		public BigDecimal getUkupanPorez() {
+			return ukupanPorez;
+		}
 
-        /**
-         * Gets the value of the ukupanPorez property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public BigDecimal getUkupanPorez() {
-            return ukupanPorez;
-        }
+		/**
+		 * Sets the value of the ukupanPorez property.
+		 * 
+		 * @param value
+		 *            allowed object is {@link BigDecimal }
+		 * 
+		 */
+		public void setUkupanPorez(BigDecimal value) {
+			this.ukupanPorez = value;
+		}
 
-        /**
-         * Sets the value of the ukupanPorez property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigDecimal }
-         *     
-         */
-        public void setUkupanPorez(BigDecimal value) {
-            this.ukupanPorez = value;
-        }
-
-    }
+	}
 
 }

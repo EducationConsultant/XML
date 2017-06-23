@@ -1,8 +1,6 @@
 package com.firma.converters;
 
-import com.firma.models.domain.FakturaDTO;
 import com.firma.models.domain.StavkaDTO;
-import com.firma.models.faktura.Faktura;
 import com.firma.models.faktura.Faktura.Stavka;
 
 import ma.glasnost.orika.MapperFacade;
@@ -15,10 +13,8 @@ public class StavkaConverter {
 
 	static {
 		final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
-		mapperFactory.classMap(StavkaDTO.class, Stavka.class)
-				.field("redniBroj", "redniBroj")
-				.field("nazivRobeIliUsluge", "nazivRobeIliUsluge")
-				.field("kolicina", "kolicina")
+		mapperFactory.classMap(StavkaDTO.class, Stavka.class).field("redniBroj", "redniBroj")
+				.field("nazivRobeIliUsluge", "nazivRobeIliUsluge").field("kolicina", "kolicina")
 				.field("jedinicaMere", "jedinicaMere").field("jedinicnaCena", "jedinicnaCena")
 				.field("vrednost", "vrednost").field("procenatRabata", "procenatRabata")
 				.field("iznosRabata", "iznosRabata").field("umanjenoZaRabat", "umanjenoZaRabat")
