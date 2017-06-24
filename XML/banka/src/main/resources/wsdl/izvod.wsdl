@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				 xmlns:tnsp="http://codenotfound.com/types/presek" 
+				 xmlns:tnsz="http://codenotfound.com/types/zahtev" 
+				 xmlns:tns="http://codenotfound.com/services/izvod" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+				  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+				  name="izvod" targetNamespace="http://codenotfound.com/services/izvod">
+
+	<wsdl:types>
+	<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" 
+					elementFormDefault="qualified" targetNamespace="http://codenotfound.com/services/nalogzaprenos">
+    <xsd:import namespace="http://codenotfound.com/types/presek" schemaLocation="../schemas/Presek.xsd" />
+    <xsd:import namespace="http://codenotfound.com/types/zahtev" schemaLocation="../schemas/Zahtev_za_dobijanje_izvoda.xsd" />
+		
+		</xsd:schema>
+	</wsdl:types>
+  
+  <wsdl:message name="GetPresek">
+    <wsdl:part name="GetPresek" element="tnsz:GetPresek"/>
+  </wsdl:message>
+  <wsdl:message name="GetPresekResponse">
+    <wsdl:part name="GetPresekResponse" element="tnsp:GetPresekResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="izvod">
+  <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+        <jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>
+    </jaxws:bindings>
+    <wsdl:operation name="GetPresek">
+      <wsdl:input name="GetPresek" message="tns:GetPresek"/>
+      <wsdl:output name="GetPresekResponse" message="tns:GetPresekResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="izvodSOAP" type="tns:izvod">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetPresek">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetPresek">
+        <soap:body  use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetPresekResponse">
+        <soap:body  use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="izvod">
+    <wsdl:port binding="tns:izvodSOAP" name="izvodSOAP">
+      <soap:address location="http://localhost:9090/getPresekPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

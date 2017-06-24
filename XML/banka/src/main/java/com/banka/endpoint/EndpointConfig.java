@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.banka.services.izvod.IzvodImpl;
 import com.banka.services.nalogzaprenos.NalogzaprenosWrappedImpl;
 
 @Configuration
@@ -21,4 +22,5 @@ public class EndpointConfig {
         endpoint.publish("/nalogzaprenos");
         return endpoint;
     }
+   
 }

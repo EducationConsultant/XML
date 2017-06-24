@@ -23,8 +23,8 @@ import javax.xml.ws.ResponseWrapper;
 public interface Izvod {
 
     @WebMethod(operationName = "GetPresek")
-    @RequestWrapper(localName = "GetPresek", targetNamespace = "http://codenotfound.com/types/zahtev", className = "com.codenotfound.types.zahtev.GetPresek")
-    @ResponseWrapper(localName = "GetPresekResponse", targetNamespace = "http://codenotfound.com/types/presek", className = "com.codenotfound.types.presek.GetPresekResponse")
+    @RequestWrapper(localName = "GetPresek", targetNamespace = "http://codenotfound.com/types/zahtev", className = "com.banka.models.zahtev.GetPresek")
+    @ResponseWrapper(localName = "GetPresekResponse", targetNamespace = "http://codenotfound.com/types/presek", className = "com.banka.models.presek.GetPresekResponse")
     public void getPresek(
         @WebParam(name = "Broj_racuna", targetNamespace = "http://codenotfound.com/types/zahtev")
         java.lang.String brojRacuna,

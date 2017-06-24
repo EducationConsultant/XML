@@ -16,7 +16,7 @@ function req(){
 	data=JSON.stringify(data);
 	$.ajax({
 		  type: "POST",
-		  url: "http://localhost:8080/"+firma+"/rest/getIzvod",
+		  url: "http://localhost:8080/api/firma/izvod/getIzvod",
 		  data: data,
 		  success: function(dat){
 			  	if(dat=="failed")return;
@@ -87,7 +87,7 @@ function reqPDF(){
 	console.log(data);
 	data=JSON.stringify(data);
 		var a=document.createElement("a");
-		a.href="http://localhost:8080/"+firma+"/rest/getIzvodPDF/"+data;
+		a.href="http://localhost:8080/api/firma/izvod/getIzvodPDF/"+data;
 		a.click();
 		
 }

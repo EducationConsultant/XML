@@ -50,12 +50,16 @@ import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.xmlgraphics.util.MimeConstants;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 
@@ -71,7 +75,7 @@ import com.firma.models.zahtev.GetPresek;
 import com.firma.models.zahtev.ZahtevZaDobijanjeIzvodaJSON;
 
 @RestController
-@RequestMapping("/api/firma")
+@RequestMapping("/api/firma/izvod")
 public class IzvodController {
 	
  	@RequestMapping(produces= MediaType.TEXT_PLAIN_VALUE, path="izvodTest", method=RequestMethod.GET)
@@ -79,8 +83,9 @@ public class IzvodController {
         
         return "hello";
     }
- 	@RequestMapping(produces="application/pdf", consumes= MediaType.TEXT_PLAIN_VALUE, path="getIzvodPDF/{zahtev}", method=RequestMethod.GET)
-    public ResponseEntity<byte[]> getIzvodPDF(@PathParam("zahtev")String zahtev) {
+ 	@RequestMapping(produces="application/pdf", path="getIzvodPDF/{zahtev}", method=RequestMethod.GET)
+ 	
+    public ResponseEntity<byte[]> getIzvodPDF(@PathVariable("zahtev") String zahtev) {
         ZahtevZaDobijanjeIzvodaJSON zah=parseZahtevJSON(zahtev);
         File izlaz=null;
         if(zah!=null){
@@ -125,13 +130,13 @@ public class IzvodController {
  	   
 	 	   try {
 
-               String p = getClass().getClassLoader().getResource("fop.xconf").getPath();
+	 		  File p = new ClassPathResource("fop.xconf").getFile();
                System.out.println(p);
-	            FopFactory fopFactory = FopFactory.newInstance(new File(p));
+	            FopFactory fopFactory = FopFactory.newInstance(p);
 	            TransformerFactoryImpl transformerFactory = new TransformerFactoryImpl();
-                String catalinaBase= System.getProperty("catalina.base");
-                String path=catalinaBase+"/webapps/"+getPropertyValue("NazivFirme")+"/WEB-INF/wsdl/";
-	 	      File xslFile = new File(path+"presek.xsl");
+                //String catalinaBase= ;
+                //String path=catalinaBase+"/webapps/"+getPropertyValue("NazivFirme")+"/WEB-INF/wsdl/";
+	 	      File xslFile = new ClassPathResource("schemas/presek.xsl").getFile();//new File(path+"presek.xsl");
 	 	  // Create transformation source
 	 	        StreamSource transformSource = new StreamSource(xslFile);
 	 	        
@@ -144,9 +149,9 @@ public class IzvodController {
 	            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 	            
 	            // Umesto System.out-a, može se koristiti FileOutputStream
-	            marshaller.setProperty("com.sun.xml.internal.bind.xmlHeaders", 
+	            marshaller.setProperty("com.sun.xml.bind.xmlHeaders", 
 	                    "<?xml-stylesheet type=\"text/xsl\" href=\"presek.xsl\" ?>\n");
-                
+                String path="C:/Temp/";
 	            marshaller.marshal(povrat, new FileWriter(new File(path+"out.xml")));
 	 	        StreamSource source = new StreamSource(new File(path+"out.xml"));
 
@@ -201,8 +206,9 @@ public class IzvodController {
     }
  	
     @RequestMapping(produces=MediaType.TEXT_PLAIN_VALUE, consumes= MediaType.TEXT_PLAIN_VALUE, path="getIzvod", method=RequestMethod.POST)
-    
-    public String getIzvod(String zahtev) {
+    @ResponseBody
+    public String getIzvod(@RequestBody String zahtev) {
+    	System.out.println("zahtev :"+zahtev);
  	    ZahtevZaDobijanjeIzvodaJSON zah=parseZahtevJSON(zahtev);
         
         String ret="failed";
@@ -229,7 +235,7 @@ public class IzvodController {
     }
  	private GetPresekResponse SoapHandleIzvod(GetPresek xMLzahtev) {
         // TODO Auto-generated method stub
-        String adresaBanke=getPropertyValue("AdresaBanke");
+        String adresaBanke="http://localhost:9090";//getPropertyValue("AdresaBanke");
  	    System.out.println(adresaBanke);
  	   GetPresekResponse ret= null;
         ArrayList<GetPresekResponse> retVals= new ArrayList<GetPresekResponse>();
@@ -245,14 +251,14 @@ public class IzvodController {
                 SOAPMessage soapMessage = messageFactory.createMessage();
                 SOAPPart soapPart = soapMessage.getSOAPPart();
 
-                String serverURI = "ftn.xml";
+                String serverURI = "http://codenotfound.com/services/izvod";
 
                 // SOAP Envelope
                 SOAPEnvelope envelope = soapPart.getEnvelope();
                 envelope.addNamespaceDeclaration("n0", serverURI);
-                envelope.addNamespaceDeclaration("n1", "ftn.xml.zahtev");
+                envelope.addNamespaceDeclaration("n1", "http://codenotfound.com/types/zahtev");
                 SOAPBody soapBody = envelope.getBody();
-                SOAPElement soapBodyElem = soapBody.addChildElement("GetPresek", "n0");
+                SOAPElement soapBodyElem = soapBody.addChildElement("GetPresek", "n1");
                 SOAPElement soapBodyElem0 = soapBodyElem.addChildElement("Broj_racuna", "n1");
                 SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("Datum", "n1");
                 soapBodyElem0.addTextNode(xMLzahtev.getBrojRacuna());
@@ -275,8 +281,8 @@ public class IzvodController {
                 
                 SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
                 String catalinaBase= System.getProperty("catalina.base");
-                
-                Schema schema = schemaFactory.newSchema(new File(catalinaBase+"/webapps/"+getPropertyValue("NazivFirme")+"/WEB-INF/wsdl/Presek.xsd"));
+                File schemaFile= new ClassPathResource("schemas/Presek.xsd").getFile();//new File(catalinaBase+"/webapps/"+getPropertyValue("NazivFirme")+"/WEB-INF/wsdl/Presek.xsd");
+                Schema schema = schemaFactory.newSchema(schemaFile);
                 
                 // Podešavanje unmarshaller-a za XML schema validaciju
                 unmarshaller.setSchema(schema);
@@ -403,7 +409,7 @@ public class IzvodController {
  	    InputStream inputStream = null;
  	   try {
             Properties prop = new Properties();
-            String propFileName = "config.properties";
+            String propFileName = "application.properties";
  
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  

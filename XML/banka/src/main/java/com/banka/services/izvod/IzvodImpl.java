@@ -23,9 +23,9 @@ import com.banka.models.presek.GetPresekResponse.Zaglavlje;
 @javax.jws.WebService(
                       serviceName = "izvod",
                       portName = "izvodSOAP",
-                      targetNamespace = "ftn.xml",
-                      wsdlLocation = "WEB-INF/wsdl/izvod.wsdl",
-                      endpointInterface = "xml.ftn.Izvod")
+                      targetNamespace = "http://codenotfound.com/services/izvod",
+                      //wsdlLocation = "../wsdl/izvod.wsdl",
+                      endpointInterface = "com.banka.services.izvod.Izvod")
                       
 public class IzvodImpl implements Izvod {
 
