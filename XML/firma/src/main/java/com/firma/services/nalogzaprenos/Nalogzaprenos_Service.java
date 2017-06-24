@@ -17,8 +17,9 @@ import javax.xml.ws.Service;
 
 
 @WebServiceClient(name = "nalogzaprenos", 
-                  wsdlLocation = "file:/C:/Users/user/Downloads/Desktop/git/XML/XML/firma/src/main/resources/wsdl/nalogzaprenos.wsdl",
-                  targetNamespace = "http://codenotfound.com/services/nalogzaprenos") 
+                //  wsdlLocation = "file:/C:/Users/user/Downloads/Desktop/git/XML/XML/firma/src/main/resources/wsdl/nalogzaprenos.wsdl",
+				  wsdlLocation = "classpath:wsdl/nalogzaprenos.wsdl",
+				  targetNamespace = "http://codenotfound.com/services/nalogzaprenos") 
 public class Nalogzaprenos_Service extends Service {
 
     public final static URL WSDL_LOCATION;
@@ -28,11 +29,11 @@ public class Nalogzaprenos_Service extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("file:/C:/Users/user/Downloads/Desktop/git/XML/XML/firma/src/main/resources/wsdl/nalogzaprenos.wsdl");
+            url = new URL("wsdl/nalogzaprenos.wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(Nalogzaprenos_Service.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/user/Downloads/Desktop/git/XML/XML/firma/src/main/resources/wsdl/nalogzaprenos.wsdl");
+                     "Can not initialize the default wsdl from {0}", "classpath:wsdl/nalogzaprenos.wsdl");
         }
         WSDL_LOCATION = url;
     }
