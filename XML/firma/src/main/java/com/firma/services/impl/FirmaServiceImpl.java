@@ -32,7 +32,6 @@ public class FirmaServiceImpl implements FirmaService {
 
 	List<FakturaDTO> fakture = new ArrayList<FakturaDTO>();
 
-	@Override
 	public Firma findOne(Long id) {
 		return firmaRepository.findOne(id);
 	}

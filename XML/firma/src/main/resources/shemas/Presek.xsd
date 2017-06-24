@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  xmlns:tns="ftn.xml.presek" targetNamespace="ftn.xml.presek" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  xmlns:tns="http://codenotfound.com/types/presek" targetNamespace="http://codenotfound.com/types/presek" elementFormDefault="qualified">
 	
-	<xs:complexType name="PresekIzvoda">
+	<xs:element name="GetPresekResponse" >
+	<xs:complexType>
 	<xs:sequence>
     <xs:element name="Zaglavlje">
         <xs:complexType>
@@ -147,4 +148,5 @@
     </xs:element>
     </xs:sequence>
     </xs:complexType>
+    </xs:element>
 </xs:schema>

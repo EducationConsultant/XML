@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="jquery-3.2.1.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Izvod</title>
+<script type="text/javascript">
+function req(){
+	console.log(window.location.href);
+	var firma=window.location.href.substring(22, window.location.href.length)
+	var firma=firma.substring(0, firma.indexOf("/", 0))
+	var data={"datum":null,"brojRacuna":null};
+	data.datum=$("#datum").val();
+	data.brojRacuna=$("#nalog").val();
+	console.log(data);
+	data=JSON.stringify(data);
+	$.ajax({
+		  type: "POST",
+		  url: "http://localhost:8080/"+firma+"/rest/getIzvod",
+		  data: data,
+		  success: function(dat){
+			  	if(dat=="failed")return;
+			  console.log("success");
+				obj=JSON.parse(dat);
+				console.log(obj);
+				$('#header tbody').remove();
+				$('#stavke tbody').remove();
+				var div2=document.getElementById("header");
+				var div=div2.appendChild(document.createElement("tbody"));
+				var row= div.insertRow(0);
+				var cell1 = row.insertCell(0);
+				cell1.innerHTML=obj.zaglavlje.brojPreseka;
+				cell1 = row.insertCell(1);
+				cell1.innerHTML=obj.zaglavlje.brojPromenaNaTeret;
+				cell1 = row.insertCell(2);
+				cell1.innerHTML=obj.zaglavlje.brojPromenaUKorist;
+				cell1 = row.insertCell(3);
+				cell1.innerHTML=obj.zaglavlje.brojRacuna;
+				cell1 = row.insertCell(4);
+				cell1.innerHTML=obj.zaglavlje.datumNaloga;
+				cell1 = row.insertCell(5);
+				cell1.innerHTML=obj.zaglavlje.novoStanje;
+				cell1 = row.insertCell(6);
+				cell1.innerHTML=obj.zaglavlje.prethodnoStanje;
+				cell1 = row.insertCell(7);
+				cell1.innerHTML=obj.zaglavlje.ukupnoNaTeret;
+				cell1 = row.insertCell(8);
+				cell1.innerHTML=obj.zaglavlje.ukupnoUKorist;
+				var div2=document.getElementById("stavke");
+				var div=div2.appendChild(document.createElement("tbody"));
+				$.each(obj.stavke.stavka,function(index,value){
+					var row= div.insertRow(index);
+					var cell1 = row.insertCell(0);
+					cell1.innerHTML=value.datumNaloga;
+					var cell1 = row.insertCell(1);
+					cell1.innerHTML=value.datumValute;
+					var cell1 = row.insertCell(2);
+					cell1.innerHTML=value.duznikNalogodavac;
+					var cell1 = row.insertCell(3);
+					cell1.innerHTML=value.iznos;
+					var cell1 = row.insertCell(4);
+					cell1.innerHTML=value.modelZaduzenja;
+					var cell1 = row.insertCell(5);
+					cell1.innerHTML=value.pozivNaBrojOdobrenja;
+					var cell1 = row.insertCell(6);
+					cell1.innerHTML=value.primalacPoverilac;
+					var cell1 = row.insertCell(7);
+					cell1.innerHTML=value.racunDuznika;
+					var cell1 = row.insertCell(8);
+					cell1.innerHTML=value.smer;
+					var cell1 = row.insertCell(9);
+					cell1.innerHTML=value.svrhaPlacanja;
+					})
+			  },
+		  dataType: "text",
+	      contentType: "text/plain"
+		});
+	console.log("klik");
+}
+function reqPDF(){
+	console.log(window.location.href);
+	var firma=window.location.href.substring(22, window.location.href.length)
+	var firma=firma.substring(0, firma.indexOf("/", 0))
+	var data={"datum":null,"brojRacuna":null};
+	data.datum=$("#datum").val();
+	data.brojRacuna=$("#nalog").val();
+	console.log(data);
+	data=JSON.stringify(data);
+		var a=document.createElement("a");
+		a.href="http://localhost:8080/"+firma+"/rest/getIzvodPDF/"+data;
+		a.click();
+		
+}
+</script>
+</head>
+<body>
+<div>
+	<label>Nalog</label>
+  <input type="text" id="nalog"></input>
+  <label>Datum</label>
+  <input type="date" id="datum"/>
+  <button onclick="req()">Zatrazi</button>
+   <button onclick="reqPDF()">ZatraziPDF</button> 
+   
+</div>
+<div>
+<table  id="header" style="border:1px solid black; 
+    border-collapse: collapse;">
+	<thead>
+	<tr>
+		<th>broj preseka</th>
+		<th>broj promena na teret</th>
+		<th>broj promena na korist</th>
+		<th>broj racuna</th>
+		<th>datum naloga</th>
+		<th>novo stanje</th>
+		<th>prethodno stanje</th>
+		<th>ukupno na teret</th>
+		<th>ukupno u korist</th>
+	</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+<table  id="stavke" style="border:1px solid black; 
+    border-collapse: collapse;">
+	<thead>
+	<tr>
+		<th>datum naloga</th>
+		<th>datum Valute</th>
+		<th>duznik Nalogodavac</th>
+		<th>iznos</th>
+		<th>model Zaduzenja</th>
+		<th>poziv Na Broj Odobrenja</th>
+		<th>primalac Poverilac</th>
+		<th>racun Duznika</th>
+		<th>smer</th>
+		<th>svrha Placanja</th>
+	</tr>
+	</thead>
+	<tbody ></tbody>
+</table>
+</div>
+</body>
+</html>

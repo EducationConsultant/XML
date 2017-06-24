@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-				  xmlns:inf_type="ftn.xml.data"  xmlns:tnsp="ftn.xml.presek" xmlns:tnsz="ftn.xml.zahtev" xmlns:tns="ftn.xml" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="izvod" targetNamespace="ftn.xml">
+				 xmlns:tnsp="http://codenotfound.com/types/presek" 
+				 xmlns:tnsz="http://codenotfound.com/types/zahtev" 
+				 xmlns:tns="http://codenotfound.com/services/izvod" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+				  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+				  name="izvod" targetNamespace="http://codenotfound.com/services/izvod">
 
 	<wsdl:types>
 	<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" 
-					elementFormDefault="qualified" targetNamespace="ftn.xml">
-    <xsd:import namespace="ftn.xml.presek" schemaLocation="Presek.xsd" />
-    <xsd:import namespace="ftn.xml.zahtev" schemaLocation="Zahtev_za_dobijanje_izvoda.xsd" />
-		<xsd:element name="GetPresek" type="tnsz:Zahtev_za_dobijanje_izvoda"></xsd:element>
-		<xsd:element name="GetPresekResponse" type="tnsp:PresekIzvoda"></xsd:element>
+					elementFormDefault="qualified" targetNamespace="http://codenotfound.com/services/nalogzaprenos">
+    <xsd:import namespace="http://codenotfound.com/types/presek" schemaLocation="../shemas/Presek.xsd" />
+    <xsd:import namespace="http://codenotfound.com/types/zahtev" schemaLocation="../shemas/Zahtev_za_dobijanje_izvoda.xsd" />
 		
 		</xsd:schema>
 	</wsdl:types>
   
   <wsdl:message name="GetPresek">
-    <wsdl:part name="parameters" element="tns:GetPresek"/>
+    <wsdl:part name="GetPresek" element="tnsz:GetPresek"/>
   </wsdl:message>
   <wsdl:message name="GetPresekResponse">
-    <wsdl:part name="parameters" element="tns:GetPresekResponse"/>
+    <wsdl:part name="GetPresekResponse" element="tnsp:GetPresekResponse"/>
   </wsdl:message>
   <wsdl:portType name="izvod">
   <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
