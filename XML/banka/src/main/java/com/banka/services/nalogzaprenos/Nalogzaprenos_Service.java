@@ -13,7 +13,9 @@ import javax.xml.ws.Service;
  * Generated source version: 3.1.7
  * 
  */
-@WebServiceClient(name = "nalogzaprenos", wsdlLocation = "classpath:wsdl/nalogzaprenos.wsdl", targetNamespace = "http://codenotfound.com/services/nalogzaprenos")
+@WebServiceClient(name = "nalogzaprenos", 
+wsdlLocation = "classpath:wsdl/nalogzaprenos.wsdl", 
+targetNamespace = "http://codenotfound.com/services/nalogzaprenos")
 public class Nalogzaprenos_Service extends Service {
 
 	public final static URL WSDL_LOCATION;
