@@ -10,20 +10,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(NalogzaprenosWrappedImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(NalogzaprenosWrappedImpl.class);
 
 	@Override
 	public void getNalog(long idPoruke, String duznikNalogodavac, String svrhaPlacanja, String primalacPoverilac,
 			XMLGregorianCalendar datumNaloga, XMLGregorianCalendar datumValute, String racunDuznika, int modelZaduzenja,
 			String pozivNaBrojZaduzenja, String racunPoverioca, int modelOdobrenja, String pozivNaBrojOdobrenja,
 			BigDecimal iznos, String oznakaValute, boolean hitno) {
-		
-		 LOGGER.info(
-               "Endpoint received nalog=[idPoruke:{},duznikNalogodavac:{}]",
-               idPoruke, duznikNalogodavac);
-		
-	}
 
+		LOGGER.info("Endpoint received nalog=[idPoruke:{},duznikNalogodavac:{}]", idPoruke, duznikNalogodavac);
+		System.out.println(idPoruke);
+		System.out.println(duznikNalogodavac);
+		System.out.println(svrhaPlacanja);
+
+	}
 
 }

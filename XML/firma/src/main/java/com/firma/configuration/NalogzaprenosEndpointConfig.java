@@ -1,4 +1,4 @@
-package com.firma.endpoint;
+package com.firma.configuration;
 import javax.xml.ws.Endpoint;
 
 import org.apache.cxf.Bus;
