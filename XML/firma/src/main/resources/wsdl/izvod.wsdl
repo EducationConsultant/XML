@@ -9,8 +9,8 @@
 	<wsdl:types>
 	<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" 
 					elementFormDefault="qualified" targetNamespace="http://codenotfound.com/services/nalogzaprenos">
-    <xsd:import namespace="http://codenotfound.com/types/presek" schemaLocation="../shemas/Presek.xsd" />
-    <xsd:import namespace="http://codenotfound.com/types/zahtev" schemaLocation="../shemas/Zahtev_za_dobijanje_izvoda.xsd" />
+    <xsd:import namespace="http://codenotfound.com/types/presek" schemaLocation="../schemas/Presek.xsd" />
+    <xsd:import namespace="http://codenotfound.com/types/zahtev" schemaLocation="../schemas/Zahtev_za_dobijanje_izvoda.xsd" />
 		
 		</xsd:schema>
 	</wsdl:types>
