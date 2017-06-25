@@ -111,6 +111,13 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
+                            <xs:element name="Racun_poverioca">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:length value="18"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element name="Model_zaduzenja">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:int">

@@ -73,16 +73,17 @@
                     
                     <fo:block>
                         <fo:table font-size="8px" font-family="serif" margin="20px auto 20px auto" border="1px">
-                            <fo:table-column column-width="10%"/>
-                            <fo:table-column column-width="10%"/>
-                            <fo:table-column column-width="10%"/>
-                            <fo:table-column column-width="13%"/>
-                            <fo:table-column column-width="13%"/>
+                            <fo:table-column column-width="9%"/>
+                            <fo:table-column column-width="9%"/>
+                            <fo:table-column column-width="9%"/>
+                            <fo:table-column column-width="12%"/>
+                            <fo:table-column column-width="12%"/>
                             <fo:table-column column-width="8%"/>
-                            <fo:table-column column-width="10%"/>
-                            <fo:table-column column-width="10%"/>
+                            <fo:table-column column-width="9%"/>
+                            <fo:table-column column-width="7%"/>
                             <fo:table-column column-width="6%"/>
-                            <fo:table-column column-width="10%"/>
+                            <fo:table-column column-width="7%"/>
+                            <fo:table-column column-width="13%"/>
                             <fo:table-body>
                                 <fo:table-row border="1px solid darkgrey">
                                     <fo:table-cell background-color="#4caf50" font-family="sans-serif" color="white" padding="10px" font-weight="bold">
@@ -114,6 +115,9 @@
                                     </fo:table-cell>
                                     <fo:table-cell background-color="#4caf50" font-family="sans-serif" color="white" padding="10px" font-weight="bold">
                                         <fo:block>Smer</fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell background-color="#4caf50" font-family="sans-serif" color="white" padding="10px" font-weight="bold">
+                                        <fo:block>Racun poverioca</fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
                                     <xsl:for-each select="b:GetPresekResponse/b:Stavke/b:Stavka">
@@ -166,6 +170,11 @@
                                          <fo:table-cell padding="10px">
                                             <fo:block>
                                                 <xsl:value-of select="b:Smer" />
+                                            </fo:block>
+                                        </fo:table-cell>
+                                        <fo:table-cell padding="10px">
+                                            <fo:block>
+                                                <xsl:value-of select="b:Racun_poverioca" />
                                             </fo:block>
                                         </fo:table-cell>
                                     </fo:table-row>

@@ -320,10 +320,10 @@ public class IzvodController {
                 presek++;
             }
         }
+        ret=new GetPresekResponse();
+        ret.setZaglavlje(new Zaglavlje());
+        ret.setStavke(new Stavke());
         if(retVals.size()>0){
-            ret=new GetPresekResponse();
-            ret.setZaglavlje(new Zaglavlje());
-            ret.setStavke(new Stavke());
             ret.getZaglavlje().setBrojRacuna(retVals.get(0).getZaglavlje().getBrojRacuna());
             ret.getZaglavlje().setDatumNaloga(retVals.get(0).getZaglavlje().getDatumNaloga());
             ret.getZaglavlje().setNovoStanje(retVals.get(0).getZaglavlje().getNovoStanje());
@@ -348,7 +348,7 @@ public class IzvodController {
                 
                 ret.getStavke().getStavka().addAll(pi.getStavke().getStavka());
             }
-        }else ret=null;
+        };
         return ret;
     }
     public ZahtevZaDobijanjeIzvodaJSON parseZahtevJSON(String zahtev){

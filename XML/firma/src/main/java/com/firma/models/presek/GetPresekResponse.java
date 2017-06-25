@@ -139,6 +139,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                                 &lt;/restriction&gt;
  *                               &lt;/simpleType&gt;
  *                             &lt;/element&gt;
+ *                             &lt;element name="Racun_poverioca"&gt;
+ *                               &lt;simpleType&gt;
+ *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+ *                                   &lt;length value="18"/&gt;
+ *                                 &lt;/restriction&gt;
+ *                               &lt;/simpleType&gt;
+ *                             &lt;/element&gt;
  *                             &lt;element name="Model_zaduzenja"&gt;
  *                               &lt;simpleType&gt;
  *                                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}int"&gt;
@@ -293,6 +300,13 @@ public class GetPresekResponse {
      *                       &lt;/restriction&gt;
      *                     &lt;/simpleType&gt;
      *                   &lt;/element&gt;
+     *                   &lt;element name="Racun_poverioca"&gt;
+     *                     &lt;simpleType&gt;
+     *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+     *                         &lt;length value="18"/&gt;
+     *                       &lt;/restriction&gt;
+     *                     &lt;/simpleType&gt;
+     *                   &lt;/element&gt;
      *                   &lt;element name="Model_zaduzenja"&gt;
      *                     &lt;simpleType&gt;
      *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}int"&gt;
@@ -414,6 +428,13 @@ public class GetPresekResponse {
          *             &lt;/restriction&gt;
          *           &lt;/simpleType&gt;
          *         &lt;/element&gt;
+         *         &lt;element name="Racun_poverioca"&gt;
+         *           &lt;simpleType&gt;
+         *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+         *               &lt;length value="18"/&gt;
+         *             &lt;/restriction&gt;
+         *           &lt;/simpleType&gt;
+         *         &lt;/element&gt;
          *         &lt;element name="Model_zaduzenja"&gt;
          *           &lt;simpleType&gt;
          *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}int"&gt;
@@ -471,6 +492,8 @@ public class GetPresekResponse {
             protected XMLGregorianCalendar datumValute;
             @XmlElement(name = "Racun_duznika", required = true)
             protected String racunDuznika;
+            @XmlElement(name = "Racun_poverioca", required = true)
+            protected String racunPoverioca;
             @XmlElement(name = "Model_zaduzenja")
             protected int modelZaduzenja;
             @XmlElement(name = "Poziv_na_broj_odobrenja", required = true)
@@ -622,6 +645,30 @@ public class GetPresekResponse {
              */
             public void setRacunDuznika(String value) {
                 this.racunDuznika = value;
+            }
+
+            /**
+             * Gets the value of the racunPoverioca property.
+             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
+             */
+            public String getRacunPoverioca() {
+                return racunPoverioca;
+            }
+
+            /**
+             * Sets the value of the racunPoverioca property.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setRacunPoverioca(String value) {
+                this.racunPoverioca = value;
             }
 
             /**
