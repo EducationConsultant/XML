@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.firma.models.domain.NalogZaPrenosDTO;
 
-public interface NalogZaPrenosService {
+public interface NalogZaPrenosDTOService {
 
 	public NalogZaPrenosDTO findOne(Long id);
 

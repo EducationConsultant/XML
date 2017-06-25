@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.firma.models.domain.NalogZaPrenosDTO;
-import com.firma.services.NalogZaPrenosService;
+import com.firma.services.NalogZaPrenosDTOService;
 
 @RestController
 @RequestMapping("/api/nalogzaprenos")
-public class NalogZaPrenosController {
+public class NalogZaPrenosDTOController {
 
 	@Autowired
-	private NalogZaPrenosService nalogZaPrenosService;
+	private NalogZaPrenosDTOService nalogZaPrenosService;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<NalogZaPrenosDTO> insertNalogZaPrenos(@RequestBody NalogZaPrenosDTO nalogZaPrenos) {
