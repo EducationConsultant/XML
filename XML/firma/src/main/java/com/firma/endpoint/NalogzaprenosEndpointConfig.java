@@ -15,6 +15,13 @@ import com.firma.services.nalogzaprenos.NalogzaprenosWrapped;
 import com.firma.services.nalogzaprenos.NalogzaprenosWrappedImpl;
 import com.firma.services.nalogzaprenos.Nalogzaprenos_Service;
 
+
+/*
+ * Endpoint ne sme da sadrzi u sebi poslovnu logiku.
+ * 
+ * */
+
+
 @Configuration
 public class NalogzaprenosEndpointConfig {
 

@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.firma.models.domain.NalogZaPrenosDTO;
-import com.firma.repository.NalogZaPrenosRepository;
-import com.firma.services.NalogZaPrenosService;
+import com.firma.repository.NalogZaPrenosDTORepository;
+import com.firma.services.NalogZaPrenosDTOService;
 
 @Service
 @Transactional
-public class NalogZaPrenosImpl implements NalogZaPrenosService {
+public class NalogZaPrenosDTOImpl implements NalogZaPrenosDTOService {
 
 	@Autowired
-	private NalogZaPrenosRepository repository;
+	private NalogZaPrenosDTORepository repository;
 
 	@Override
 	public NalogZaPrenosDTO findOne(Long id) {
