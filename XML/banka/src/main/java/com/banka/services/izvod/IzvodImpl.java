@@ -9,6 +9,8 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.Holder;
 
+import org.apache.commons.lang.time.DateUtils;
+import org.assertj.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.banka.models.domain.NalogZaPrenosDTO;
@@ -47,7 +49,8 @@ public class IzvodImpl implements Izvod {
     	ArrayList<NalogZaPrenosDTO> nalozi=new ArrayList<>();
     	for(NalogZaPrenosDTO nal: nzp.find()){
     		if(nal.getRacunDuznika().equals(brojRacuna) || nal.getRacunPoverioca().equals(brojRacuna))
-    			nalozi.add(nal);
+    			if(DateUtils.isSameDay(datum.toGregorianCalendar().getTime(), nal.getDatumNaloga()))
+    				nalozi.add(nal);
     	};
     	LOG.info("Executing operation getPresek");
         System.out.println(brojRacuna);
