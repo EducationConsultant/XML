@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.firma.models.domain.FakturaDTO;
 import com.firma.models.domain.FakturaStatus;
@@ -51,9 +52,15 @@ public class FirmaController {
 	@RequestMapping(value = "/{firmaBS}/faktura", method = RequestMethod.POST)
 	public void prijemFakutre(@PathVariable String firmaBS, @RequestBody FakturaDTO faktura) {
 		Long firmaB = Long.parseLong(firmaBS);
+		
 		// Ovde ce konkretna firma da primi fakturu i da je sacuva
 		faktura.setStatus(FakturaStatus.PRIMLJENO);
 		firmaService.saveFaktura(firmaB, faktura);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForObject("http://localhost:8080/services/nalogzaprenos", faktura,
+				FakturaDTO.class);
+	
 
 		// return new ResponseEntity<Firma>(firmaUpdate, HttpStatus.OK);
 

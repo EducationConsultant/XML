@@ -17,6 +17,9 @@
 
 			<xs:import namespace="http://codenotfound.com/types/nalogzaprenos"
 				schemaLocation="../schemas/nalogZaPrenos.xsd" />
+				
+			<xs:import namespace="http://codenotfound.com/types/faktura"
+				schemaLocation="../schemas/faktura.xsd" />
 
 		</xs:schema>
 	</wsdl:types>
@@ -24,6 +27,7 @@
 
 	<wsdl:message name="GetNalog">
 		<wsdl:part name="parameters" element="nzp:GetNalog" />
+		<wsdl:part name="parameters" element="nzp:GetFaktura" />
 	</wsdl:message>
 
 
@@ -54,7 +58,7 @@
 
 	<wsdl:service name="nalogzaprenos">
 		<wsdl:port binding="tns:nalogzaprenosSOAP" name="nalogzaprenosSOAP">
-			  <soap:address location="http://localhost:8080/services/nalogzaprenos"/>
+			  <soap:address location="http://localhost:8080/services/nalogzaprenosSOAP"/>
 		</wsdl:port>
 	</wsdl:service>
 

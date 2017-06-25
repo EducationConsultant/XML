@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.ftn.uns.ac.rs/faktura" xmlns:fak="http://www.ftn.uns.ac.rs/faktura">
-    <xs:element name="Faktura">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+elementFormDefault="qualified"
+    targetNamespace="http://codenotfound.com/types/faktura" 
+    xmlns:fak="http://codenotfound.com/types/nalogzaprenos">
+    
+    <xs:element name="GetFaktura">
         <xs:complexType>
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" name="Stavka">
