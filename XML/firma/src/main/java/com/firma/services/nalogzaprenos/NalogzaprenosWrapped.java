@@ -5,6 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 
@@ -14,10 +15,11 @@ import javax.xml.ws.RequestWrapper;
  * Generated source version: 3.1.7
  * 
  */
+
 @WebService(targetNamespace = "http://codenotfound.com/services/nalogzaprenos", 
 name = "nalogzaprenos")
 @XmlSeeAlso({com.firma.models.nalogzaprenos.ObjectFactory.class})
-@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+@SOAPBinding(use=Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public interface NalogzaprenosWrapped {
 
     @WebMethod(operationName = "GetNalog")
