@@ -20,5 +20,5 @@ public interface FirmaService {
 
 	public void posaljiNalog(NalogZaPrenos n);
 
-	public Firma podesiBanku(Firma firma);
+	public Firma podesiBanku(String nazivBanke, Firma firma);
 }

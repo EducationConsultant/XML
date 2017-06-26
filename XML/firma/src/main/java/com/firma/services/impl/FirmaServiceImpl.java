@@ -183,8 +183,8 @@ public class FirmaServiceImpl implements FirmaService {
 	}
 
 	@Override
-	public Firma podesiBanku(Firma firma) {
-		String nazivBanke = firma.getNazivBanke();
+	public Firma podesiBanku(String nazivBanke, Firma firma) {
+		
 		RestTemplate restTemplate = new RestTemplate();
 		Banka b = (Banka) restTemplate.getForObject("http://localhost:7070/api/centralnabanka/nazivBanke/" + nazivBanke,
 				Banka.class);

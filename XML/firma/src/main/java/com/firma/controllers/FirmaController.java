@@ -50,9 +50,9 @@ public class FirmaController {
 
 	
 	// insertFirma sa podesavanjima za banku
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Firma> insertFirma(@RequestBody Firma firma) {
-		Firma firmaSaved = firmaService.podesiBanku(firma);
+	@RequestMapping(value="/{nazivBanke}",method = RequestMethod.POST)
+	public ResponseEntity<Firma> insertFirma(@PathVariable String nazivBanke, @RequestBody Firma firma) {
+		Firma firmaSaved = firmaService.podesiBanku(nazivBanke,firma);
 		return new ResponseEntity<Firma>(firmaSaved, HttpStatus.CREATED);
 
 	}
