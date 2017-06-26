@@ -1,4 +1,4 @@
-package com.firma.services.nalogzaprenos;
+package com.banka.services.nalogzaprenos;
 
 import javax.jws.Oneway;
 import javax.jws.WebMethod;
@@ -18,7 +18,7 @@ import javax.xml.ws.RequestWrapper;
 
 @WebService(targetNamespace = "http://codenotfound.com/services/nalogzaprenos", 
 name = "nalogzaprenos")
-@XmlSeeAlso({com.firma.models.nalogzaprenos.ObjectFactory.class})
+@XmlSeeAlso({com.banka.models.nalogzaprenos.ObjectFactory.class})
 @SOAPBinding(use=Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public interface NalogzaprenosWrapped {
 

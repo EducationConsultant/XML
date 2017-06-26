@@ -1,11 +1,11 @@
-package com.firma.services.nalogzaprenos;
+package com.banka.services.nalogzaprenos;
 
 import java.math.BigDecimal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.firma.models.nalogzaprenos.*;
+import com.banka.models.nalogzaprenos.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {

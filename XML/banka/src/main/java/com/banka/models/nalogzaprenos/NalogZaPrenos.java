@@ -147,7 +147,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "oznakaValute",
     "hitno"
 })
-@XmlRootElement(name = "nalogZaPrenos")
+@XmlRootElement(name = "GetNalog")
 public class NalogZaPrenos {
 
     @XmlElement(name = "IDPoruke", required = true)

@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 
 import com.banka.services.izvod.Izvod;
 import com.banka.services.izvod.IzvodImpl;
+import com.banka.services.nalogzaprenos.NalogzaprenosWrapped;
+import com.banka.services.nalogzaprenos.NalogzaprenosWrappedImpl;
+import com.banka.services.nalogzaprenos.Nalogzaprenos_Service;
 import com.banka.services.rtgsprijem.RtgsPrijem;
 import com.banka.services.rtgsprijem.RtgsPrijemImpl;
 
@@ -53,5 +56,23 @@ public class SoapConfig {
 	        endpoint.publish("/RtgsPrijem");
 	        endpoint.setWsdlLocation("../wsdl/rtgsPrijem.wsdl");
 	        return endpoint;
+	    }
+	    
+	    @Bean
+	    public NalogzaprenosWrapped nalogzaprenoswrapped() {
+	    	return new NalogzaprenosWrappedImpl();  //endpoint
+	    }
+	    
+	    @Bean
+	    public Endpoint endpoint3() {
+	        EndpointImpl endpoint = new EndpointImpl(springBus(), nalogzaprenoswrapped());        
+	        endpoint.setServiceName(nalogzaprenos_service().getServiceName());
+	        endpoint.publish("/nalogzaprenos");   // define the last part of our WebService-URI.
+	        return endpoint;
+	    }
+	    
+	    @Bean
+	    public Nalogzaprenos_Service nalogzaprenos_service() {
+	        return new Nalogzaprenos_Service();
 	    }
 }
