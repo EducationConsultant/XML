@@ -69,8 +69,8 @@ public class FirmaController {
 		firmaService.saveFaktura(firmaB, faktura);
 		
 		//slanje naloga
-		NalogZaPrenos n = nalogService.kreirajNalog(faktura);
-		firmaService.posaljiNalog(n);
+//		NalogZaPrenos n = nalogService.kreirajNalog(faktura);
+//		firmaService.posaljiNalog(n);
 		
 	}
 

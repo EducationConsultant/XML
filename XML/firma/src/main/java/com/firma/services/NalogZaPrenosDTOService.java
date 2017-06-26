@@ -14,6 +14,6 @@ public interface NalogZaPrenosDTOService {
 
 	public List<NalogZaPrenosDTO> find();
 
-	public NalogZaPrenos kreirajNalog(FakturaDTO faktura);
+	public NalogZaPrenos kreirajNalog(FakturaDTO faktura, NalogZaPrenosDTO nalog);
 
 }

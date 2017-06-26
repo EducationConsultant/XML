@@ -39,30 +39,31 @@ public class NalogZaPrenosDTOImpl implements NalogZaPrenosDTOService {
 	}
 
 	@Override
-	public NalogZaPrenos kreirajNalog(FakturaDTO faktura) {
+	public NalogZaPrenos kreirajNalog(FakturaDTO faktura, NalogZaPrenosDTO nalog) {
 		
 		NalogZaPrenosDTO nalogzaprenos = new NalogZaPrenosDTO();
 		nalogzaprenos.setDatumNaloga(faktura.getDatumRacuna());
 		nalogzaprenos.setDatumValute(faktura.getDatumValute());
 		nalogzaprenos.setIznos(faktura.getIznosZaUplatu());
 		nalogzaprenos.setOznakaValute(faktura.getOznakaValute());
-		nalogzaprenos.setRacunDuznika("123654789987456321");
 		nalogzaprenos.setRacunPoverioca(faktura.getUplataNaRacun());
 		nalogzaprenos.setDuznikNalogodavac(faktura.getNazivKupca());
 		nalogzaprenos.setPrimalacPoverilac(faktura.getNazivDobavljaca());
-		nalogzaprenos.setSvrhaPlacanja("racun za februar");
-		nalogzaprenos.setModelOdobrenja(97);
-		nalogzaprenos.setModelZaduzenja(97);
-		nalogzaprenos.setPozivNaBrojOdobrenja("12456");
-		nalogzaprenos.setPozivNaBrojZaduzenja("7895");
-		nalogzaprenos.setHitno(false);
-		NalogZaPrenosDTO nalog = this.save(nalogzaprenos);
+		nalogzaprenos.setSvrhaPlacanja(nalog.getSvrhaPlacanja());
+		nalogzaprenos.setModelOdobrenja(nalog.getModelOdobrenja());
+		nalogzaprenos.setModelZaduzenja(nalog.getModelZaduzenja());
+		nalogzaprenos.setPozivNaBrojOdobrenja(nalog.getPozivNaBrojOdobrenja());
+		nalogzaprenos.setPozivNaBrojZaduzenja(nalog.getPozivNaBrojZaduzenja());
+		nalogzaprenos.setHitno(nalog.isHitno());
+		nalogzaprenos.setRacunDuznika(nalog.getRacunDuznika());
+		
+		NalogZaPrenosDTO nalogSaved = this.save(nalogzaprenos);
 
 		NalogZaPrenos n = new NalogZaPrenos();
 		List<String> list = new ArrayList<String>();
 		list.add("dozer-bean-mappings.xml");
 		Mapper mapper = new DozerBeanMapper(list);
-		mapper.map(nalog, n, "person");
+		mapper.map(nalogSaved, n, "person");
 		
 		return n;
 	}
