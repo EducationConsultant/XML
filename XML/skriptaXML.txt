@@ -1,0 +1,70 @@
+
+POST, localhost:7070/api/centralnabanka
+{
+	"naziv" : "Nacionalna banka Bosne"
+}
+
+
+------------------------------------------------------
+
+POST, localhost:7070/api/centralnabanka/1
+{
+
+	"naziv": "Banka1",
+    "sifra": 147,
+    "swiftKod": "12345689",
+    "obracunskiRacun": "123654"
+}
+
+
+dodati jos banki
+-----------------------------------------------------
+POST, localhost:8080/api/firma/Banka1
+{
+	
+	"naziv" : "najbolja druga",
+	"adresa" : "vortex vo",
+	"pib"  :"12365471",
+	"brojRacuna":127781
+}
+
+dodati jos firmi
+------------------------------------------------------
+localhost:8080/api/faktura/1/2
+{
+	"datumRacuna" : "2017-06-25",
+	"oznakaValute" : "DIN",
+	"datumValute" : "2017-06-10",
+	"stavka" : [
+		{
+			"nazivRobeIliUsluge" : "batak",
+			"kolicina" : 15,
+			"jedinicaMere" : "kom",
+			"jedinicnaCena" : 150,
+			"procenatRabata" : 5,
+			"ukupanPorez" : 250
+		},
+		{
+			"nazivRobeIliUsluge" : "butka",
+			"kolicina" : 10,
+			"jedinicaMere" : "kom",
+			"jedinicnaCena" : 300,
+			"procenatRabata" : 10,
+			"ukupanPorez" : 350
+		}
+	]
+}
+
+------------------------------------------------------------------
+POST, localhost:8080/api/nalogzaprenos/1
+
+{
+
+    "svrhaPlacanja":"uplata na racun za februar",
+    "modelZaduzenja":97,
+    "pozivNaBrojZaduzenja":"9090",
+    "modelOdobrenja":97,
+    "pozivNaBrojOdobrenja":"2121313",
+    "hitno" : 0,
+    "racunDuznika" : "987456321123654789"
+}
