@@ -41,7 +41,7 @@
 			<td>{{x.ukupanRabat}}</td>
 			<td>{{x.ukupnoRobaIUsluge}}</td>
 			<td>{{x.status}}</td>
-			<td><button ng-if="x.status=='PRIMLJENO'" type="button" class="btn btn-info" data-ng-click="platiFakturu(x.id)">
+			<td><button ng-if="x.status=='PRIMLJENO'" type="button" class="btn btn-info" data-ng-click="platiFakturu(x.idPoruke)">
 					<span class="glyphicon glyphicon-euro"></span>
 				</button> 
 				<button ng-if="x.status=='POSLATO'" type="button" class="btn btn-info" data-ng-click="posaljiFakturu(x.id)"><span class="glyphicon glyphicon-envelope"></span></button>
@@ -100,19 +100,29 @@
 				<h4 class="modal-title">Isplata</h4>
 			</div>
 			<div class="modal-body">
-				<div class="form-group">
-					<label>Hitno</label>
-				<input type="checkbox"  id="hitno">
-			</div>
+				
 			
 			<div>
-				
+				<label>Svrha Placanja:</label>
+				<input type="text" data-ng-model="nalog.svrhaPlacanja" > <br>
+				<label>Model zaduzenja:</label>
+				<input type="number" ng-model="nalog.modelZaduzenja"> <br>
+				<label>Poziv na broj zaduzenja:</label>
+				<input type="number" ng-model="nalog.pozivNaBrojZaduzenja"><br>
+				<label>Model odobrenja:</label>
+				<input type="number" ng-model="nalog.modelOdobrenja"> <br>
+				<label>Poziv na broj odobrenja:</label>
+				<input type="number" ng-model="nalog.pozivNaBrojOdobrenja"><br>
+				<label>Racun duznika:</label>
+				<input type="number" ng-model="nalog.racunDuznika"><br>
+				<label>Hitno</label>
+				<input type="checkbox" ng-model="nalog.hitno" id="hitno">
 			</div>
 				
 			</div>
 			<div class="modal-footer">
 				<button data-ng-click="isplata()" class="btn btn-primary">Isplata</button>
-				<input type="button" class="btn btn-primary" value="Otkazi" data-dismiss="modal">
+				<input type="button" class="btn btn-primary"  value="Otkazi" data-dismiss="modal">
 			</div>
 		</div>
 	</div>
