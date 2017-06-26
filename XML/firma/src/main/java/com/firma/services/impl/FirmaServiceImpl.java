@@ -35,10 +35,10 @@ public class FirmaServiceImpl implements FirmaService {
 
 	@Autowired
 	private StavkaFaktureRepository stavkaFaktureRepository;
-	
+
 	@Autowired
 	private BankaService bankaService;
-	
+
 	@Autowired
 	private FirmaService firmaService;
 
@@ -186,7 +186,8 @@ public class FirmaServiceImpl implements FirmaService {
 	public Firma podesiBanku(Firma firma) {
 		String nazivBanke = firma.getNazivBanke();
 		RestTemplate restTemplate = new RestTemplate();
-		Banka b = (Banka) restTemplate.getForObject("http://localhost:7070/api/centralnabanka/nazivBanke/"+ nazivBanke , Banka.class);
+		Banka b = (Banka) restTemplate.getForObject("http://localhost:7070/api/centralnabanka/nazivBanke/" + nazivBanke,
+				Banka.class);
 		Banka banka = new Banka();
 		banka.setNaziv(b.getNaziv());
 		banka.setObracunskiRacun(b.getObracunskiRacun());
@@ -196,6 +197,9 @@ public class FirmaServiceImpl implements FirmaService {
 		Banka saved = bankaService.save(banka);
 		firma.setBanka(saved);
 		Firma savedFirma = firmaService.save(firma);
+
+		restTemplate.postForObject("http://localhost:9090/api/banka/" + nazivBanke, firma, Firma.class);
+
 		return savedFirma;
 	}
 }

@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,9 +35,17 @@ public class Banka {
 	@Column(name = "obracunskiRacun")
 	private String obracunskiRacun;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "banka")
-	@JsonIgnore
+	@OneToMany
+	@JoinColumn(name="banka")
 	private List<Firma> firme;
+
+	public List<Firma> getFirme() {
+		return firme;
+	}
+
+	public void setFirme(List<Firma> firme) {
+		this.firme = firme;
+	}
 
 	public Banka() {
 
@@ -82,12 +91,5 @@ public class Banka {
 		this.obracunskiRacun = obracunskiRacun;
 	}
 
-	public List<Firma> getFirme() {
-		return firme;
-	}
-
-	public void setFirme(List<Firma> firme) {
-		this.firme = firme;
-	}
 
 }

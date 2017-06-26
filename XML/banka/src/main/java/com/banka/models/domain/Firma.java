@@ -36,11 +36,9 @@ public class Firma {
 
 	@Column(name = "brojRacuna", nullable = false, unique = true)
 	private int brojRacuna;
+	
+	
 
-	@ManyToOne
-	@JsonBackReference
-	@JoinColumn(name = "banka", referencedColumnName = "banka_id")
-	private Banka banka;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "firma", fetch = FetchType.EAGER)
 	public List<FakturaDTO> fakture;
@@ -96,12 +94,6 @@ public class Firma {
 	public Firma() {
 	}
 
-	public Banka getBanka() {
-		return banka;
-	}
 
-	public void setBanka(Banka banka) {
-		this.banka = banka;
-	}
 
 }
