@@ -29,6 +29,8 @@ public class FakturaController {
 	@Autowired
 	private FirmaService firmaService;
 
+	
+	// nadji firmu pod zeljenim id-em
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<FakturaDTO> getFaktura(@PathVariable Long id) {
 		FakturaDTO faktura = fakturaService.findOne(id);
@@ -36,27 +38,20 @@ public class FakturaController {
 		return new ResponseEntity<FakturaDTO>(faktura, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<FakturaDTO>> getFakture() {
-		List<FakturaDTO> fakture = fakturaService.find();
-		
-		return new ResponseEntity<List<FakturaDTO>>(fakture, HttpStatus.OK);
+//	
+//	// izlistaj sve fakture
+//	@RequestMapping(method = RequestMethod.GET)
+//	public ResponseEntity<List<FakturaDTO>> getFakture() {
+//		List<FakturaDTO> fakture = fakturaService.find();
+//		return new ResponseEntity<List<FakturaDTO>>(fakture, HttpStatus.OK);
+//
+//	}
 
-	}
-
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<FakturaDTO> insertFaktura(@RequestBody FakturaDTO faktura) {
-
-		FakturaDTO savedFaktura = fakturaService.save(faktura);
-		return new ResponseEntity<FakturaDTO>(savedFaktura, HttpStatus.CREATED);
-
-	}
-
+	
+	// unos stavke u fakturu
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public ResponseEntity<FakturaDTO> insertStavka(@PathVariable Long id, @RequestBody StavkaDTO stavka) {
-
 		FakturaDTO fakturaToUpdate = fakturaService.saveStavka(id, stavka);
-
 		return new ResponseEntity<FakturaDTO>(fakturaToUpdate, HttpStatus.CREATED);
 
 	}
@@ -93,8 +88,5 @@ public class FakturaController {
 
 	}
 
-	// TODO Model firme. Rest endpoit za dodavanje firmi
-	// Slanje fakture. Controller sa enpointom. primer
-	// api/{firmaA}/faktura/{firmaB} -, id firme
 
 }

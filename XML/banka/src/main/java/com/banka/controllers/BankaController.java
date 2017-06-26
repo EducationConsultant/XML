@@ -8,6 +8,7 @@ import com.banka.models.domain.Firma;
 import com.banka.services.BankaService;
 import com.banka.services.FirmaService;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,6 +30,16 @@ public class BankaController {
 	@Autowired
 	private FirmaService firmaService;
 	
+	// izlistaj sve banke
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Banka>> getBanke() {
+		List<Banka> banke = bankaService.find();
+		return new ResponseEntity<List<Banka>>(banke, HttpStatus.OK);
+	}
+
+	
+	
+	// nadji banku pod zeljenim id-em
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Banka> getBanka(@PathVariable Long id) {
 		Banka banka = bankaService.findOne(id);
@@ -36,6 +47,9 @@ public class BankaController {
 		return new ResponseEntity<Banka>(banka, HttpStatus.OK);
 	}
 
+	
+	// unosi banku
+	// OVO POZIVA SAMO CENTRALNA BANKA- AUTOMATSKI!!!
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Banka> insertBanka(@RequestBody Banka banka) {
 
@@ -44,6 +58,8 @@ public class BankaController {
 
 	}
 	
+	// povezuje firmu sa bankom
+	// OVO SE POZIVA IZ FIRME - AUTOMATSKI!!!
 	@RequestMapping(value="/{nazivBanke}", method = RequestMethod.POST)
 	public ResponseEntity<Banka> ubaciFirmu(@PathVariable String nazivBanke, @RequestBody Firma firma) {
 		firmaService.save(firma);

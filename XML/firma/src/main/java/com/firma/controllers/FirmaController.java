@@ -34,6 +34,8 @@ public class FirmaController {
 	@Autowired
 	private FirmaService firmaService;
 	
+	
+	// izlistava sve firme
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Firma>> getFirme() {
 		List<Firma> firme = firmaService.find();
@@ -41,6 +43,7 @@ public class FirmaController {
 
 	}
 
+	// trazi firmu pod njenim id-em
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Firma> getFirma(@PathVariable Long id) {
 		Firma firma = firmaService.findOne(id);
@@ -50,6 +53,7 @@ public class FirmaController {
 
 	
 	// insertFirma sa podesavanjima za banku
+	//KAD SE OVDE UVEZU FIRMA I BANKA< AUTOMATSKI SE UVEZU I U APLIKACIJI BANKA
 	@RequestMapping(value="/{nazivBanke}",method = RequestMethod.POST)
 	public ResponseEntity<Firma> insertFirma(@PathVariable String nazivBanke, @RequestBody Firma firma) {
 		Firma firmaSaved = firmaService.podesiBanku(nazivBanke,firma);

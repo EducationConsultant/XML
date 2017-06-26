@@ -30,12 +30,11 @@ public class NalogZaPrenosDTOController {
 	@Autowired 
 	private FakturaService fakturaService;
 
+	
+	// slanje naloga na osnovu id-a fakture, od koje se nalog kreira
 	@RequestMapping(value = "/{idFakture}", method = RequestMethod.POST)
 	public void insertNalogZaPrenos(@PathVariable Long idFakture, @RequestBody NalogZaPrenosDTO nalogZaPrenos) {
-
 		FakturaDTO faktura = fakturaService.findOne(idFakture);
-		
-		//slanje naloga
 		NalogZaPrenos n = nalogService.kreirajNalog(faktura, nalogZaPrenos);
 		firmaService.posaljiNalog(n);
 		
