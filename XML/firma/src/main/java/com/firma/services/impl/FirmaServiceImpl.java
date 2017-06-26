@@ -7,11 +7,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.firma.models.domain.FakturaDTO;
 import com.firma.models.domain.Firma;
 import com.firma.models.domain.StavkaDTO;
+import com.firma.models.nalogzaprenos.NalogZaPrenos;
 import com.firma.repository.FakturaRepository;
 import com.firma.repository.FirmaRepository;
 import com.firma.repository.StavkaFaktureRepository;
@@ -153,5 +156,20 @@ public class FirmaServiceImpl implements FirmaService {
 		firma.setFakture(firmineFakture);
 
 		return firma;
+	}
+
+	@Override
+	public void posaljiNalog(NalogZaPrenos n) {
+
+		String endpoint = "http://localhost:8080/services/nalogzaprenos";
+		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+		marshaller.setContextPath("com.firma.models.nalogzaprenos");
+		webServiceTemplate.setMarshaller(marshaller);
+		webServiceTemplate.setUnmarshaller(marshaller);
+		webServiceTemplate.afterPropertiesSet();
+		webServiceTemplate.setDefaultUri(endpoint);
+		webServiceTemplate.marshalSendAndReceive(endpoint, n);
+
 	}
 }

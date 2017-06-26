@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.firma.models.domain.FakturaDTO;
 import com.firma.models.domain.Firma;
+import com.firma.models.nalogzaprenos.NalogZaPrenos;
 
 public interface FirmaService {
 
@@ -16,4 +17,6 @@ public interface FirmaService {
 	public List<Firma> find();
 
 	public Firma saveFaktura(Long id, FakturaDTO faktura);
+
+	public void posaljiNalog(NalogZaPrenos n);
 }

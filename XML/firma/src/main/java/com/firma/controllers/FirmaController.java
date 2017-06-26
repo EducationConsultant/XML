@@ -62,56 +62,16 @@ public class FirmaController {
 
 	@RequestMapping(value = "/{firmaBS}/faktura", method = RequestMethod.POST)
 	public void prijemFakutre(@PathVariable String firmaBS, @RequestBody FakturaDTO faktura) {
-		Long firmaB = Long.parseLong(firmaBS);
-
-		Firma f = firmaService.findOne(firmaB);
-
+	
 		// Ovde ce konkretna firma da primi fakturu i da je sacuva
+		Long firmaB = Long.parseLong(firmaBS);
 		faktura.setStatus(FakturaStatus.PRIMLJENO);
 		firmaService.saveFaktura(firmaB, faktura);
-
-		NalogZaPrenosDTO nalogzaprenos = new NalogZaPrenosDTO();
-		nalogzaprenos.setDatumNaloga(faktura.getDatumRacuna());
-		nalogzaprenos.setDatumValute(faktura.getDatumValute());
-		nalogzaprenos.setIznos(faktura.getIznosZaUplatu());
-		nalogzaprenos.setOznakaValute(faktura.getOznakaValute());
-		nalogzaprenos.setRacunDuznika("123654789987456321");
-		nalogzaprenos.setRacunPoverioca(faktura.getUplataNaRacun());
-		nalogzaprenos.setDuznikNalogodavac(faktura.getNazivKupca());
-		nalogzaprenos.setPrimalacPoverilac(faktura.getNazivDobavljaca());
-		nalogzaprenos.setSvrhaPlacanja("racun za februar");
-		nalogzaprenos.setModelOdobrenja(97);
-		nalogzaprenos.setModelZaduzenja(97);
-		nalogzaprenos.setPozivNaBrojOdobrenja("12456");
-		nalogzaprenos.setPozivNaBrojZaduzenja("7895");
-		nalogzaprenos.setHitno(false);
-		NalogZaPrenosDTO nalog = nalogService.save(nalogzaprenos);
-
-		NalogZaPrenos n = new NalogZaPrenos();
 		
-		String endpoint = "http://localhost:8080/services/nalogzaprenos";
-		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
-
-		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-
-		marshaller.setContextPath("com.firma.models.nalogzaprenos");
-
-		List<String> list = new ArrayList<String>();
-		// Add the mapping configuration
-		list.add("dozer-bean-mappings.xml");
-		// Add to DozerMapper
-		Mapper mapper = new DozerBeanMapper(list);
-		mapper.map(nalog, n, "person");
-		System.err.println("after mapping with dozer: p1Dto = " + n);
-
-		webServiceTemplate.setMarshaller(marshaller);
-		webServiceTemplate.setUnmarshaller(marshaller);
-		webServiceTemplate.afterPropertiesSet();
-
-		webServiceTemplate.setDefaultUri(endpoint);
-	    webServiceTemplate.marshalSendAndReceive(endpoint,n);
+		//slanje naloga
+		NalogZaPrenos n = nalogService.kreirajNalog(faktura);
+		firmaService.posaljiNalog(n);
 		
-
 	}
 
 }
