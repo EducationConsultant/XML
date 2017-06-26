@@ -10,6 +10,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.banka.services.clearingprijem.ClearingPrijemImpl;
 import com.banka.services.izvod.Izvod;
 import com.banka.services.izvod.IzvodImpl;
 import com.banka.services.nalogzaprenos.NalogzaprenosWrapped;
@@ -68,6 +69,18 @@ public class SoapConfig {
 	        EndpointImpl endpoint = new EndpointImpl(springBus(), nalogzaprenoswrapped());        
 	        endpoint.setServiceName(nalogzaprenos_service().getServiceName());
 	        endpoint.publish("/nalogzaprenos");   // define the last part of our WebService-URI.
+	        return endpoint;
+	    }
+	    @Bean
+	    public com.banka.services.clearingprijem.ClearingPrijem ClearingPrijem() {
+	    	return new ClearingPrijemImpl();  //endpoint
+	    }
+	    
+	    @Bean
+	    public Endpoint endpoint4() {
+	        EndpointImpl endpoint = new EndpointImpl(springBus(), ClearingPrijem());        
+	        endpoint.publish("/ClearingPrijem");   // define the last part of our WebService-URI.
+	        endpoint.setWsdlLocation("../wsdl/clearingPrijem.wsdl");
 	        return endpoint;
 	    }
 	    

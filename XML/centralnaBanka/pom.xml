@@ -137,8 +137,8 @@
 							<sourceRoot>${project.build.directory}/resources/cxf</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${project.basedir}/src/main/resources/wsdl/rtgs.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/rtgs.wsdl</wsdlLocation>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/clearing.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/clearing.wsdl</wsdlLocation>
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
