@@ -1,4 +1,4 @@
-package com.firma.services.nalogzaprenos;
+package com.banka.services.nalogzaprenos;
 
 import java.net.MalformedURLException;
 import java.net.URL;

@@ -9,8 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "firma")
@@ -35,6 +39,29 @@ public class Firma {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "firma", fetch = FetchType.EAGER)
 	public List<FakturaDTO> fakture;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="banka_id")
+	public Banka banka;
+	
+
+	public String nazivBanke;
+	
+	public String getNazivBanke() {
+		return nazivBanke;
+	}
+
+	public void setNazivBanke(String nazivBanke) {
+		this.nazivBanke = nazivBanke;
+	}
+
+	public Banka getBanka() {
+		return banka;
+	}
+
+	public void setBanka(Banka banka) {
+		this.banka = banka;
+	}
 
 	public List<FakturaDTO> getFakture() {
 		return fakture;

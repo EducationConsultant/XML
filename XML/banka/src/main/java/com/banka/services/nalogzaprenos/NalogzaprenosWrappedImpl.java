@@ -1,11 +1,11 @@
-package com.firma.services.nalogzaprenos;
+package com.banka.services.nalogzaprenos;
 
 import java.math.BigDecimal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.firma.models.nalogzaprenos.*;
+import com.banka.models.nalogzaprenos.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
@@ -28,6 +28,7 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 		System.out.println(duznikNalogodavac);
 		System.out.println(svrhaPlacanja);
 
+		
 		
 		//gadjam banku - exposuje servis za primanje naloga za prenos
 		//promeni port - - npr resttemplate,  iz fimre gadjam taj endpoint, uokviru 

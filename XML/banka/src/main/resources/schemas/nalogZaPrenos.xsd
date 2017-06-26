@@ -1,103 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://codenotfound.com/types/nalogzaprenos"
-    xmlns:nzp="http://codenotfound.com/types/nalogzaprenos">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" targetNamespace="http://codenotfound.com/types/nalogzaprenos"
+	xmlns:nzp="http://codenotfound.com/types/nalogzaprenos" 
+	>
 
-    <xs:element name="GetNalog">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element minOccurs="1" name="IDPoruke">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:long"> </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="DuznikNalogodavac">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="255"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="SvrhaPlacanja">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="255"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="PrimalacPoverilac">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="255"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="DatumNaloga" type="xs:date"/>
-                <xs:element name="DatumValute" type="xs:date"/>
-                <xs:element name="RacunDuznika">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="18"/>
-                            <xs:minLength value="18"/>
-                            <xs:pattern value="[0-9]{3}[0-9]{13}[0-9]{2}"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="ModelZaduzenja">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:int">
-                            <xs:totalDigits value="2"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="PozivNaBrojZaduzenja">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="20"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="RacunPoverioca">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:minLength value="18"/>
-                            <xs:maxLength value="18"/>
-                            <xs:pattern value="[0-9]{3}[0-9]{13}[0-9]{2}"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="ModelOdobrenja">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:int">
-                            <xs:totalDigits value="2"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="PozivNaBrojOdobrenja">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="20"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="Iznos">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:decimal">
-                            <xs:totalDigits value="15"/>
-                            <xs:fractionDigits value="2"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="OznakaValute">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="3"/>
-                            <xs:minLength value="3"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="Hitno" type="xs:boolean"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+
+	<xs:element name="GetNalog">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" name="IDPoruke">
+					<xs:simpleType>
+						<xs:restriction base="xs:long">
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="DuznikNalogodavac">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="SvrhaPlacanja">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="PrimalacPoverilac">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="255" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="DatumNaloga" type="xs:date" />
+				<xs:element name="DatumValute" type="xs:date" />
+				<xs:element name="RacunDuznika">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="18" />
+							<xs:minLength value="18" />
+							<xs:pattern value="[0-9]{3}[0-9]{13}[0-9]{2}" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ModelZaduzenja">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:totalDigits value="2" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="PozivNaBrojZaduzenja">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="RacunPoverioca">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="18" />
+							<xs:maxLength value="18" />
+							<xs:pattern value="[0-9]{3}[0-9]{13}[0-9]{2}" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ModelOdobrenja">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:totalDigits value="2" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="PozivNaBrojOdobrenja">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Iznos">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:totalDigits value="15" />
+							<xs:fractionDigits value="2" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="OznakaValute">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="3" />
+							<xs:minLength value="3" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Hitno" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

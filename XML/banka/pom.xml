@@ -133,8 +133,8 @@
 							<sourceRoot>${project.build.directory}/resources/cxf</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${project.basedir}/src/main/resources/wsdl/rtgsPrijem.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/rtgsPrijem.wsdl</wsdlLocation>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/nalogzaprenos.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/nalogzaprenos.wsdl</wsdlLocation>
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>

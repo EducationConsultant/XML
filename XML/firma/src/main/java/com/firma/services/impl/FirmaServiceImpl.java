@@ -161,7 +161,7 @@ public class FirmaServiceImpl implements FirmaService {
 	@Override
 	public void posaljiNalog(NalogZaPrenos n) {
 
-		String endpoint = "http://localhost:8080/services/nalogzaprenos";
+		String endpoint = "http://localhost:9090/services/nalogzaprenos";
 		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		marshaller.setContextPath("com.firma.models.nalogzaprenos");
