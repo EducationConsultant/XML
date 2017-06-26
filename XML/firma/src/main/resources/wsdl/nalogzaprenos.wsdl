@@ -3,10 +3,11 @@
 
 	targetNamespace="http://codenotfound.com/services/nalogzaprenos"
     xmlns:tns="http://codenotfound.com/services/nalogzaprenos"
-	xmlns:types="http://codenotfound.com/types/nalogzaprenos"
+	xmlns:types="http://codenotfound.com/types/faktura"
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 	xmlns:nzp="http://codenotfound.com/types/nalogzaprenos" 
+	xmlns:fak="http://codenotfound.com/types/faktura"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
 
@@ -15,24 +16,23 @@
 			elementFormDefault="qualified"
 			 targetNamespace="http://codenotfound.com/types/nalogzaprenos">
 
-			<xs:import namespace="http://codenotfound.com/types/nalogzaprenos"
-				schemaLocation="../schemas/nalogZaPrenos.xsd" />
-				
-			<xs:import namespace="http://codenotfound.com/types/faktura"
-				schemaLocation="../schemas/faktura.xsd" />
-
+		<xs:import namespace="http://codenotfound.com/types/nalogzaprenos"
+		 schemaLocation="../schemas/nalogZaPrenos.xsd" />
+		 
+		 <xs:import namespace="http://codenotfound.com/types/faktura"
+		 schemaLocation="../schemas/faktura.xsd" />
+   
+		
 		</xs:schema>
 	</wsdl:types>
 
 
 	<wsdl:message name="GetNalog">
 		<wsdl:part name="parameters" element="nzp:GetNalog" />
-		<wsdl:part name="parameters" element="nzp:GetFaktura" />
+<!-- 		<wsdl:part name="parameters2" element="fak:GetFaktura" /> -->
 	</wsdl:message>
-
-
-
-
+	
+	
 	<wsdl:portType name="nalogzaprenos">
 		<jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
 			<jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>

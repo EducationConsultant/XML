@@ -5,5 +5,6 @@
 // Generated on: 2017.06.20 at 06:20:48 PM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://codenotfound.com/types/nalogzaprenos",
+elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package com.firma.models.nalogzaprenos;

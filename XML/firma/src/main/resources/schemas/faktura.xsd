@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-elementFormDefault="qualified"
-    targetNamespace="http://codenotfound.com/types/faktura" 
-    xmlns:fak="http://codenotfound.com/types/nalogzaprenos">
-    
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://codenotfound.com/types/faktura"
+    xmlns:fak="http://codenotfound.com/types/faktura">
+
     <xs:element name="GetFaktura">
         <xs:complexType>
             <xs:sequence>

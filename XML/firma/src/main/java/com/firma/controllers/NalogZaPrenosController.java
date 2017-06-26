@@ -5,7 +5,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import org.springframework.stereotype.Component;
 
 import com.firma.models.nalogzaprenos.NalogZaPrenos;
-import com.firma.transformation.GetNalogMapper;
+//import com.firma.transformation.GetNalogMapper;
 
 /*
  *  Example-Controller:
@@ -19,8 +19,8 @@ import com.firma.transformation.GetNalogMapper;
 @Component
 public class NalogZaPrenosController {
 
-	public NalogZaPrenos getNalog(NalogZaPrenos nalogRequest) throws DatatypeConfigurationException {
-		  return GetNalogMapper.mapGeneralOutlook2Nalogzaprenos();
-	}
+//	public NalogZaPrenos getNalog(NalogZaPrenos nalogRequest) throws DatatypeConfigurationException {
+//		  return GetNalogMapper.mapGeneralOutlook2Nalogzaprenos();
+//	}
 	
 }
