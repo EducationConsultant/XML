@@ -12,9 +12,13 @@ app.component('fakture', {
     		
     	})
     	
+    	$scope.idd= '';
     	$scope.platiFakturu = function(id){
     		console.log('USAO')
+    		$scope.idd = id;
+    		console.log($scope.idd);
     		$("#isplata").click();
+    		
     	}
     	$scope.faktura = {}
     	$scope.KreirajFakturu = function(){
@@ -41,6 +45,15 @@ app.component('fakture', {
     	$scope.DodajStavku = function(){
     		console.log($scope.stavka);
     		$scope.listaStavki.push($scope.stavka);
+    	}
+    	
+    	$scope.isplata = function(){
+    		console.log($scope.nalog);
+    		console.log($scope.idd);
+    		
+    		$http({url:'/api/nalogzaprenos/'+$scope.idd,method:"POST",
+    			data: JSON.stringify($scope.nalog),headers:{"Content-Type":"application/json"}})
+    		
     	}
        
     }]
