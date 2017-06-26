@@ -83,7 +83,7 @@ public class Application {
 
 		// map source: p1Domain to target:p1Dto using "dozer-bean-mappings.xml"
 		// map-id: person
-		mapper.map(p1Domain, p1Dto, "person");
+		//mapper.map(p1Domain, p1Dto, "person");
 
 		System.err.println("after mapping with dozer: p1Dto = " + p1Dto);
 

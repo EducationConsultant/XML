@@ -1,97 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mappings xmlns="http://dozer.sourceforge.net"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
- 
-      <mapping map-id="person">
-        <class-a>com.firma.models.nalogzaprenos.NalogZaPrenos</class-a>
-        <class-b>com.firma.models.domain.NalogZaPrenosDTO</class-b>
-        <field>
-            <a>idPoruke</a>
-            <b>idPoruke</b>
-        </field>
-        <field >
-            <a>duznikNalogodavac</a>
-            <b>duznikNalogodavac</b>
-        </field>
-        
-       <field>
-       		<a>svrhaPlacanja</a>
-       		<b>svrhaPlacanja</b>
-       </field>
-      
-      
-        <field>
-       		<a>primalacPoverilac</a>
-       		<b>primalacPoverilac</b>
-       </field>
-       
-       
-       
-         <field>
-       		<a>datumNaloga</a>
-       		<b>datumNaloga</b>
-       </field>
-       
-       
-       
-         <field>
-       		<a>datumValute</a>
-       		<b>datumValute</b>
-       </field>
-       
-       
-         <field>
-       		<a>racunDuznika</a>
-       		<b>racunDuznika</b>
-       </field>
-       
-       
-         <field>
-       		<a>modelZaduzenja</a>
-       		<b>modelZaduzenja</b>
-       </field>
-       
-       
-         <field>
-       		<a>pozivNaBrojZaduzenja</a>
-       		<b>pozivNaBrojZaduzenja</b>
-       </field>
-       
-       
-         <field>
-       		<a>racunPoverioca</a>
-       		<b>racunPoverioca</b>
-       </field>
-       
-       
-         <field>
-       		<a>modelOdobrenja</a>
-       		<b>modelOdobrenja</b>
-       </field>
-       
-       
-         <field>
-       		<a>pozivNaBrojOdobrenja</a>
-       		<b>pozivNaBrojOdobrenja</b>
-       </field>
-       
-         <field>
-       		<a>iznos</a>
-       		<b>iznos</b>
-       </field>
-       
-       
-         <field>
-       		<a>oznakaValute</a>
-       		<b>oznakaValute</b>
-       </field>
-       
-         <field>
-       		<a>hitno</a>
-       		<b>hitno</b>
-       </field>
-      
-        
-    </mapping>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping map-id="person">
+		<!-- <class-a>com.firma.models.nalogzaprenos.NalogZaPrenos</class-a> -->
+		<!-- <class-b>com.firma.models.domain.NalogZaPrenosDTO</class-b> -->
+		<class-a>com.firma.models.domain.NalogZaPrenosDTO</class-a>
+		<class-b>com.firma.models.nalogzaprenos.NalogZaPrenos</class-b>
+
+
+		<field>
+			<a>idPoruke</a>
+			<b>idPoruke</b>
+		</field>
+		<field>
+			<a>duznikNalogodavac</a>
+			<b>duznikNalogodavac</b>
+		</field>
+
+		<field>
+			<a>svrhaPlacanja</a>
+			<b>svrhaPlacanja</b>
+		</field>
+
+
+		<field>
+			<a>primalacPoverilac</a>
+			<b>primalacPoverilac</b>
+		</field>
+
+
+
+		<field>
+			<a>datumNaloga</a>
+			<b>datumNaloga</b>
+		</field>
+
+
+
+		<field>
+			<a>datumValute</a>
+			<b>datumValute</b>
+		</field>
+
+
+		<field>
+			<a>racunDuznika</a>
+			<b>racunDuznika</b>
+		</field>
+
+
+		<field>
+			<a>modelZaduzenja</a>
+			<b>modelZaduzenja</b>
+		</field>
+
+
+		<field>
+			<a>pozivNaBrojZaduzenja</a>
+			<b>pozivNaBrojZaduzenja</b>
+		</field>
+
+
+		<field>
+			<a>racunPoverioca</a>
+			<b>racunPoverioca</b>
+		</field>
+
+
+		<field>
+			<a>modelOdobrenja</a>
+			<b>modelOdobrenja</b>
+		</field>
+
+
+		<field>
+			<a>pozivNaBrojOdobrenja</a>
+			<b>pozivNaBrojOdobrenja</b>
+		</field>
+
+		<field>
+			<a>iznos</a>
+			<b>iznos</b>
+		</field>
+
+
+		<field>
+			<a>oznakaValute</a>
+			<b>oznakaValute</b>
+		</field>
+
+		<field>
+			<a>hitno</a>
+			<b>hitno</b>
+		</field>
+
+
+	</mapping>
 </mappings>
