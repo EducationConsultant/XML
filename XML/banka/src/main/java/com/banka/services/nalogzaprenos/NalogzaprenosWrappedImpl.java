@@ -29,6 +29,7 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 		System.out.println(svrhaPlacanja);
 
 		
+		
 		//gadjam banku - exposuje servis za primanje naloga za prenos
 		//promeni port - - npr resttemplate,  iz fimre gadjam taj endpoint, uokviru 
 		// iz firme uputi soap request banci, prosledji obj koji je nalog za prenos
