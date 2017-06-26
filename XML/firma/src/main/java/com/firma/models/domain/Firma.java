@@ -40,11 +40,20 @@ public class Firma {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "firma", fetch = FetchType.EAGER)
 	public List<FakturaDTO> fakture;
 
-	@ManyToOne
-	@JoinColumn(name = "banka", referencedColumnName = "banka_id")
-	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="banka_id")
 	public Banka banka;
 	
+
+	public String nazivBanke;
+	
+	public String getNazivBanke() {
+		return nazivBanke;
+	}
+
+	public void setNazivBanke(String nazivBanke) {
+		this.nazivBanke = nazivBanke;
+	}
 
 	public Banka getBanka() {
 		return banka;

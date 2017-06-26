@@ -45,6 +45,14 @@ public class CentralnaBankaController {
 	}
 	
 	
+	@RequestMapping(value="/nazivBanke/{nazivBanke}", method = RequestMethod.GET)
+	public ResponseEntity<Banka> getBankaByNaziv(@PathVariable String nazivBanke) {
+		Banka banka = bankaService.findByNaziv(nazivBanke);
+		return new ResponseEntity<Banka> (banka, HttpStatus.OK);
+
+	}
+	
+	
 	@RequestMapping( method = RequestMethod.POST)
 	public ResponseEntity<CentralnaBanka> insertCentralnaBanka(@RequestBody CentralnaBanka cb) {
 		CentralnaBanka savedBanka = cbService.save(cb);

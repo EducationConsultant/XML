@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+import com.firma.models.domain.Banka;
 import com.firma.models.domain.FakturaDTO;
 import com.firma.models.domain.FakturaStatus;
 import com.firma.models.domain.Firma;
 import com.firma.models.domain.NalogZaPrenosDTO;
 import com.firma.models.nalogzaprenos.NalogZaPrenos;
+import com.firma.services.BankaService;
 import com.firma.services.FirmaService;
 import com.firma.services.NalogZaPrenosDTOService;
 
@@ -34,6 +36,9 @@ public class FirmaController {
 
 	@Autowired
 	private NalogZaPrenosDTOService nalogService;
+	
+	@Autowired
+	private BankaService bankaService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Firma>> getFirme() {
@@ -54,7 +59,23 @@ public class FirmaController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Firma> insertFirma(@RequestBody Firma firma) {
+		String nazivBanke = firma.getNazivBanke();
+		System.err.println("PARAM JE: " + nazivBanke);
+		RestTemplate restTemplate = new RestTemplate();
+		Banka b = (Banka) restTemplate.getForObject("http://localhost:7070/api/centralnabanka/nazivBanke/"+ nazivBanke , Banka.class);
+		
+		Banka banka = new Banka();
+		banka.setNaziv(b.getNaziv());
+		banka.setObracunskiRacun(b.getObracunskiRacun());
+		banka.setSifra(b.getSifra());
+		banka.setSwiftKod(b.getSwiftKod());
+		banka.setNaziv(nazivBanke);
+	
 
+		
+		Banka saved = bankaService.save(banka);
+		firma.setBanka(saved);
+		
 		Firma savedFirma = firmaService.save(firma);
 		return new ResponseEntity<Firma>(savedFirma, HttpStatus.CREATED);
 

@@ -34,9 +34,6 @@ public class Banka {
 	@Column(name = "obracunskiRacun")
 	private String obracunskiRacun;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "banka")
-	@JsonIgnore
-	private List<Firma> firme;
 
 	public Banka() {
 
@@ -82,12 +79,5 @@ public class Banka {
 		this.obracunskiRacun = obracunskiRacun;
 	}
 
-	public List<Firma> getFirme() {
-		return firme;
-	}
-
-	public void setFirme(List<Firma> firme) {
-		this.firme = firme;
-	}
 
 }
