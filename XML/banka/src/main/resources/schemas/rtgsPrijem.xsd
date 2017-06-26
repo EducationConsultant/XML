@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://codenotfound.com/types/rtgsPrijem"
+ xmlns:mt103="http://codenotfound.com/types/mt103"
+  xmlns:mt910="http://codenotfound.com/types/mt910"
+ xmlns:tns="http://codenotfound.com/types/rtgsPrijem"
+  elementFormDefault="qualified">
+ 	<import namespace="http://codenotfound.com/types/mt103"
+				schemaLocation="RTGS_MT103.xsd" />
+	  <import namespace="http://codenotfound.com/types/mt910"
+				schemaLocation="RTGS_MT910.xsd" />		
+ <element name="rtgsPrijem">
+ 	<complexType>
+ 		<sequence>
+ 			<element name="mt103" type="mt103:mt103CT">
+ 			</element>
+ 			
+ 			<element name="mt910" type="mt910:MT910CT">
+ 			</element>
+ 		</sequence>
+ 	</complexType>
+ </element>
+</schema>

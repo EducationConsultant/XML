@@ -26,12 +26,9 @@
 
 		<cxf.version>3.1.11</cxf.version>
 	</properties>
-
+	
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
+	
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -136,8 +133,8 @@
 							<sourceRoot>${project.build.directory}/resources/cxf</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${project.basedir}/src/main/resources/wsdl/nalogzaprenos.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/nalogzaprenos.wsdl</wsdlLocation>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/rtgsPrijem.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/rtgsPrijem.wsdl</wsdlLocation>
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
