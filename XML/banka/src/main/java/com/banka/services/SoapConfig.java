@@ -1,4 +1,4 @@
-package com.banka.services.izvod;
+package com.banka.services;
 
 import javax.xml.ws.Endpoint;
 
@@ -10,9 +10,13 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class IzvodConfig {
+import com.banka.services.izvod.Izvod;
+import com.banka.services.izvod.IzvodImpl;
+import com.banka.services.rtgsprijem.RtgsPrijem;
+import com.banka.services.rtgsprijem.RtgsPrijemImpl;
 
+@Configuration
+public class SoapConfig {
 	 @Bean
 	    public ServletRegistrationBean cxfServlet() {
 	        return new ServletRegistrationBean(new CXFServlet(), "/services/*");
@@ -32,7 +36,22 @@ public class IzvodConfig {
 	    public Endpoint endpoint() {
 	        EndpointImpl endpoint = new EndpointImpl(springBus(), IzvodService());
 	        endpoint.publish("/Izvod");
+	        
 	        endpoint.setWsdlLocation("../wsdl/izvod.wsdl");
+	        return endpoint;
+	    }
+
+	    
+	    @Bean
+	    public RtgsPrijem RtgsPrijem_Service() {
+	    	return new RtgsPrijemImpl();
+	    }
+	    
+	    @Bean
+	    public Endpoint endpoint2() {
+	        EndpointImpl endpoint = new EndpointImpl(springBus(), RtgsPrijem_Service());
+	        endpoint.publish("/RtgsPrijem");
+	        endpoint.setWsdlLocation("../wsdl/rtgsPrijem.wsdl");
 	        return endpoint;
 	    }
 }
