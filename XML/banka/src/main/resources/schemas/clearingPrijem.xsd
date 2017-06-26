@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://codenotfound.com/types/clearingPrijem"
+ xmlns:mt102="http://codenotfound.com/types/mt102"
+  xmlns:mt910="http://codenotfound.com/types/mt910"
+ xmlns:tns="http://codenotfound.com/types/clearingPrijem"
+  elementFormDefault="qualified">
+ 	<import namespace="http://codenotfound.com/types/mt102"
+				schemaLocation="MT102.xsd" />
+	  <import namespace="http://codenotfound.com/types/mt910"
+				schemaLocation="RTGS_MT910.xsd" />		
+ <element name="clearingPrijem">
+ 	<complexType>
+ 		<sequence>
+ 			<element name="mt102" type="mt102:Nalog_za_grupna_placanja">
+ 			</element>
+ 			
+ 			<element name="mt910" type="mt910:MT910CT">
+ 			</element>
+ 		</sequence>
+ 	</complexType>
+ </element>
+</schema>

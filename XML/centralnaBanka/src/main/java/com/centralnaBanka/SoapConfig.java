@@ -10,6 +10,8 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.centralnaBanka.services.clearing.Clearing;
+import com.centralnaBanka.services.clearing.ClearingImpl;
 import com.centralnaBanka.services.rtgs.Rtgs;
 import com.centralnaBanka.services.rtgs.RtgsImpl;
 
@@ -36,6 +38,19 @@ public class SoapConfig {
         endpoint.publish("/Rtgs");
         
         endpoint.setWsdlLocation("../wsdl/rtgs.wsdl");
+        return endpoint;
+    }
+    @Bean
+    public Clearing ClearingService() {
+    	return new ClearingImpl();
+    }
+    
+    @Bean
+    public Endpoint endpoint2() {
+        EndpointImpl endpoint = new EndpointImpl(springBus(), ClearingService());
+        endpoint.publish("/Clearing");
+        
+        endpoint.setWsdlLocation("../wsdl/clearing.wsdl");
         return endpoint;
     }
 }
