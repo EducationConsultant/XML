@@ -29,7 +29,7 @@ public class BankaServiceImpl implements BankaService {
 		banka.setCentralnaBanka(cb);
 		cb.getBanke().add(banka);
 		cbRepository.save(cb);
-		return bankaRepository.save(banka);
+		return banka;
 	}
 
 	@Override
