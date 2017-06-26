@@ -19,4 +19,6 @@ public interface FirmaService {
 	public Firma saveFaktura(Long id, FakturaDTO faktura);
 
 	public void posaljiNalog(NalogZaPrenos n);
+
+	public Firma podesiBanku(Firma firma);
 }

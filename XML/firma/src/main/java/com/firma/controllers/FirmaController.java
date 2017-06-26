@@ -33,66 +33,34 @@ public class FirmaController {
 
 	@Autowired
 	private FirmaService firmaService;
-
-	@Autowired
-	private NalogZaPrenosDTOService nalogService;
 	
-	@Autowired
-	private BankaService bankaService;
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Firma>> getFirme() {
 		List<Firma> firme = firmaService.find();
-
 		return new ResponseEntity<List<Firma>>(firme, HttpStatus.OK);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Firma> getFirma(@PathVariable Long id) {
-
 		Firma firma = firmaService.findOne(id);
-
 		return new ResponseEntity<Firma>(firma, HttpStatus.OK);
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Firma> insertFirma(@RequestBody Firma firma) {
-		String nazivBanke = firma.getNazivBanke();
-		System.err.println("PARAM JE: " + nazivBanke);
-		RestTemplate restTemplate = new RestTemplate();
-		Banka b = (Banka) restTemplate.getForObject("http://localhost:7070/api/centralnabanka/nazivBanke/"+ nazivBanke , Banka.class);
-		
-		Banka banka = new Banka();
-		banka.setNaziv(b.getNaziv());
-		banka.setObracunskiRacun(b.getObracunskiRacun());
-		banka.setSifra(b.getSifra());
-		banka.setSwiftKod(b.getSwiftKod());
-		banka.setNaziv(nazivBanke);
-	
-
-		
-		Banka saved = bankaService.save(banka);
-		firma.setBanka(saved);
-		
-		Firma savedFirma = firmaService.save(firma);
-		return new ResponseEntity<Firma>(savedFirma, HttpStatus.CREATED);
+		Firma firmaSaved = firmaService.podesiBanku(firma);
+		return new ResponseEntity<Firma>(firmaSaved, HttpStatus.CREATED);
 
 	}
 
+	// Ovde ce konkretna firma da primi fakturu i da je sacuva
 	@RequestMapping(value = "/{firmaBS}/faktura", method = RequestMethod.POST)
 	public void prijemFakutre(@PathVariable String firmaBS, @RequestBody FakturaDTO faktura) {
-	
-		// Ovde ce konkretna firma da primi fakturu i da je sacuva
 		Long firmaB = Long.parseLong(firmaBS);
 		faktura.setStatus(FakturaStatus.PRIMLJENO);
 		firmaService.saveFaktura(firmaB, faktura);
-		
-		//slanje naloga
-//		NalogZaPrenos n = nalogService.kreirajNalog(faktura);
-//		firmaService.posaljiNalog(n);
-		
 	}
 
 }

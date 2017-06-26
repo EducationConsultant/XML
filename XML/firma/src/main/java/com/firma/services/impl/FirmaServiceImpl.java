@@ -9,8 +9,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+import com.firma.models.domain.Banka;
 import com.firma.models.domain.FakturaDTO;
 import com.firma.models.domain.Firma;
 import com.firma.models.domain.StavkaDTO;
@@ -18,6 +20,7 @@ import com.firma.models.nalogzaprenos.NalogZaPrenos;
 import com.firma.repository.FakturaRepository;
 import com.firma.repository.FirmaRepository;
 import com.firma.repository.StavkaFaktureRepository;
+import com.firma.services.BankaService;
 import com.firma.services.FirmaService;
 
 @Service
@@ -32,6 +35,12 @@ public class FirmaServiceImpl implements FirmaService {
 
 	@Autowired
 	private StavkaFaktureRepository stavkaFaktureRepository;
+	
+	@Autowired
+	private BankaService bankaService;
+	
+	@Autowired
+	private FirmaService firmaService;
 
 	List<FakturaDTO> fakture = new ArrayList<FakturaDTO>();
 
@@ -171,5 +180,22 @@ public class FirmaServiceImpl implements FirmaService {
 		webServiceTemplate.setDefaultUri(endpoint);
 		webServiceTemplate.marshalSendAndReceive(endpoint, n);
 
+	}
+
+	@Override
+	public Firma podesiBanku(Firma firma) {
+		String nazivBanke = firma.getNazivBanke();
+		RestTemplate restTemplate = new RestTemplate();
+		Banka b = (Banka) restTemplate.getForObject("http://localhost:7070/api/centralnabanka/nazivBanke/"+ nazivBanke , Banka.class);
+		Banka banka = new Banka();
+		banka.setNaziv(b.getNaziv());
+		banka.setObracunskiRacun(b.getObracunskiRacun());
+		banka.setSifra(b.getSifra());
+		banka.setSwiftKod(b.getSwiftKod());
+		banka.setNaziv(nazivBanke);
+		Banka saved = bankaService.save(banka);
+		firma.setBanka(saved);
+		Firma savedFirma = firmaService.save(firma);
+		return savedFirma;
 	}
 }
