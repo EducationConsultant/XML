@@ -39,7 +39,7 @@ public class FakturaController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<FakturaDTO>> getFakture() {
 		List<FakturaDTO> fakture = fakturaService.find();
-
+		
 		return new ResponseEntity<List<FakturaDTO>>(fakture, HttpStatus.OK);
 
 	}

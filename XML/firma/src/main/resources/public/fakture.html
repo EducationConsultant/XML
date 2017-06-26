@@ -1,0 +1,155 @@
+
+
+<h1>Fakture </h1>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<td>Naziv kupca</td>
+			<td>Adresa kupca </td>
+			<td>pib kupca </td>
+			<td>Naziv dobavljaca </td>
+			<td>Adresa dobavljaca </td>
+			<td>pib dobavljaca</td>
+			<td>Datum Fakture</td>
+			<td>Broj Racuna</td>
+			<td>Vrednost Robe</td>
+			<td>Vrednost Usluge</td>
+			<td>Oznaka Valute</td>
+			<td>Ukupan Porez</td>
+			<td>Ukupan Rabat</td>
+			<td>Ukupno</td>
+			<td>Status </td>
+			<td>Plati/Posalji</td>
+			<td> </td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="x in fakture"> 
+			<td>{{x.nazivKupca}}</td>
+			<td>{{x.adresaKupca}}</td>
+			<td>{{x.pibKupca}}</td>
+			<td>{{x.nazivDobavljaca}}</td>
+			<td>{{x.adresaDobavljaca}}</td>
+			<td>{{x.pibDobavljaca}}</td>
+			<td>{{x.datumRacuna}}</td>
+			<td>{{x.brojRacuna}}</td>
+			<td>{{x.vrednostRobe}}</td>
+			<td>{{x.vrednostUsluge}}</td>
+			<td>{{x.oznakaValute}}</td>
+			<td>{{x.ukupanPorez}}</td>
+			<td>{{x.ukupanRabat}}</td>
+			<td>{{x.ukupnoRobaIUsluge}}</td>
+			<td>{{x.status}}</td>
+			<td><button ng-if="x.status=='PRIMLJENO'" type="button" class="btn btn-info" data-ng-click="platiFakturu(x.id)">
+					<span class="glyphicon glyphicon-euro"></span>
+				</button> 
+				<button ng-if="x.status=='POSLATO'" type="button" class="btn btn-info" data-ng-click="posaljiFakturu(x.id)"><span class="glyphicon glyphicon-envelope"></span></button>
+				</td>
+				
+		</tr>
+	</tbody>
+</table>
+
+
+
+
+
+<div>
+	<form>
+		<div><h2>Kreiranje fakture</h2></div>
+		
+		<div class="form-group">
+			<label>Dobavljac</label>
+			 <select data-ng-model="dobavljac" class="form-control" data-ng-options="d.naziv for d in firme"></select>
+		</div>
+		<div class="form-group">
+			<label>Kupac</label>
+			 <select data-ng-model="kupac" class="form-control" data-ng-options="k.naziv for k in firme"></select>
+		</div>
+		<div class="form-group">
+			<label>Datum racuna: </label>
+			<input type="date" class="form-control" placeholder="Datum racuna" data-ng-model="fa.datumRacuna"><br>
+		</div>
+		<div class="form-group">
+			<label>Datum valute: </label>
+			<input type="date" class="form-control" placeholder="Datum valute" ng-model="fa.datumValute"><br>
+		</div>
+		
+		<div class="form-group ">
+			<label>Oznaka valute: </label>
+			<input type="text" class="form-control" placeholder="DIN" ng-model="fa.oznakaValute"><br>
+		</div>
+		
+		<button type="button" class="btn btn-success" data-ng-click="aktivirajStavku()" >
+					<span class="glyphicon glyphicon-plus"></span>
+				</button>
+		<button type="submit" data-ng-click="KreirajFakturu()" class="btn btn-primary">Kreiraj</button>
+		
+	</form>
+</div>
+
+
+<button id="isplata" type="button" class="btn btn-info" data-toggle="modal" data-target="#isplataModal" style="display: none;">Plati</button>
+
+<div id="isplataModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Isplata</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Hitno</label>
+				<input type="checkbox"  id="hitno">
+			</div>
+			
+			<div>
+				
+			</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button data-ng-click="isplata()" class="btn btn-primary">Isplata</button>
+				<input type="button" class="btn btn-primary" value="Otkazi" data-dismiss="modal">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<button id="stavke" type="button" class="btn btn-info" data-toggle="modal" data-target="#stavkeModal" style="display: none;">Stavke</button>
+
+<div id="stavkeModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Stavke Fakture</h4>
+			</div>
+			<div class="modal-body">
+				
+					
+				<div class="form-group"><label>Naziv: </label><input type="text" ng-model="stavka.nazivRobeIliUsluge"><br></div>
+				<div class="form-group"><label>Kolicina: </label><input type="number" placeholder="Kolicina" data-ng-model="stavka.kolicina"><br></div>
+				<div class="form-group"><label>Jedinica mere: </label><input type="text" placeholder="kom" data-ng-model="stavka.jedinicaMere"><br></div>
+				<div class="form-group"><label>Jedinicna cena: </label><input type="number"  data-ng-model="stavka.jedinicnaCena"><br></div>
+				<div class="form-group"><label>Procenat rabata: </label><input type="number"  data-ng-model="stavka.procenatRabata"><br></div>
+				<div class="form-group"><label>Ukupan porez: </label><input type="number"  data-ng-model="stavka.ukupanPorez"></div>
+				<br>
+			</div>
+			<div class="modal-footer">
+				<button data-ng-click="DodajStavku()" class="btn btn-primary">Dodaj</button>
+				<input type="button" class="btn btn-primary" value="Otkazi" data-dismiss="modal">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
