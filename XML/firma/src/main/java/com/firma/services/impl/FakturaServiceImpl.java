@@ -1,6 +1,7 @@
 package com.firma.services.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.firma.models.domain.FakturaDTO;
+import com.firma.models.domain.FakturaStatus;
+import com.firma.models.domain.Firma;
 import com.firma.models.domain.StavkaDTO;
+import com.firma.models.faktura.Faktura;
 import com.firma.repository.FakturaRepository;
 import com.firma.repository.StavkaFaktureRepository;
 import com.firma.services.FakturaService;
@@ -90,6 +94,24 @@ public class FakturaServiceImpl implements FakturaService {
 		faktura.setStavka(stavkeFaktura);
 
 		return faktura;
+	}
+
+	@Override
+	public List<FakturaDTO> findByFirma(Firma firma) {
+		System.err.println("IDFIRME" + firma.getId());
+		List<FakturaDTO> faktureSve = firma.getFakture();
+		List<FakturaDTO> fakturePrimljene = new ArrayList<FakturaDTO>();
+
+		for (FakturaDTO f : faktureSve) {
+			if (f.getStatus().equals(FakturaStatus.PRIMLJENO)) {
+				if (!fakturePrimljene.contains(f)) {
+					fakturePrimljene.add(f);
+					System.err.println("IDFAKTURE:" + f.getIdPoruke() + "STATUS" + f.getStatus());
+
+				}
+			}
+		}
+		return fakturePrimljene;
 	}
 
 }

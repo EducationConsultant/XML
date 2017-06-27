@@ -38,14 +38,15 @@ public class FakturaController {
 		return new ResponseEntity<FakturaDTO>(faktura, HttpStatus.OK);
 	}
 
-//	
-//	// izlistaj sve fakture
-//	@RequestMapping(method = RequestMethod.GET)
-//	public ResponseEntity<List<FakturaDTO>> getFakture() {
-//		List<FakturaDTO> fakture = fakturaService.find();
-//		return new ResponseEntity<List<FakturaDTO>>(fakture, HttpStatus.OK);
-//
-//	}
+	
+	// izlistaj sve fakture PRIMLJENE, jer se za primljenu fakturu kreira nalog
+	//localhost:8080/api/faktura/prikaz/1
+	@RequestMapping(value="/prikaz/{idFirme}",method = RequestMethod.GET)
+	public ResponseEntity<List<FakturaDTO>> getFakture(@PathVariable Long idFirme) {
+		Firma firma = firmaService.findOne(idFirme);
+		List<FakturaDTO> fakture = fakturaService.findByFirma(firma);
+		return new ResponseEntity<List<FakturaDTO>>(fakture, HttpStatus.OK);
+	}
 
 	
 	// unos stavke u fakturu
