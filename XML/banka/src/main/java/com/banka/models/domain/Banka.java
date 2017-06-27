@@ -35,7 +35,7 @@ public class Banka {
 	@Column(name = "obracunskiRacun")
 	private String obracunskiRacun;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="banka")
 	private List<Firma> firme;
 

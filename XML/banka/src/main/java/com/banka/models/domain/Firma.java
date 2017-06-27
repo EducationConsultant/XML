@@ -28,7 +28,7 @@ public class Firma {
 	@Column(name = "naziv", nullable = false, unique = true)
 	private String naziv;
 
-	@Column(name = "adresa", nullable = false, unique = false)
+	@Column(name = "adresa", nullable = true, unique = false)
 	private String adresa;
 
 	@Column(name = "pib", nullable = false, unique = true)
