@@ -13,7 +13,11 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.banka.models.domain.Banka;
 import com.banka.models.domain.Firma;
+import com.banka.models.mt102.NalogZaGrupnaPlacanja;
+import com.banka.models.mt102.NalogZaGrupnaPlacanja.Placanja;
+import com.banka.models.mt102.NalogZaGrupnaPlacanja.Placanja.Placanje;
 import com.banka.models.mt103.Mt103CT;
+import com.banka.models.mt900.Mt900;
 import com.banka.services.BankaService;
 import com.banka.services.FirmaService;
 
@@ -76,26 +80,16 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 			firmaPrimalac.setUkupanIznos(ukupanIznosFirmePrimaoca);
 			firmaService.save(firmaPrimalac);
 			firmaService.save(firmaDuznik);	
-		}
-		
-			
-		if(!hitno){
-				float ukupanIznosFirmeDuznika = firmaDuznik.getUkupanIznos() - iznos.floatValue();
-				float ukupanIznosFirmePrimaoca = firmaPrimalac.getUkupanIznos() + iznos.floatValue();
-				firmaDuznik.setUkupanIznos(ukupanIznosFirmeDuznika);
-				firmaPrimalac.setUkupanIznos(ukupanIznosFirmePrimaoca);
-				firmaService.save(firmaPrimalac);
-				firmaService.save(firmaDuznik);
-		}
-		
-		
-		if(hitno || iznos.doubleValue()>250000){
+		}else if(hitno || iznos.doubleValue()>250000){
 				String endpoint = "http://localhost:7070/services/Rtgs";
 				WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 				Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		
 				marshaller.setContextPath("com.banka.models.mt103");
+
+				Jaxb2Marshaller unmarshaller = new Jaxb2Marshaller();
 		
+				unmarshaller.setContextPath("com.banka.models.mt900");
 				Mt103CT send = new Mt103CT();
 				String strLong = Long.toString(idPoruke);
 				
@@ -117,12 +111,63 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 				
 		
 				webServiceTemplate.setMarshaller(marshaller);
+				webServiceTemplate.setUnmarshaller(unmarshaller);
 				webServiceTemplate.afterPropertiesSet();
 		
 				webServiceTemplate.setDefaultUri(endpoint);
 			    webServiceTemplate.marshalSendAndReceive(endpoint,send);
 			    
 			    // Funkcija stize na rtgs impl
+			} else {
+				String endpoint = "http://localhost:7070/services/Clearing";
+				WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+				Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+		
+				marshaller.setContextPath("com.banka.models.mt102");
+
+				Jaxb2Marshaller unmarshaller = new Jaxb2Marshaller();
+		
+				unmarshaller.setContextPath("com.banka.models.mt900");
+				
+				NalogZaGrupnaPlacanja send = new NalogZaGrupnaPlacanja();
+				send.setDatum(datumNaloga);
+				send.setDatumValute(datumValute);
+				send.setObracunskiRacunBankeDuznika(bankaDuznika.getObracunskiRacun());
+				send.setObracunskiRacunBankePoverioca(bankaPrimalac.getObracunskiRacun());
+				send.setIDPoruke("1");
+				send.setSifraValute(oznakaValute);
+				send.setSWIFTKodBankeDuznika(bankaDuznika.getSwiftKod());
+				send.setSWIFTKodBankePoverioca(bankaPrimalac.getSwiftKod());
+				//prepraviti za slanje vise placanja
+				send.setUkupanIznos(iznos);
+				Placanja plac=new Placanja();
+				Placanje pl= new Placanje();
+				pl.setDatumNaloga(datumNaloga);
+				pl.setDuznikNalogodavac(duznikNalogodavac);
+				pl.setIDNalogaZaPlacanje("1");
+				pl.setModelOdobrenja(modelOdobrenja);
+				pl.setModelZaduzenja(modelZaduzenja);
+				pl.setPozivNaBrojOdobrenja(pozivNaBrojOdobrenja);
+				pl.setPozivNaBrojZaduzenja(pozivNaBrojZaduzenja);
+				pl.setPrimalacPoverilac(primalacPoverilac);
+				pl.setRacunDuznika(racunDuznika);
+				pl.setRacunPoverioca(racunPoverioca);
+				pl.setSifraValute(oznakaValute);
+				pl.setSvrhaPlacanja(svrhaPlacanja);
+				pl.setUkupanIznos(iznos);
+				plac.getPlacanje().add(pl);
+				send.setPlacanja(plac);
+				
+				firmaDuznik.setUkupanIznos(firmaDuznik.getUkupanIznos()-iznos.floatValue());
+				firmaService.save(firmaDuznik);
+				
+		
+				webServiceTemplate.setMarshaller(marshaller);
+				webServiceTemplate.setUnmarshaller(unmarshaller);
+				webServiceTemplate.afterPropertiesSet();
+		
+				webServiceTemplate.setDefaultUri(endpoint);
+			    Mt900 mt900=(Mt900) webServiceTemplate.marshalSendAndReceive(endpoint,send);
 			}
 			
 	}

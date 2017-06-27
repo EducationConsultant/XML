@@ -14,7 +14,7 @@
 	<wsdl:types>
 		<xs:schema xmlns="http://www.w3.org/2001/XMLSchema"
 			elementFormDefault="qualified"
-			 targetNamespace="http://codenotfound.com/types/nalogzaprenos">
+			 targetNamespace="http://codenotfound.com/services/nalogzaprenos">
 
 		<xs:import namespace="http://codenotfound.com/types/nalogzaprenos"
 		 schemaLocation="../schemas/nalogZaPrenos.xsd" />

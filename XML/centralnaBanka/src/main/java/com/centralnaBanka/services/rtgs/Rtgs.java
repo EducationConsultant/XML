@@ -22,8 +22,8 @@ import javax.xml.ws.ResponseWrapper;
 public interface Rtgs {
 
     @WebMethod
-    @RequestWrapper(localName = "rtgs", targetNamespace = "http://codenotfound.com/types/mt103", className = "com.codenotfound.types.mt103.Rtgs")
-    @ResponseWrapper(localName = "mt900", targetNamespace = "http://codenotfound.com/types/mt900", className = "com.codenotfound.types.mt900.Mt900")
+    @RequestWrapper(localName = "rtgs", targetNamespace = "http://codenotfound.com/types/mt103", className = "com.centralnaBanka.models.mt103.Mt103CT")
+    @ResponseWrapper(localName = "mt900", targetNamespace = "http://codenotfound.com/types/mt900", className = "com.centralnaBanka.models.mt900.Mt900")
     public void rtgs(
         @WebParam(mode = WebParam.Mode.INOUT, name = "ID_poruke", targetNamespace = "http://codenotfound.com/types/mt900")
         javax.xml.ws.Holder<java.lang.String> idPoruke,

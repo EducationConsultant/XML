@@ -1,19 +1,21 @@
 package com.centralnaBanka.services.clearing;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.Holder;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.centralnaBanka.models.clearingprijem.ClearingPrijem;
+import com.centralnaBanka.models.domain.Banka;
 import com.centralnaBanka.models.mt102.NalogZaGrupnaPlacanja;
 import com.centralnaBanka.models.mt102.NalogZaGrupnaPlacanja.Placanja;
-import com.centralnaBanka.models.mt103.Mt103CT;
 import com.centralnaBanka.models.mt910.MT910CT;
-import com.centralnaBanka.models.rtgsprijem.RtgsPrijem;
+import com.centralnaBanka.services.BankaService;
 
 
 
@@ -25,6 +27,8 @@ import com.centralnaBanka.models.rtgsprijem.RtgsPrijem;
         endpointInterface = "com.centralnaBanka.services.clearing.Clearing")
 public class ClearingImpl implements Clearing {
 
+	@Autowired
+	BankaService bankaService;
 	@Override
 	public void clearing(Holder<String> idPoruke,
 			Holder<String> swiftKodBankeDuznika,
@@ -36,12 +40,47 @@ public class ClearingImpl implements Clearing {
 			XMLGregorianCalendar datum, Placanja placanja,
 			Holder<String> idPorukeNaloga, Holder<BigDecimal> iznos) {
 		// TODO Auto-generated method stub
+		iznos.value=ukupanIznos;
+		idPorukeNaloga.value=idPoruke.value;
 		System.out.println(idPoruke.value);
+		Banka bankaDuznika = new Banka();
+		Banka bankaPrimalac = new Banka();
+		List<Banka> banke = bankaService.find();
+		for(Banka b:banke){
+			if(b.getObracunskiRacun().equals(obracunskiRacunBankeDuznika))
+				bankaDuznika=b;
+			if(b.getObracunskiRacun().equals(obracunskiRacunBankePoverioca))
+				bankaPrimalac=b;
+		}
+		//prebaciti novac banki
+		
+		
+		
 		ClearingPrijem send= new  ClearingPrijem();
 		NalogZaGrupnaPlacanja mt=new NalogZaGrupnaPlacanja();
 		mt.setIDPoruke("test");
+		mt.setDatum(datum);
+		mt.setDatumValute(datumValute.value);
+		mt.setObracunskiRacunBankeDuznika(obracunskiRacunBankePoverioca);
+		mt.setObracunskiRacunBankePoverioca(obracunskiRacunBankePoverioca);
+		mt.setPlacanja(placanja);
+		mt.setSifraValute(sifraValute.value);
+		mt.setSWIFTKodBankeDuznika(swiftKodBankeDuznika.value);
+		mt.setSWIFTKodBankePoverioca(swiftKodBankePoverioca);
+		mt.setUkupanIznos(ukupanIznos);
+		
+		
 		send.setMt102(mt);
-		send.setMt910(new MT910CT());
+		MT910CT mt910=new MT910CT();
+		mt910.setDatumValute(datum);
+		mt910.setIDPoruke("1");
+		mt910.setIDPorukeNaloga(idPorukeNaloga.value);
+		mt910.setIznos(iznos.value);
+		mt910.setObracunskiRacunBankePoverioca(obracunskiRacunBankePoverioca);
+		mt910.setSifraValute(sifraValute.value);
+		mt910.setSWIFTKodBankePoverioca(swiftKodBankePoverioca);
+		
+		send.setMt910(mt910);
 		
 		String endpoint = "http://localhost:9090/services/ClearingPrijem";
 		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
@@ -52,6 +91,7 @@ public class ClearingImpl implements Clearing {
 		
 
 		webServiceTemplate.setMarshaller(marshaller);
+		webServiceTemplate.setUnmarshaller(marshaller);
 		webServiceTemplate.afterPropertiesSet();
 
 		webServiceTemplate.setDefaultUri(endpoint);
