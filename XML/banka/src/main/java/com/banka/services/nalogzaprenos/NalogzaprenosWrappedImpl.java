@@ -44,7 +44,6 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 
 
 		// ako je ista banka
-		// dodaj vezu ka banci i proveru da li je ista banka u pitanju
 		Firma firmaDuznik = firmaService.findByNaziv(duznikNalogodavac);
 		Firma firmaPrimalac = firmaService.findByNaziv(primalacPoverilac);
 		Banka bankaDuznika = new Banka();
