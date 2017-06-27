@@ -26,7 +26,7 @@ public class ClearingPrijemImpl implements ClearingPrijem{
 		List<Firma> firme=firmaService.findAll();
 		for(Placanje p:mt102.getPlacanja().getPlacanje()){
 			for(Firma firma:firme){
-				if(firma.getBrojRacuna()==Float.parseFloat(p.getRacunPoverioca())){
+				if(firma.getBrojRacuna()==p.getRacunPoverioca()){
 					firma.setUkupanIznos(firma.getUkupanIznos()+p.getUkupanIznos().floatValue());
 					firmaService.save(firma);
 					break;

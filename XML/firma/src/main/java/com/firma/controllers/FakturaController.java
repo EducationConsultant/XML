@@ -70,7 +70,7 @@ public class FakturaController {
 		faktura.setNazivDobavljaca(dobavljac.getNaziv());
 		faktura.setAdresaDobavljaca(dobavljac.getAdresa());
 		faktura.setPibDobavljaca(dobavljac.getPib());
-		String brojRacunaS = Integer.toString(dobavljac.getBrojRacuna());
+		String brojRacunaS = dobavljac.getBrojRacuna();
 		faktura.setUplataNaRacun(brojRacunaS);
 
 		faktura.setNazivKupca(kupac.getNaziv());

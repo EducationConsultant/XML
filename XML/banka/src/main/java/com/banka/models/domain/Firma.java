@@ -35,7 +35,7 @@ public class Firma {
 	private String pib;
 
 	@Column(name = "brojRacuna", nullable = false, unique = true)
-	private int brojRacuna;
+	private String brojRacuna;
 	
 	
 	private float ukupanIznos;
@@ -92,11 +92,11 @@ public class Firma {
 		this.pib = pib;
 	}
 
-	public int getBrojRacuna() {
+	public String getBrojRacuna() {
 		return brojRacuna;
 	}
 
-	public void setBrojRacuna(int brojRacuna) {
+	public void setBrojRacuna(String brojRacuna) {
 		this.brojRacuna = brojRacuna;
 	}
 

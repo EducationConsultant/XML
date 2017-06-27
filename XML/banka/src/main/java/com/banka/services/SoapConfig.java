@@ -21,6 +21,7 @@ import com.banka.services.rtgsprijem.RtgsPrijemImpl;
 
 @Configuration
 public class SoapConfig {
+    
 	 @Bean
 	    public ServletRegistrationBean cxfServlet() {
 	        return new ServletRegistrationBean(new CXFServlet(), "/services/*");

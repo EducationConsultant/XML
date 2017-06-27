@@ -36,7 +36,10 @@ public class Banka {
 
 	@Column(name = "obracunskiRacun")
 	private String obracunskiRacun;
+	
 
+    @Column(name = "stanjeRacuna")
+    private long stanjeRacuna;
 
 	@ManyToOne
 	@JoinColumn(name = "centralnaBanka", referencedColumnName = "centralna_banka_id")
@@ -95,6 +98,14 @@ public class Banka {
 	public void setObracunskiRacun(String obracunskiRacun) {
 		this.obracunskiRacun = obracunskiRacun;
 	}
+
+    public long getStanjeRacuna() {
+        return stanjeRacuna;
+    }
+
+    public void setStanjeRacuna(long stanjeRacuna) {
+        this.stanjeRacuna = stanjeRacuna;
+    }
 
 
 }

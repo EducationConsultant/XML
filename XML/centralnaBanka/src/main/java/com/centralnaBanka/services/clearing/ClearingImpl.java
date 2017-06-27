@@ -54,7 +54,10 @@ public class ClearingImpl implements Clearing {
 		}
 		//prebaciti novac banki
 		
-		
+		bankaDuznika.setStanjeRacuna(bankaDuznika.getStanjeRacuna()-iznos.value.longValue());
+		bankaPrimalac.setStanjeRacuna(bankaPrimalac.getStanjeRacuna()+iznos.value.longValue());
+		bankaService.save(bankaDuznika.getId(),bankaDuznika);
+		bankaService.save(bankaPrimalac.getId(), bankaPrimalac);
 		
 		ClearingPrijem send= new  ClearingPrijem();
 		NalogZaGrupnaPlacanja mt=new NalogZaGrupnaPlacanja();

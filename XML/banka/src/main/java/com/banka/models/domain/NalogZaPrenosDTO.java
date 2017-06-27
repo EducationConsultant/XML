@@ -84,7 +84,18 @@ public class NalogZaPrenosDTO {
 	@NotNull
 	protected boolean hitno;
 
-	public NalogZaPrenosDTO() {
+	@Column(name = "obradjeno")
+    protected boolean obradjeno;
+	
+	public boolean isObradjeno() {
+        return obradjeno;
+    }
+
+    public void setObradjeno(boolean obradjeno) {
+        this.obradjeno = obradjeno;
+    }
+
+    public NalogZaPrenosDTO() {
 
 	}
 

@@ -133,7 +133,7 @@ public class Application {
 
 		Firma firma = new Firma();
 		firma.setAdresa("Adresica 9");
-		firma.setBrojRacuna(121212);
+		firma.setBrojRacuna("121212");
 		firma.setId(new Long(99));
 		firma.setNaziv("Extra");
 		firma.setPib("87965412");

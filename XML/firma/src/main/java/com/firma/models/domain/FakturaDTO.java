@@ -53,7 +53,7 @@ public class FakturaDTO {
 	private String pibKupca;
 
 	@Column(name = "brojRacuna", nullable = false)
-	private int brojRacuna;
+	private String brojRacuna;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "datumRacuna", nullable = false)
@@ -179,11 +179,11 @@ public class FakturaDTO {
 		this.pibKupca = pibKupca;
 	}
 
-	public int getBrojRacuna() {
+	public String getBrojRacuna() {
 		return brojRacuna;
 	}
 
-	public void setBrojRacuna(int brojRacuna) {
+	public void setBrojRacuna(String brojRacuna) {
 		this.brojRacuna = brojRacuna;
 	}
 

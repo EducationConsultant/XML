@@ -9,10 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.banka.models.domain.Banka;
 import com.banka.models.domain.Firma;
+import com.banka.models.domain.NalogZaPrenosDTO;
 import com.banka.models.mt102.NalogZaGrupnaPlacanja;
 import com.banka.models.mt102.NalogZaGrupnaPlacanja.Placanja;
 import com.banka.models.mt102.NalogZaGrupnaPlacanja.Placanja.Placanje;
@@ -20,6 +22,7 @@ import com.banka.models.mt103.Mt103CT;
 import com.banka.models.mt900.Mt900;
 import com.banka.services.BankaService;
 import com.banka.services.FirmaService;
+import com.banka.services.NalogZaPrenosDTOService;
 
 public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 
@@ -30,6 +33,8 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 
 	@Autowired
 	private BankaService bankaService;
+	@Autowired
+	private NalogZaPrenosDTOService nalogService;
 
 	@Override
 	public void getNalog(long idPoruke, String duznikNalogodavac, String svrhaPlacanja, String primalacPoverilac,
@@ -41,8 +46,24 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 		System.out.println(idPoruke);
 		System.out.println(duznikNalogodavac);
 		System.out.println(svrhaPlacanja);
-
-
+		NalogZaPrenosDTO nalog= new NalogZaPrenosDTO();
+		nalog.setDatumNaloga(datumNaloga.toGregorianCalendar().getTime());
+		nalog.setDatumValute(datumValute.toGregorianCalendar().getTime());
+		nalog.setDuznikNalogodavac(duznikNalogodavac);
+		nalog.setHitno(hitno);
+		nalog.setIdPoruke(idPoruke);
+		nalog.setIznos(iznos);
+		nalog.setModelOdobrenja(modelOdobrenja);
+		nalog.setModelZaduzenja(modelZaduzenja);
+		nalog.setObradjeno(true);
+		nalog.setOznakaValute(oznakaValute);
+		nalog.setPozivNaBrojOdobrenja(pozivNaBrojOdobrenja);
+		nalog.setPozivNaBrojZaduzenja(pozivNaBrojZaduzenja);
+		nalog.setPrimalacPoverilac(primalacPoverilac);
+		nalog.setRacunDuznika(racunDuznika);
+		nalog.setRacunPoverioca(racunPoverioca);
+		nalog.setSvrhaPlacanja(svrhaPlacanja);
+		
 		// ako je ista banka
 		Firma firmaDuznik = firmaService.findByNaziv(duznikNalogodavac);
 		Firma firmaPrimalac = firmaService.findByNaziv(primalacPoverilac);
@@ -107,17 +128,25 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 				send.setPozivNaBrojOdobrenja(pozivNaBrojOdobrenja);
 				send.setIznos(iznos);
 				send.setSifraValute(oznakaValute);
-				
-		
+				send.setObracunskiRacunBankeDuznika(bankaDuznika.getObracunskiRacun());
+				send.setObracunskiRacunBankePoverioca(bankaPrimalac.getObracunskiRacun());
+				send.setSWIFTKodBankeDuznika(bankaDuznika.getSwiftKod());
+				send.setSWIFTKodBankePoverioca(bankaPrimalac.getSwiftKod());
 				webServiceTemplate.setMarshaller(marshaller);
 				webServiceTemplate.setUnmarshaller(unmarshaller);
 				webServiceTemplate.afterPropertiesSet();
 		
+				
+
+                firmaDuznik.setUkupanIznos(firmaDuznik.getUkupanIznos()-iznos.floatValue());
+                firmaService.save(firmaDuznik);
+                
 				webServiceTemplate.setDefaultUri(endpoint);
 			    webServiceTemplate.marshalSendAndReceive(endpoint,send);
 			    
 			    // Funkcija stize na rtgs impl
 			} else {
+			    nalog.setObradjeno(true);
 				String endpoint = "http://localhost:7070/services/Clearing";
 				WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 				Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
@@ -168,6 +197,8 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 				webServiceTemplate.setDefaultUri(endpoint);
 			    Mt900 mt900=(Mt900) webServiceTemplate.marshalSendAndReceive(endpoint,send);
 			}
+
+        nalogService.save(nalog);
 			
 	}
 
