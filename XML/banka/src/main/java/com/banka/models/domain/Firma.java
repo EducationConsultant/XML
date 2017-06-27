@@ -38,6 +38,7 @@ public class Firma {
 	private int brojRacuna;
 	
 	
+	private float ukupanIznos;
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "firma", fetch = FetchType.EAGER)
@@ -45,6 +46,14 @@ public class Firma {
 
 	public List<FakturaDTO> getFakture() {
 		return fakture;
+	}
+
+	public float getUkupanIznos() {
+		return ukupanIznos;
+	}
+	
+	public void setUkupanIznos(float ukupanIznos) {
+		this.ukupanIznos = ukupanIznos;
 	}
 
 	public void setFakture(List<FakturaDTO> fakture) {
