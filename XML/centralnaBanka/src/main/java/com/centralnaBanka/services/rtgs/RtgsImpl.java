@@ -40,6 +40,15 @@ public class RtgsImpl implements Rtgs {
 		// TODO Auto-generated method stub
 		RtgsPrijem send= new  RtgsPrijem();
 		Mt103CT mt=new Mt103CT();
+		
+		mt.setIDPoruke(idPoruke.value);
+		mt.setSWIFTKodBankeDuznika(swiftKodBankeDuznika.value);
+		mt.setObracunskiRacunBankeDuznika(obracunskiRacunBankeDuznika.value);
+		mt.setSWIFTKodBankePoverioca(swiftKodBankePoverioca);
+	//	mt.set
+		
+		
+		
 		mt.setDuznikNalogodavac("test");
 		send.setMt103(mt);
 		send.setMt910(new MT910CT());

@@ -1,0 +1,180 @@
+
+
+<h1>Firme </h1>
+
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<td>Naziv</td>
+			<td>Adresa </td>
+			<td>Pib </td>
+			<td>Broj racuna </td>
+			<td>Fakture </td>
+			<td>Nova faktura </td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="x in firme"> 
+			<td>{{x.naziv}}</td>
+			<td>{{x.adresa}}</td>
+			<td>{{x.pib}}</td>
+			<td>{{x.brojRacuna}}</td>
+			<td><button type="button" class="btn btn-info" data-ng-click="prikaziFakture(x.id)"><span class="glyphicon glyphicon-search"></span> </td>
+			<td><button type="button" class="btn btn-info" data-ng-click="otvoriFormu(x.brojRacuna)"><span class="glyphicon glyphicon-book"></span> </td>
+		</tr>
+	</tbody>
+</table>
+
+<div id="skrivenaTabela"  style="display:none">
+<h2>Primljene Fakture</h2>
+
+	<table   class="table table-hover" >
+		<thead>
+			<tr>
+				<td>Naziv kupca</td>
+				<td>Adresa kupca </td>
+				<td>pib kupca </td>
+				<td>Datum Fakture</td>
+				<td>Broj Racuna</td>
+				<td>Vrednost Robe</td>
+				<td>Vrednost Usluge</td>
+				<td>Oznaka Valute</td>
+				<td>Ukupan Porez</td>
+				<td>Ukupan Rabat</td>
+				<td>Ukupno</td>
+				<td>Plati/Posalji</td>
+				<td> </td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="x in fakture"> 
+				
+				<td>{{x.nazivKupca}}</td>
+				<td>{{x.adresaKupca}}</td>
+				<td>{{x.pibKupca}}</td>
+				<td>{{x.datumRacuna}}</td>
+				<td>{{x.brojRacuna}}</td>
+				<td>{{x.vrednostRobe}}</td>
+				<td>{{x.vrednostUsluge}}</td>
+				<td>{{x.oznakaValute}}</td>
+				<td>{{x.ukupanPorez}}</td>
+				<td>{{x.ukupanRabat}}</td>
+				<td>{{x.ukupnoRobaIUsluge}}</td>
+				
+				<td><button  type="button" class="btn btn-info" data-ng-click="platiFakturu(x.idPoruke)">
+						<span class="glyphicon glyphicon-euro"></span>
+					</button> 
+					
+				</td>
+					
+			</tr>
+		</tbody>
+	</table>
+	
+	<button  type="button" class="btn btn-info" data-ng-click="zatvori()">
+						<span class="glyphicon glyphicon-upload"></span>
+	
+</div>
+
+<button id="isplata" type="button" class="btn btn-info" data-toggle="modal" data-target="#isplataModal" style="display: none;">Plati</button>
+
+<div id="isplataModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+		<!--		<button type="button" class="close" data-dismiss="modal"></button> -->
+				<h4 class="modal-title">Isplata</h4>
+			</div>
+			<div class="modal-body">
+				
+			
+			<div>
+				<label>Svrha Placanja:</label>
+				<input type="text" data-ng-model="nalog.svrhaPlacanja" > <br>
+				<label>Model zaduzenja:</label>
+				<input type="number" ng-model="nalog.modelZaduzenja"> <br>
+				<label>Poziv na broj zaduzenja:</label>
+				<input type="number" ng-model="nalog.pozivNaBrojZaduzenja"><br>
+				<label>Model odobrenja:</label>
+				<input type="number" ng-model="nalog.modelOdobrenja"> <br>
+				<label>Poziv na broj odobrenja:</label>
+				<input type="number" ng-model="nalog.pozivNaBrojOdobrenja"><br>
+				<label>Racun duznika:</label>
+				<input type="number" ng-model="nalog.racunDuznika"><br>
+				<label>Hitno</label>
+				<input type="checkbox" ng-model="nalog.hitno" id="hitno">
+			</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button data-ng-click="isplata()" class="btn btn-primary">Isplata</button>
+				<input type="button" class="btn btn-primary" id="OtkaziIsplatu" value="Otkazi" data-dismiss="modal">
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<div id="skrivenaForma" style="display:none">
+	<form>
+		<div><h2>Kreiranje fakture</h2></div>
+		
+		
+		<div class="form-group">
+			<label>Kupac</label>
+			 <select data-ng-model="kupac"  class="form-control" data-ng-options="k.naziv for k in kupci">
+			 	
+			 </select>
+		</div>
+		<div class="form-group">
+			<label>Datum racuna: </label>
+			<input type="date" class="form-control" placeholder="Datum racuna" data-ng-model="fa.datumRacuna"><br>
+		</div>
+		<div class="form-group">
+			<label>Datum valute: </label>
+			<input type="date" class="form-control" placeholder="Datum valute" ng-model="fa.datumValute"><br>
+		</div>
+		
+		<div class="form-group ">
+			<label>Oznaka valute: </label>
+			<input type="text" class="form-control" placeholder="DIN" ng-model="fa.oznakaValute"><br>
+		</div>
+		
+		<button type="button" class="btn btn-success" data-ng-click="aktivirajStavku()" >
+					<span class="glyphicon glyphicon-plus"></span>
+				</button>
+		<button type="submit" data-ng-click="KreirajFakturu()" class="btn btn-primary">Kreiraj</button>
+		<button  type="button" class="btn btn-info" data-ng-click="zatvori2()">
+						<span class="glyphicon glyphicon-upload"></span>
+	</form>
+</div>
+
+
+<button id="stavke" type="button" class="btn btn-info" data-toggle="modal" data-target="#stavkeModal" style="display: none;">Stavke</button>
+
+<div id="stavkeModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				
+				<h4 class="modal-title">Stavke Fakture</h4>
+			</div>
+			<div class="modal-body">
+				
+					
+				<div class="form-group"><label>Naziv: </label><input type="text" ng-model="stavka.nazivRobeIliUsluge"><br></div>
+				<div class="form-group"><label>Kolicina: </label><input type="number" placeholder="Kolicina" data-ng-model="stavka.kolicina"><br></div>
+				<div class="form-group"><label>Jedinica mere: </label><input type="text" placeholder="kom" data-ng-model="stavka.jedinicaMere"><br></div>
+				<div class="form-group"><label>Jedinicna cena: </label><input type="number"  data-ng-model="stavka.jedinicnaCena"><br></div>
+				<div class="form-group"><label>Procenat rabata: </label><input type="number"  data-ng-model="stavka.procenatRabata"><br></div>
+				<div class="form-group"><label>Ukupan porez: </label><input type="number"  data-ng-model="stavka.ukupanPorez"></div>
+				<br>
+			</div>
+			<div class="modal-footer">
+				<button data-ng-click="DodajStavku()" class="btn btn-primary">Dodaj</button>
+				<input type="button" class="btn btn-primary" id="OtkaziStavku" value="Otkazi" data-dismiss="modal">
+			</div>
+		</div>
+	</div>
+</div>

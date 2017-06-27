@@ -10,6 +10,10 @@ var app = angular.module('myApp', [
         $locationProvider.hashPrefix('!');
         $routeProvider.when("/fakture", {
             template: "<fakture></fakture>",
+        }).when("/firme",{
+        	template: "<firme></firme>"
+        }).when("/fakturafirme",{
+        	template: "<fakturafirme></fakturafirme>"
         })
         $routeProvider.otherwise({ redirectTo: '/' });
     }]);
