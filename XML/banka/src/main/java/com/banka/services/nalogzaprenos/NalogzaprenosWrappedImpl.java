@@ -115,6 +115,10 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 				
 				// OSTALI SU ATRIBUTI
 				send.setIDPoruke(strLong);
+				send.setSWIFTKodBankeDuznika(bankaDuznika.getSwiftKod());
+				send.setSWIFTKodBankePoverioca(bankaPrimalac.getSwiftKod());
+				send.setObracunskiRacunBankeDuznika(bankaDuznika.getObracunskiRacun());
+				send.setObracunskiRacunBankePoverioca(bankaPrimalac.getObracunskiRacun());
 				send.setDuznikNalogodavac(duznikNalogodavac);
 				send.setSvrhaPlacanja(svrhaPlacanja);
 				send.setPrimalacPoverilac(primalacPoverilac);
@@ -132,6 +136,10 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 				send.setObracunskiRacunBankePoverioca(bankaPrimalac.getObracunskiRacun());
 				send.setSWIFTKodBankeDuznika(bankaDuznika.getSwiftKod());
 				send.setSWIFTKodBankePoverioca(bankaPrimalac.getSwiftKod());
+				
+				firmaDuznik.setUkupanIznos(firmaDuznik.getUkupanIznos()-iznos.floatValue());
+				firmaService.save(firmaDuznik);
+		
 				webServiceTemplate.setMarshaller(marshaller);
 				webServiceTemplate.setUnmarshaller(unmarshaller);
 				webServiceTemplate.afterPropertiesSet();
