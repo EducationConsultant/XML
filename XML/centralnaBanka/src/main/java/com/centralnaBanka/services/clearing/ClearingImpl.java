@@ -47,17 +47,17 @@ public class ClearingImpl implements Clearing {
 		Banka bankaPrimalac = new Banka();
 		List<Banka> banke = bankaService.find();
 		for(Banka b:banke){
-			if(b.getObracunskiRacun().equals(obracunskiRacunBankeDuznika))
+			if(b.getObracunskiRacun().equals(obracunskiRacunBankeDuznika.value))
 				bankaDuznika=b;
 			if(b.getObracunskiRacun().equals(obracunskiRacunBankePoverioca))
 				bankaPrimalac=b;
 		}
-		//prebaciti novac banki
+		//prebaciti novac banki 
 		
 		bankaDuznika.setStanjeRacuna(bankaDuznika.getStanjeRacuna()-iznos.value.longValue());
 		bankaPrimalac.setStanjeRacuna(bankaPrimalac.getStanjeRacuna()+iznos.value.longValue());
-		bankaService.save(bankaDuznika.getId(),bankaDuznika);
-		bankaService.save(bankaPrimalac.getId(), bankaPrimalac);
+		//bankaService.save(bankaDuznika.getCentralnaBanka().getId(),bankaDuznika);
+		//bankaService.save(bankaPrimalac.getCentralnaBanka().getId(), bankaPrimalac);
 		
 		ClearingPrijem send= new  ClearingPrijem();
 		NalogZaGrupnaPlacanja mt=new NalogZaGrupnaPlacanja();

@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.banka.models.domain.Banka;
@@ -51,7 +50,6 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 		nalog.setDatumValute(datumValute.toGregorianCalendar().getTime());
 		nalog.setDuznikNalogodavac(duznikNalogodavac);
 		nalog.setHitno(hitno);
-		nalog.setIdPoruke(idPoruke);
 		nalog.setIznos(iznos);
 		nalog.setModelOdobrenja(modelOdobrenja);
 		nalog.setModelZaduzenja(modelZaduzenja);
@@ -81,7 +79,6 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 				}
 			}
 		}
-
 		for (int j = 0; j < banke.size(); j++) {
 			List<Firma> firme = banke.get(j).getFirme();
 			for (Firma f : firme) {
@@ -205,7 +202,6 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 				webServiceTemplate.setDefaultUri(endpoint);
 			    Mt900 mt900=(Mt900) webServiceTemplate.marshalSendAndReceive(endpoint,send);
 			}
-
         nalogService.save(nalog);
 			
 	}

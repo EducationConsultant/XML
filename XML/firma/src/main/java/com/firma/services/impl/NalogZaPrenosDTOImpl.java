@@ -42,6 +42,7 @@ public class NalogZaPrenosDTOImpl implements NalogZaPrenosDTOService {
 	public NalogZaPrenos kreirajNalog(FakturaDTO faktura, NalogZaPrenosDTO nalog) {
 		
 		NalogZaPrenosDTO nalogzaprenos = new NalogZaPrenosDTO();
+		nalogzaprenos.setIdPoruke(1l);
 		nalogzaprenos.setDatumNaloga(faktura.getDatumRacuna());
 		nalogzaprenos.setDatumValute(faktura.getDatumValute());
 		nalogzaprenos.setIznos(faktura.getIznosZaUplatu());
