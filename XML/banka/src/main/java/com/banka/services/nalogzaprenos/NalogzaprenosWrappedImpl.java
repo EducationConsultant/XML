@@ -1,6 +1,7 @@
 package com.banka.services.nalogzaprenos;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.banka.models.domain.Banka;
@@ -204,6 +206,68 @@ public class NalogzaprenosWrappedImpl implements NalogzaprenosWrapped {
 			}
         nalogService.save(nalog);
 			
+	}
+	@Scheduled(fixedRate=15000)
+	private void Clear(){/*
+	    System.out.println("clear");
+	    String endpoint = "http://localhost:7070/services/Clearing";
+        WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+
+        marshaller.setContextPath("com.banka.models.mt102");
+
+        Jaxb2Marshaller unmarshaller = new Jaxb2Marshaller();
+
+        unmarshaller.setContextPath("com.banka.models.mt900");
+        ArrayList<NalogZaGrupnaPlacanja> mt103evi= new ArrayList<NalogZaGrupnaPlacanja>();
+        List<NalogZaPrenosDTO> nalozi=nalogService.find();
+        for(NalogZaPrenosDTO nalog:nalozi){
+            if(!nalog.isObradjeno()){
+                NalogZaGrupnaPlacanja mt103=null;
+                for(NalogZaGrupnaPlacanja mt:mt103evi){
+                    nalog.getd
+                }
+            }
+        }
+        NalogZaGrupnaPlacanja send = new NalogZaGrupnaPlacanja();
+        send.setDatum(datumNaloga);
+        send.setDatumValute(datumValute);
+        send.setObracunskiRacunBankeDuznika(bankaDuznika.getObracunskiRacun());
+        send.setObracunskiRacunBankePoverioca(bankaPrimalac.getObracunskiRacun());
+        send.setIDPoruke("1");
+        send.setSifraValute(oznakaValute);
+        send.setSWIFTKodBankeDuznika(bankaDuznika.getSwiftKod());
+        send.setSWIFTKodBankePoverioca(bankaPrimalac.getSwiftKod());
+        //prepraviti za slanje vise placanja
+        send.setUkupanIznos(iznos);
+        Placanja plac=new Placanja();
+        Placanje pl= new Placanje();
+        pl.setDatumNaloga(datumNaloga);
+        pl.setDuznikNalogodavac(duznikNalogodavac);
+        pl.setIDNalogaZaPlacanje("1");
+        pl.setModelOdobrenja(modelOdobrenja);
+        pl.setModelZaduzenja(modelZaduzenja);
+        pl.setPozivNaBrojOdobrenja(pozivNaBrojOdobrenja);
+        pl.setPozivNaBrojZaduzenja(pozivNaBrojZaduzenja);
+        pl.setPrimalacPoverilac(primalacPoverilac);
+        pl.setRacunDuznika(racunDuznika);
+        pl.setRacunPoverioca(racunPoverioca);
+        pl.setSifraValute(oznakaValute);
+        pl.setSvrhaPlacanja(svrhaPlacanja);
+        pl.setUkupanIznos(iznos);
+        plac.getPlacanje().add(pl);
+        send.setPlacanja(plac);
+        
+        firmaDuznik.setUkupanIznos(firmaDuznik.getUkupanIznos()-iznos.floatValue());
+        firmaService.save(firmaDuznik);
+        
+
+        webServiceTemplate.setMarshaller(marshaller);
+        webServiceTemplate.setUnmarshaller(unmarshaller);
+        webServiceTemplate.afterPropertiesSet();
+
+        webServiceTemplate.setDefaultUri(endpoint);
+        Mt900 mt900=(Mt900) webServiceTemplate.marshalSendAndReceive(endpoint,send);*/
 	}
 
 }

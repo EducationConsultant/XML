@@ -10,13 +10,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.Holder;
 
 import org.apache.commons.lang.time.DateUtils;
-import org.assertj.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.banka.models.domain.Firma;
 import com.banka.models.domain.NalogZaPrenosDTO;
 import com.banka.models.presek.GetPresekResponse.Stavke;
 import com.banka.models.presek.GetPresekResponse.Stavke.Stavka;
 import com.banka.models.presek.GetPresekResponse.Zaglavlje;
+import com.banka.services.FirmaService;
 import com.banka.services.NalogZaPrenosDTOService;
 
 /**
@@ -36,7 +37,8 @@ import com.banka.services.NalogZaPrenosDTOService;
 public class IzvodImpl implements Izvod {
 	@Autowired
 	NalogZaPrenosDTOService nzp;
-	
+	@Autowired
+    FirmaService fService;
     private static final Logger LOG = Logger.getLogger(IzvodImpl.class.getName());
 
     /* (non-Javadoc)
@@ -46,11 +48,26 @@ public class IzvodImpl implements Izvod {
 			int redniBrojPreseka, Holder<Zaglavlje> zaglavlje,
 			Holder<Stavke> stavke) {
     	System.out.println(nzp.find().size());
+    	float stanje=0;
+        for(Firma f:fService.find()){
+            if(f.getBrojRacuna().equals(brojRacuna)){
+                stanje=f.getUkupanIznos();
+                break;
+            }
+        }
+    	
     	ArrayList<NalogZaPrenosDTO> nalozi=new ArrayList<>();
     	for(NalogZaPrenosDTO nal: nzp.find()){
-    		if(nal.getRacunDuznika().equals(brojRacuna) || nal.getRacunPoverioca().equals(brojRacuna))
+    		if(nal.getRacunDuznika().equals(brojRacuna) || nal.getRacunPoverioca().equals(brojRacuna)){
     			if(DateUtils.isSameDay(datum.toGregorianCalendar().getTime(), nal.getDatumNaloga()))
     				nalozi.add(nal);
+    			if(nal.getDatumNaloga().after(datum.toGregorianCalendar().getTime())){
+    			    if(nal.getRacunDuznika().equals(brojRacuna))
+    			        stanje+=nal.getIznos().floatValue();
+    			    else stanje-=nal.getIznos().floatValue();
+    			}
+    			        
+    		}
     	};
     	LOG.info("Executing operation getPresek");
         System.out.println(brojRacuna);
@@ -126,8 +143,8 @@ public class IzvodImpl implements Izvod {
 			zag.setBrojPromenaUKorist(uKorist);
             zag.setBrojRacuna(brojRacuna);
             zag.setDatumNaloga(datum);
-            zag.setNovoStanje(new BigDecimal(0));
-            zag.setPrethodnoStanje(new BigDecimal(0));
+            zag.setNovoStanje(new BigDecimal(stanje));
+            zag.setPrethodnoStanje(new BigDecimal(stanje-ukUKorist.floatValue()+ukNaTeret.floatValue()));
 			zag.setUkupnoNaTeret(ukNaTeret);
 			zag.setUkupnoUKorist(ukUKorist);
         	

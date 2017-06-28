@@ -10,6 +10,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.banka.repository.BankaRepository;
 
@@ -17,6 +18,7 @@ import com.banka.repository.BankaRepository;
 @EnableAutoConfiguration
 @SpringBootApplication
 @ComponentScan("com.banka.controllers")
+@EnableScheduling
 public class BankaApplication {
 
 	public static void main(String[] args) {
